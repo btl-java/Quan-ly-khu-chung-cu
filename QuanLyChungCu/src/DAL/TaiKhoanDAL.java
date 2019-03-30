@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BLL;
+package DAL;
 
 /**
  *
  * @author PhamDai
  */
-public class testclassBLL {
-    
+public class TaiKhoanDAL {
+   boolean check = KhuCanHoDAL.instance.Delete(); // using singleton
 }

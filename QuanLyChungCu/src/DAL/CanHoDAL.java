@@ -9,6 +9,6 @@ package DAL;
  *
  * @author PhamDai
  */
-public class testclassDAL {
+public class CanHoDAL {
     
 }
