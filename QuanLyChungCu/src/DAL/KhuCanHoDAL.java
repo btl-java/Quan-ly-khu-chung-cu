@@ -25,11 +25,11 @@ public class KhuCanHoDAL {
         return instance;
     }
     
-    public ResultSet list(){
+    private ResultSet show(){
         return null;
     }
     
-    public boolean Insert(){
+    public boolean insert(){
            try {
             PreparedStatement pre = ConnectSQL.connect().prepareStatement("insert...");
             
@@ -40,7 +40,7 @@ public class KhuCanHoDAL {
         }
     }
     
-    public boolean Update(){
+    public boolean update(){
            try {
             PreparedStatement pre = ConnectSQL.connect().prepareStatement("update...");
             
@@ -51,7 +51,7 @@ public class KhuCanHoDAL {
         }
     }
     
-    public boolean Delete(){
+    public boolean delete(){
            try {
             PreparedStatement pre = ConnectSQL.connect().prepareStatement("delete...");
             

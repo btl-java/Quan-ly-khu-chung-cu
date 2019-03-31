@@ -10,5 +10,5 @@ package DAL;
  * @author PhamDai
  */
 public class TaiKhoanDAL {
-   boolean check = KhuCanHoDAL.instance.Delete(); // using singleton
+   boolean check = KhuCanHoDAL.instance.insert(); // using singleton
 }

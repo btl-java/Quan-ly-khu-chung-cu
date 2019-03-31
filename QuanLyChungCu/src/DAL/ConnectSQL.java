@@ -2,9 +2,7 @@ package DAL;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,15 +29,8 @@ public class ConnectSQL {
         return conn;
     }
     
-    //test connection
-//    public static void main(String[] args) throws SQLException {
-//        
-//        Connection connection=connect();
-//        Statement statement=connection.createStatement();
-//        ResultSet resultSet=statement.executeQuery("select * from CANHO");
-//        while (resultSet.next()) {            
-//            System.out.println(resultSet.getString(1)+"\t"+resultSet.getString(2)+"\t"+
-//                    resultSet.getString(3)+"\t"+resultSet.getString(4)+"\t"+resultSet.getString(5)+"\t"+resultSet.getString(6)+"\t"+resultSet.getString(1)+"\t");
-//        }
-//    }
+    public static void main(String[] args) {
+        if(connect()!= null) System.out.println("Success!");
+        else System.out.println("Fail!");
+    }
 }
