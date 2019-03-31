@@ -14,6 +14,12 @@ public class CanHo {
     private String maCuDan;
     KhuCanHo kch;
 
+    public CanHo(String maCanHo, float dienTich,long gia,boolean trangThai,int soPhong,String maCuDan,String maKhu) {
+        super(dienTich, gia, trangThai, soPhong, maKhu);
+        this.maCanHo = maCanHo;
+        this.maCuDan = maCuDan;
+    }
+
     public String getMaCanHo() {
         return maCanHo;
     }
@@ -24,6 +30,11 @@ public class CanHo {
 
     public String getMaCuDan() {
         return maCuDan;
+    }
+
+    @Override
+    public String toString() {
+        return "CanHo{" + "maCanHo=" + maCanHo + ", maCuDan=" + maCuDan + "}" ;
     }
 
     public void setMaCuDan(String maCuDan) {

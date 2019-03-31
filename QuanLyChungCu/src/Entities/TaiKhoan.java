@@ -18,6 +18,17 @@ public class TaiKhoan {
         return tenTaiKhoan;
     }
 
+    @Override
+    public String toString() {
+        return "TaiKhoan{" + "tenTaiKhoan=" + tenTaiKhoan + ", matKhau=" + matKhau + ", vaiTro=" + vaiTro + '}';
+    }
+
+    public TaiKhoan(String tenTaiKhoan, String matKhau, boolean vaiTro) {
+        this.tenTaiKhoan = tenTaiKhoan;
+        this.matKhau = matKhau;
+        this.vaiTro = vaiTro;
+    }
+
     public void setTenTaiKhoan(String tenTaiKhoan) {
         this.tenTaiKhoan = tenTaiKhoan;
     }

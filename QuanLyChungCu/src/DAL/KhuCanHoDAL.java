@@ -4,43 +4,59 @@
  * and open the template in the editor.
  */
 package DAL;
+import Entities.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
  * @author PhamDai
  */
 public class KhuCanHoDAL {
-
-    public static KhuCanHoDAL instance;
-    
+  
     private KhuCanHoDAL() {
+        
     }
     
-    public KhuCanHoDAL getInstance(){
-        if(instance==null) instance = new KhuCanHoDAL();
-        return instance;
-    }
-    
-    private ResultSet show(){
-        return null;
-    }
-    
-    public boolean insert(){
-           try {
-            PreparedStatement pre = ConnectSQL.connect().prepareStatement("insert...");
+    public static ArrayList<KhuCanHo> show(){
+        
+        ArrayList<KhuCanHo> list = new ArrayList<>();
+        try {
+            Statement s = ConnectSQL.connect().createStatement();
+            ResultSet r =  s.executeQuery("SELECT * FROM KHUCANHO");
+        
+            while (r.next()){
+                list.add(new KhuCanHo(r.getString(1), r.getString(2), r.getInt(3), r.getInt(4), r.getString(5)));
+            }   
             
-            return pre.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            return null;
+        }
+        
+        return list;
+    }
+    
+    public static boolean insert(KhuCanHo khu){
+         try {
+            PreparedStatement pre = ConnectSQL.connect().prepareStatement
+            ("INSERT INTO [dbo].[KHUCANHO] VALUES (?, ?, ?, ?, ?)");
+              pre.setString(1, "EM");
+              pre.setString(2, "Tiếng Việt");
+              pre.setInt(3, 30);
+              pre.setInt(4, 20);
+              pre.setString(5,"Hồ Tùng Mậu,Phạm Văn Đồng");
+              return pre.executeUpdate() > 0;
             
-        } catch(SQLException e){
+        } catch (SQLException e) {
             return false;
         }
     }
     
-    public boolean update(){
+    public static boolean update(){
            try {
             PreparedStatement pre = ConnectSQL.connect().prepareStatement("update...");
             
@@ -51,7 +67,7 @@ public class KhuCanHoDAL {
         }
     }
     
-    public boolean delete(){
+    public static boolean delete(){
            try {
             PreparedStatement pre = ConnectSQL.connect().prepareStatement("delete...");
             
@@ -61,5 +77,11 @@ public class KhuCanHoDAL {
             return false;
         }
     }    
-        
+    
+    //--------------------------------------------------
+//    public static void main(String[] args) {
+//        if(insert()) System.out.println("Sucess!");
+//        else System.out.println("Fail!");
+//    }
+//        
 }
