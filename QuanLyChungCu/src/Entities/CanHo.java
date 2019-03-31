@@ -13,6 +13,12 @@ public class CanHo extends KhuCanHo {
     private String maCanHo;
     private String maCuDan;
 
+    public CanHo(String maCanHo, float dienTich,long gia,boolean trangThai,int soPhong,String maCuDan,String maKhu) {
+        super(dienTich, gia, trangThai, soPhong, maKhu);
+        this.maCanHo = maCanHo;
+        this.maCuDan = maCuDan;
+    }
+
     public String getMaCanHo() {
         return maCanHo;
     }
@@ -25,8 +31,12 @@ public class CanHo extends KhuCanHo {
         return maCuDan;
     }
 
+    @Override
+    public String toString() {
+        return "CanHo{" + "maCanHo=" + maCanHo + ", maCuDan=" + maCuDan + "}" ;
+    }
+
     public void setMaCuDan(String maCuDan) {
         this.maCuDan = maCuDan;
-        CanHo c = new CanHo();
     }
 }

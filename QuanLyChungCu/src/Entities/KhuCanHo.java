@@ -17,7 +17,30 @@ public class KhuCanHo {
     protected int soCanTT;
     protected String diaChi;
     protected float dienTich;
-    protected int gia;
+
+    public KhuCanHo(String maKhu, String tenKhu, int soTang, int soCanTT, String diaChi) {
+        this.maKhu = maKhu;
+        this.tenKhu = tenKhu;
+        this.soTang = soTang;
+        this.soCanTT = soCanTT;
+        this.diaChi = diaChi;
+    }
+
+    public KhuCanHo(float dienTich, long gia, boolean trangThai, int soPhong,String maKhu) {
+        this.dienTich = dienTich;
+        this.gia = gia;
+        this.trangThai = trangThai;
+        this.soPhong = soPhong;
+        this.maKhu = maKhu;
+    }
+
+
+    @Override
+    public String toString() {
+        return "KhuCanHo{" + "maKhu=" + maKhu + ", tenKhu=" + tenKhu + ", soTang=" + soTang + ", soCanTT=" + soCanTT + ", diaChi=" + diaChi + '}';
+    }
+   
+    protected long gia;
     protected boolean trangThai;
     protected int soPhong;
 
@@ -85,11 +108,11 @@ public class KhuCanHo {
         this.soPhong = soPhong;
     }
 
-    public int getGia() {
+    public long getGia() {
         return gia;
     }
 
-    public void setGia(int gia) {
+    public void setGia(long gia) {
         this.gia = gia;
     }
         
