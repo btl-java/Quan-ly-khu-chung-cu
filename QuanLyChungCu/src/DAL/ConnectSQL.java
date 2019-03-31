@@ -15,7 +15,7 @@ public class ConnectSQL {
     public ConnectSQL() {
     }
     
-    private final static String URL = "jdbc:sqlserver://localhost:1500;databaseName=QuanLyChungCu";
+    private final static String URL = "jdbc:sqlserver://;databaseName=QuanLyChungCu";
     private final static String USERNAME = "admin";
     private final static String PASSWORD = "123456";
     private static Connection conn = null;
