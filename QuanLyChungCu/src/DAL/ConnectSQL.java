@@ -28,4 +28,9 @@ public class ConnectSQL {
         }
         return conn;
     }
+    
+    public static void main(String[] args) {
+        if(connect()!= null) System.out.println("Success!");
+        else System.out.println("Fail!");
+    }
 }
