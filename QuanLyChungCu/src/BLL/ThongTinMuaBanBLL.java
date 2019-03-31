@@ -38,7 +38,6 @@ public class ThongTinMuaBanBLL {
                 hd.setMaCuDan(BangThongTinMuaBan().getString(3));
                 hd.setDiaChiKhachHang(BangThongTinMuaBan().getString(4));
                 hd.setGia(BangThongTinMuaBan().getInt(5));
-                //hd.setNgayGiaoDich(formatDate);
                 hd.setNgayGiaoDich(BangThongTinMuaBan().getString(6));
                 
                 dsHopDong.add(hd);

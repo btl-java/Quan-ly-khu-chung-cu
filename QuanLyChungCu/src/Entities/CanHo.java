@@ -9,9 +9,10 @@ package Entities;
  *
  * @author PhamDai
  */
-public class CanHo extends KhuCanHo {
+public class CanHo {
     private String maCanHo;
     private String maCuDan;
+    KhuCanHo kch;
 
     public String getMaCanHo() {
         return maCanHo;
@@ -27,6 +28,5 @@ public class CanHo extends KhuCanHo {
 
     public void setMaCuDan(String maCuDan) {
         this.maCuDan = maCuDan;
-        CanHo c = new CanHo();
     }
 }
