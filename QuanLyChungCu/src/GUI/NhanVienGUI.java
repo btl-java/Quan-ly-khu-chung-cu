@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author PhamDai
@@ -17,6 +20,11 @@ public class NhanVienGUI extends javax.swing.JFrame {
     public NhanVienGUI() {
         initComponents();
         setLocationRelativeTo(null);
+        try {
+            BLL.ThongTinMuaBanBLL.HienThongTinMuaBan(tblThongtinmuaban);
+        } catch (Exception ex) {
+            Logger.getLogger(NhanVienGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -153,14 +161,17 @@ public class NhanVienGUI extends javax.swing.JFrame {
         tblThongtinmuaban.setBackground(new java.awt.Color(255, 255, 226));
         tblThongtinmuaban.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã hợp đồng", "Mã căn hộ", "Mã cư dân", "Giá căn hộ", "Ngày giao dịch"
+                "Mã hợp đồng", "Mã căn hộ", "Mã cư dân", "Địa chỉ KH", "Giá", "Ngày giao dịch"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -168,6 +179,14 @@ public class NhanVienGUI extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblThongtinmuaban);
+        if (tblThongtinmuaban.getColumnModel().getColumnCount() > 0) {
+            tblThongtinmuaban.getColumnModel().getColumn(0).setResizable(false);
+            tblThongtinmuaban.getColumnModel().getColumn(1).setResizable(false);
+            tblThongtinmuaban.getColumnModel().getColumn(2).setResizable(false);
+            tblThongtinmuaban.getColumnModel().getColumn(3).setResizable(false);
+            tblThongtinmuaban.getColumnModel().getColumn(4).setResizable(false);
+            tblThongtinmuaban.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         javax.swing.GroupLayout tabThongtinmuabanLayout = new javax.swing.GroupLayout(tabThongtinmuaban);
         tabThongtinmuaban.setLayout(tabThongtinmuabanLayout);
@@ -601,6 +620,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new NhanVienGUI().setVisible(true);
             }

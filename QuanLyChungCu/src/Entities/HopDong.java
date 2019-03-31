@@ -13,10 +13,20 @@ import java.util.Date;
  */
 public class HopDong {
     private String maHopDong;
-    private Date ngayGiaoDich;
+    private String ngayGiaoDich;
     private String diaChiKhachHang;
     private String maCuDan;
+    private String maCanHo;
+    private int gia;
 
+    public int getGia() {
+        return gia;
+    }
+
+    public void setGia(int gia) {
+        this.gia = gia;
+    }
+    
     public String getMaHopDong() {
         return maHopDong;
     }
@@ -25,11 +35,11 @@ public class HopDong {
         this.maHopDong = maHopDong;
     }
 
-    public Date getNgayGiaoDich() {
+    public String getNgayGiaoDich() {
         return ngayGiaoDich;
     }
 
-    public void setNgayGiaoDich(Date ngayGiaoDich) {
+    public void setNgayGiaoDich(String ngayGiaoDich) {
         this.ngayGiaoDich = ngayGiaoDich;
     }
 
@@ -56,6 +66,6 @@ public class HopDong {
     public void setMaCanHo(String maCanHo) {
         this.maCanHo = maCanHo;
     }
-    private String maCanHo;
+    
     
 }
