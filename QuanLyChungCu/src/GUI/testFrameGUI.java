@@ -36,7 +36,7 @@ public class testFrameGUI extends javax.swing.JFrame {
         tabThongtinmuaban = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblThongtinmuaban = new javax.swing.JTable();
         tabQuanlycudan = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -58,11 +58,11 @@ public class testFrameGUI extends javax.swing.JFrame {
         btnSua = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblQuanlycudan = new javax.swing.JTable();
         tabThongtincanho = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tblThongtincanho = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -151,19 +151,24 @@ public class testFrameGUI extends javax.swing.JFrame {
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 226));
         jScrollPane1.setForeground(new java.awt.Color(0, 0, 255));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 226));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblThongtinmuaban.setBackground(new java.awt.Color(255, 255, 226));
+        tblThongtinmuaban.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã hợp đồng", "Mã căn hộ", "Mã cư dân", "Giá căn hộ", "Ngày giao dịch"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblThongtinmuaban);
 
         javax.swing.GroupLayout tabThongtinmuabanLayout = new javax.swing.GroupLayout(tabThongtinmuaban);
         tabThongtinmuaban.setLayout(tabThongtinmuabanLayout);
@@ -306,19 +311,24 @@ public class testFrameGUI extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(83, 58, 255));
         jLabel11.setText("Quản lý cư dân");
 
-        jTable2.setBackground(new java.awt.Color(255, 233, 226));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblQuanlycudan.setBackground(new java.awt.Color(255, 233, 226));
+        tblQuanlycudan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã cư dân", "Tên cư dân", "Ngày sinh", "Giới tính", "SĐT", "Quê quán", "Số CMT", "Mã căn hộ"
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblQuanlycudan);
 
         javax.swing.GroupLayout tabQuanlycudanLayout = new javax.swing.GroupLayout(tabQuanlycudan);
         tabQuanlycudan.setLayout(tabQuanlycudanLayout);
@@ -356,17 +366,25 @@ public class testFrameGUI extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(83, 58, 255));
         jLabel12.setText("Thông tin căn hộ");
 
-        jTable3.setBackground(new java.awt.Color(221, 255, 236));
-        jTable3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 0), 2));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tblThongtincanho.setBackground(new java.awt.Color(221, 255, 236));
+        tblThongtincanho.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 0), 2));
+        tblThongtincanho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã căn hộ", "Diện tích", "Giá", "Số phòng"
             }
-        ));
-        jScrollPane3.setViewportView(jTable3);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblThongtincanho);
 
         jPanel4.setBackground(new java.awt.Color(221, 255, 236));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 0), 2));
@@ -395,6 +413,7 @@ public class testFrameGUI extends javax.swing.JFrame {
 
         jLabel23.setText("Số CMT:");
 
+        chkLacudan.setBackground(new java.awt.Color(221, 255, 236));
         chkLacudan.setText("Là cư dân");
 
         btnInhopdong.setText("In hợp đồng");
@@ -404,7 +423,7 @@ public class testFrameGUI extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
                     .addComponent(jLabel17)
@@ -428,17 +447,19 @@ public class testFrameGUI extends javax.swing.JFrame {
                     .addComponent(txtGioitinh1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 25, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jLabel13)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(chkLacudan)
-                    .addComponent(btnInhopdong))
-                .addGap(151, 151, 151))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(133, Short.MAX_VALUE)
-                .addComponent(jLabel13)
+                .addComponent(chkLacudan)
                 .addGap(125, 125, 125))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnInhopdong, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -488,8 +509,8 @@ public class testFrameGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(chkLacudan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnInhopdong)
-                .addGap(31, 31, 31))
+                .addComponent(btnInhopdong, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
 
         javax.swing.GroupLayout tabThongtincanhoLayout = new javax.swing.GroupLayout(tabThongtincanho);
@@ -499,10 +520,10 @@ public class testFrameGUI extends javax.swing.JFrame {
             .addGroup(tabThongtincanhoLayout.createSequentialGroup()
                 .addGap(519, 519, 519)
                 .addComponent(jLabel12)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(548, Short.MAX_VALUE))
             .addGroup(tabThongtincanhoLayout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 796, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(jScrollPane3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         tabThongtincanhoLayout.setVerticalGroup(
@@ -622,9 +643,6 @@ public class testFrameGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
@@ -632,6 +650,9 @@ public class testFrameGUI extends javax.swing.JFrame {
     private javax.swing.JPanel tabQuanlycudan;
     private javax.swing.JPanel tabThongtincanho;
     private javax.swing.JPanel tabThongtinmuaban;
+    private javax.swing.JTable tblQuanlycudan;
+    private javax.swing.JTable tblThongtincanho;
+    private javax.swing.JTable tblThongtinmuaban;
     private javax.swing.JTextField txtGiacanho;
     private javax.swing.JTextField txtGioitinh;
     private javax.swing.JTextField txtGioitinh1;
