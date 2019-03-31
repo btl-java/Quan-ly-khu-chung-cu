@@ -14,11 +14,12 @@ import java.util.Date;
 public class CuDan {
     private String maCuDan;
     private String tenCuDan;
-    private Date ngaySinh;
-    private boolean gioiTinh;
+    private String ngaySinh;
+    private String gioiTinh;
     private String soDT;
     private String soCMT;
     private String queQuan;
+    private String maCanHo;
 
     public String getMaCuDan() {
         return maCuDan;
@@ -36,19 +37,19 @@ public class CuDan {
         this.tenCuDan = tenCuDan;
     }
 
-    public Date getNgaySinh() {
+    public String getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
+    public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
-    public boolean isGioiTinh() {
+    public String isGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(boolean gioiTinh) {
+    public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
@@ -76,4 +77,11 @@ public class CuDan {
         this.queQuan = queQuan;
     }
 
+    public String getMaCanHo() {
+        return maCanHo;
+    }
+
+    public void setMaCanHo(String maCanHo) {
+        this.maCanHo = maCanHo;
+    }
 }
