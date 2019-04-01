@@ -1,6 +1,9 @@
 package DAL;
 
+import Entities.HopDong;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -8,23 +11,27 @@ import java.sql.*;
  */
 public class ThongTinMuaBanDAL {
 
-    public static ResultSet BangThongTinMuaBan() throws SQLException {
+    public static List<HopDong> dsHopDong() throws SQLException {
         String query = "select hd.MaHopDong,hd.MaCanHo,hd.MaCuDan,hd.DiaChiKH,ch.Gia,hd.NgayGiaoDich \n"
                 + "from HOPDONG hd inner join CANHO ch \n"
                 + "on hd.MaCuDan=ch.MaCuDan";
         ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(query);
-        while (rs.next()) {
-            return rs;
-        }
-        return null;
-    }
+        List<HopDong> dsHopDong = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                HopDong hd = new HopDong();
+                hd.setMaHopDong(rs.getString(1));
+                hd.setMaCanHo(rs.getString(2));
+                hd.setMaCuDan(rs.getString(3));
+                hd.setDiaChiKhachHang(rs.getString(4));
+                hd.setGia(rs.getInt(5));
+                hd.setNgayGiaoDich(rs.getString(6));
 
-//    public static void main(String[] args) throws SQLException {
-//        System.out.println(BangThongTinMuaBan().getString(1));
-//        System.out.println(BangThongTinMuaBan().getString(2));
-//        System.out.println(BangThongTinMuaBan().getString(3));
-//        System.out.println(BangThongTinMuaBan().getString(4));
-//        System.out.println(BangThongTinMuaBan().getInt(5));
-//        System.out.println(BangThongTinMuaBan().getString(6));
-//    }
+                dsHopDong.add(hd);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error in ThongTinMuaBanDAL: " + e.getMessage());
+        }
+        return dsHopDong;
+    }
 }

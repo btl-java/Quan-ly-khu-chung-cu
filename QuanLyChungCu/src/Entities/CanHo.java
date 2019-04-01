@@ -9,10 +9,9 @@ package Entities;
  *
  * @author PhamDai
  */
-public class CanHo {
+public class CanHo extends KhuCanHo{
     private String maCanHo;
     private String maCuDan;
-    KhuCanHo kch;
 
     public CanHo(String maCanHo, float dienTich,long gia,boolean trangThai,int soPhong,String maCuDan,String maKhu) {
         super(dienTich, gia, trangThai, soPhong, maKhu);
