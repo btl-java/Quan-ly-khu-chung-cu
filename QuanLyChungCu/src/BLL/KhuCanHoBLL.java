@@ -6,11 +6,9 @@
 package BLL;
 import DAL.*;
 import Entities.*;
-import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -50,6 +48,7 @@ public class KhuCanHoBLL {
         
         for(int i = 0;i<KhuCanHoDAL.show().size();i++){
             items.append(KhuCanHoDAL.show().get(i).getMaKhu());
+      
             items.append("#");
         }
         
@@ -59,13 +58,12 @@ public class KhuCanHoBLL {
         return new DefaultComboBoxModel(items.toString().split("#"));
     }
     
-    @SuppressWarnings("empty-statement")
-    public static ArrayList<CanHo> insert( String maKhu, String tenKhu,int soTang,int soCanTT, String diaChi, float dienTich, long gia,int soPhong){
+    public static boolean insert( String maKhu, String tenKhu,int soTang,int soCanTT, String diaChi, float dienTich, long gia,int soPhong){
         
-//        if(KhuCanHoDAL.insert(new KhuCanHo(maKhu, tenKhu, soTang, soCanTT, diaChi))){
-//            System.out.println("Thêm khu thành công");;
-//        }// thêm và check thêm khu
-//         
+        if(KhuCanHoDAL.insert(new KhuCanHo(maKhu, tenKhu, soTang, soCanTT, diaChi))){
+            System.out.println("Thêm khu thành công");;
+        }// thêm và check thêm khu
+         
         ArrayList<CanHo> list = new ArrayList<>();
         
         for(int i = 1;i<=soTang;i++) {
@@ -89,29 +87,16 @@ public class KhuCanHoBLL {
 		}
             }		
 	}
-     
-        if(CanHoDAL.inserts(list)){
-            System.out.println("Thêm căn hộ thành công"); ;
-        }
         
-        CanHoDAL.test(list);//////////
-        
-        return list;
+        return CanHoDAL.inserts(list)>0;
     }
     
     public static boolean update(String maKhu,String tenKhu,String diaChi){
-        return false;
+        return KhuCanHoDAL.update(maKhu, tenKhu, diaChi);
     }
     
     public static boolean delete(String maKhu){
-        return false;
-    }
-    
-    public static void main(String[] args) {
-        insert("SS", "tenKhu", 20, 20, "diaChi", 52, 1256437, 5).forEach((c) -> {
-            System.out.println(c);
-        });
-      
-    }
+        return KhuCanHoDAL.delete(maKhu);
+    } 
     
 }

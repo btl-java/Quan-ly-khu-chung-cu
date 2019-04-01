@@ -9,55 +9,10 @@ package Entities;
  *
  * @author PhamDai
  */
-public class CanHo{
+public class CanHo extends KhuCanHo{
     
-    private float dienTich;
-    private long gia;
-    private boolean trangThai;
-    private int soPhong;
     private String maCanHo;
     private String maCuDan;
-    private String maKhu;
-
-    public String getMaKhu() {
-        return maKhu;
-    }
-
-    public void setMaKhu(String maKhu) {
-        this.maKhu = maKhu;
-    }
-
-    public float getDienTich() {
-        return dienTich;
-    }
-
-    public void setDienTich(float dienTich) {
-        this.dienTich = dienTich;
-    }
-
-    public long getGia() {
-        return gia;
-    }
-
-    public void setGia(long gia) {
-        this.gia = gia;
-    }
-
-    public boolean isTrangThai() {
-        return trangThai;
-    }
-
-    public void setTrangThai(boolean trangThai) {
-        this.trangThai = trangThai;
-    }
-
-    public int getSoPhong() {
-        return soPhong;
-    }
-
-    public void setSoPhong(int soPhong) {
-        this.soPhong = soPhong;
-    }
 
     public CanHo(String maCanHo, float dienTich,long gia,boolean trangThai,int soPhong,String maCuDan,String maKhu) {
         this.dienTich = dienTich;
@@ -66,6 +21,7 @@ public class CanHo{
         this.soPhong = soPhong;
         this.maCanHo = maCanHo;
         this.maCuDan = maCuDan;
+        this.maKhu = maKhu;
     }
     
     public String getMaCanHo() {
@@ -82,7 +38,7 @@ public class CanHo{
 
     @Override
     public String toString() {
-        return "CanHo{" + "maCanHo=" + maCanHo + ", maCuDan=" + maCuDan + "}" ;
+        return "CanHo{" + "maCanHo=" + maCanHo + ", dienTich=" + dienTich + ", gia=" + gia + ", trangThai=" + trangThai + ", soPhong=" + soPhong + ", maCuDan=" + maCuDan + ", maKhu=" + maKhu + '}';
     }
 
     public void setMaCuDan(String maCuDan) {

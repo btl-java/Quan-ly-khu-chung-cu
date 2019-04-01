@@ -18,7 +18,43 @@ public class KhuCanHo {
     protected String tenKhu;
     protected int soTang;
     protected int soCanTT;
-    private String diaChi;
+    protected  String diaChi;
+    protected  float dienTich;
+
+    public float getDienTich() {
+        return dienTich;
+    }
+
+    public void setDienTich(float dienTich) {
+        this.dienTich = dienTich;
+    }
+
+    public long getGia() {
+        return gia;
+    }
+
+    public void setGia(long gia) {
+        this.gia = gia;
+    }
+
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    public int getSoPhong() {
+        return soPhong;
+    }
+
+    public void setSoPhong(int soPhong) {
+        this.soPhong = soPhong;
+    }
+    protected  long gia;
+    protected boolean trangThai;
+    protected  int soPhong;
 
     public KhuCanHo(String maKhu, String tenKhu, int soTang, int soCanTT, String diaChi) {
         this.maKhu = maKhu;

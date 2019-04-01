@@ -49,18 +49,23 @@ public class KhuCanHoDAL {
               pre.setInt(3, khu.getSoTang());
               pre.setInt(4, khu.getSoCanTT());
               pre.setString(5,khu.getDiaChi());
+              pre.executeUpdate();
               
-              return pre.executeUpdate() > 0;
+              return true;
               
         } catch (SQLException e) {
             return false;
         }
     }
     
-    public static boolean update(){
+    public static boolean update(String maKhu,String tenKhu,String diaChi){
            try {
-            PreparedStatement pre = ConnectSQL.connect().prepareStatement("update...");
-            
+               
+               PreparedStatement pre = ConnectSQL.connect().prepareStatement
+                    ("UPDATE dbo.KHUCANHO SET TenKhu = ?,DiaChi = ? WHERE MaKhu = ?");
+                pre.setString(1, tenKhu);
+                pre.setString(2, diaChi);
+                pre.setString(3, maKhu);
             return pre.executeUpdate() > 0;
             
         } catch(SQLException e){
@@ -68,10 +73,12 @@ public class KhuCanHoDAL {
         }
     }
     
-    public static boolean delete(){
+    public static boolean delete(String maKhu){
            try {
-            PreparedStatement pre = ConnectSQL.connect().prepareStatement("delete...");
-            
+               
+            PreparedStatement pre = ConnectSQL.connect().prepareStatement
+                ("DELETE dbo.KHUCANHO WHERE MaKhu = ?");
+                pre.setString(1, maKhu);
             return pre.executeUpdate() > 0;
             
         } catch(SQLException e){
@@ -79,10 +86,4 @@ public class KhuCanHoDAL {
         }
     }    
     
-    //--------------------------------------------------
-//    public static void main(String[] args) {
-//        if(insert()) System.out.println("Sucess!");
-//        else System.out.println("Fail!");
-//    }
-//        
 }

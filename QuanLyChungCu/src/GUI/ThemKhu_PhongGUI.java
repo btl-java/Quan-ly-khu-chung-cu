@@ -185,7 +185,7 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
 
     private void btLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLuuActionPerformed
  
-        String maKhu = null;
+        String maKhu = "ZZ";
         String tenKhu = null;
         int soTang = 1;
         int soCanTT = 1;
@@ -234,7 +234,7 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
                  if(Integer.parseInt(txbSoCanTT.getText())<1){
                     JOptionPane.showMessageDialog(null,"Vui lòng nhập số căn là số dương!");
                 }else{
-                    soCanTT = Integer.parseInt(txbSoTang.getText());
+                    soCanTT = Integer.parseInt(txbSoCanTT.getText());
                 }
             }
         
@@ -276,14 +276,15 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
         
          //insert here
          
-        KhuCanHoBLL.insert(maKhu, tenKhu, soTang, soCanTT, diaChi, dienTich, gia, soPhong);
+       boolean check = KhuCanHoBLL.insert(maKhu, tenKhu, soTang, soCanTT, diaChi, dienTich, gia, soPhong);
         
-        QuanLyGUI.it.show_KhuCanHo();
-//        if(){
-//            JOptionPane.showMessageDialog(null,"Thêm thành công 1 khu và " +(soTang*soCanTT)+" căn hộ");
-//        }else{
-//            JOptionPane.showMessageDialog(null,"Vui lòng xem lại thông tin");
-//        }
+       QuanLyGUI.it.show_KhuCanHo();
+       QuanLyGUI.it.show_CanHo();
+        if(check){
+            JOptionPane.showMessageDialog(null,"Thêm thành công khu " +"'"+tenKhu+"'"+ " và " +(soTang*soCanTT)+" căn hộ");
+        }else{
+            JOptionPane.showMessageDialog(null,"Vui lòng xem lại thông tin!");
+        }
         
     }//GEN-LAST:event_btLuuActionPerformed
 
