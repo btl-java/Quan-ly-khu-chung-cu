@@ -9,16 +9,65 @@ package Entities;
  *
  * @author PhamDai
  */
-public class CanHo extends KhuCanHo {
+public class CanHo{
+    
+    private float dienTich;
+    private long gia;
+    private boolean trangThai;
+    private int soPhong;
     private String maCanHo;
     private String maCuDan;
+    private String maKhu;
+
+    public String getMaKhu() {
+        return maKhu;
+    }
+
+    public void setMaKhu(String maKhu) {
+        this.maKhu = maKhu;
+    }
+
+    public float getDienTich() {
+        return dienTich;
+    }
+
+    public void setDienTich(float dienTich) {
+        this.dienTich = dienTich;
+    }
+
+    public long getGia() {
+        return gia;
+    }
+
+    public void setGia(long gia) {
+        this.gia = gia;
+    }
+
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    public int getSoPhong() {
+        return soPhong;
+    }
+
+    public void setSoPhong(int soPhong) {
+        this.soPhong = soPhong;
+    }
 
     public CanHo(String maCanHo, float dienTich,long gia,boolean trangThai,int soPhong,String maCuDan,String maKhu) {
-        super(dienTich, gia, trangThai, soPhong, maKhu);
+        this.dienTich = dienTich;
+        this.gia = gia;
+        this.trangThai = trangThai;
+        this.soPhong = soPhong;
         this.maCanHo = maCanHo;
         this.maCuDan = maCuDan;
     }
-
+    
     public String getMaCanHo() {
         return maCanHo;
     }

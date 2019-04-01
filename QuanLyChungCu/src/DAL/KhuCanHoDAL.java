@@ -40,17 +40,18 @@ public class KhuCanHoDAL {
         return list;
     }
     
-    public static boolean insert(KhuCanHo khu){
+    public static boolean insert(KhuCanHo khu){  
          try {
             PreparedStatement pre = ConnectSQL.connect().prepareStatement
             ("INSERT INTO [dbo].[KHUCANHO] VALUES (?, ?, ?, ?, ?)");
-              pre.setString(1, "EM");
-              pre.setString(2, "Tiếng Việt");
-              pre.setInt(3, 30);
-              pre.setInt(4, 20);
-              pre.setString(5,"Hồ Tùng Mậu,Phạm Văn Đồng");
+              pre.setString(1, khu.getMaKhu());
+              pre.setString(2, khu.getTenKhu());
+              pre.setInt(3, khu.getSoTang());
+              pre.setInt(4, khu.getSoCanTT());
+              pre.setString(5,khu.getDiaChi());
+              
               return pre.executeUpdate() > 0;
-            
+              
         } catch (SQLException e) {
             return false;
         }

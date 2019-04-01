@@ -5,7 +5,6 @@
  */
 package Entities;
 
-import java.util.Date;
 
 /**
  *
@@ -15,7 +14,7 @@ public class CuDan {
     private String maCuDan;
     private String tenCuDan;
     private String ngaySinh;
-    private String gioiTinh;
+    private boolean gioiTinh;
     private String soDT;
     private String soCMT;
     private String queQuan;
@@ -45,11 +44,11 @@ public class CuDan {
         this.ngaySinh = ngaySinh;
     }
 
-    public String isGioiTinh() {
+    public boolean isGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(String gioiTinh) {
+    public void setGioiTinh(boolean gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
@@ -83,5 +82,18 @@ public class CuDan {
 
     public void setMaCanHo(String maCanHo) {
         this.maCanHo = maCanHo;
+    }
+
+    public CuDan() {
+    }
+
+    public CuDan(String maCuDan, String tenCuDan, String ngaySinh, boolean gioiTinh, String soDT, String soCMT, String queQuan) {
+        this.maCuDan = maCuDan;
+        this.tenCuDan = tenCuDan;
+        this.ngaySinh = ngaySinh;
+        this.gioiTinh = gioiTinh;
+        this.soDT = soDT;
+        this.soCMT = soCMT;
+        this.queQuan = queQuan;
     }
 }
