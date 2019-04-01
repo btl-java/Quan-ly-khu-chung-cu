@@ -10,8 +10,12 @@ package Entities;
  * @author PhamDai
  */
 public class TaiKhoan {
+    
     private String tenTaiKhoan;
     private String matKhau;
+
+    public TaiKhoan() {
+    }
     private boolean vaiTro;
 
     public String getTenTaiKhoan() {

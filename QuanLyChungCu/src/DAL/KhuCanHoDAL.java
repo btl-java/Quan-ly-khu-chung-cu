@@ -86,4 +86,16 @@ public class KhuCanHoDAL {
         }
     }    
     
+    public static ArrayList<KhuCanHo> search(String text) throws SQLException{
+        
+        Statement s  = ConnectSQL.connect().createStatement();
+        ResultSet r = s.executeQuery("SELECT * FROM dbo.KHUCANHO WHERE "
+        + "MaKhu LIKE '%"+text+"%' OR TenKhu LIKE '%"+text+"%' OR SoTang LIKE '%"+text+"%' OR SoCanTT LIKE '%"+text+"%' OR DiaChi LIKE '%"+text+"%'");
+        ArrayList<KhuCanHo> list = new ArrayList<>();
+        while(r.next()){
+             list.add(new KhuCanHo(r.getString(1), r.getString(2), r.getInt(3), r.getInt(4), r.getString(5)));
+        }
+        return list;
+    }
+    
 }

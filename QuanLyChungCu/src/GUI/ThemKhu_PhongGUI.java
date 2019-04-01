@@ -6,6 +6,7 @@
 package GUI;
 
 import BLL.KhuCanHoBLL;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -184,107 +185,53 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btHuyActionPerformed
 
     private void btLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLuuActionPerformed
- 
-        String maKhu = "ZZ";
-        String tenKhu = null;
-        int soTang = 1;
-        int soCanTT = 1;
-        String diaChi = null;
-        float dienTich = 1;
-        long gia = 1;
-        int soPhong = 1;
-        
-        //check mã khu
-        if(txbMaKhu.getText().length()!=2){
-            JOptionPane.showMessageDialog(null,"Mã khu 2 kí tự!");
-        }else {
-            maKhu = txbMaKhu.getText().toUpperCase();
-        }
-        
-        //check tên khu
-        if(txbTenKhu.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Tên khu không được bỏ trống!");
-        }else {
-            tenKhu = txbTenKhu.getText();
-        }
-            
-        //check địa chỉ   
-        if(txbDiaChi.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Địa chỉ không được bỏ trống!");
-        }else {
-            diaChi = txbDiaChi.getText();
-        }
-        
+
         try{
-            // check số tầng
-            if(txbSoTang.getText().equals("")){
+            if(txbMaKhu.getText().length()!=2){
+                JOptionPane.showMessageDialog(null,"Mã khu 2 kí tự!");
+            }else if(txbTenKhu.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Tên khu không được bỏ trống!");
+            }else if(txbSoTang.getText().equals("")){
                 JOptionPane.showMessageDialog(null,"Số tầng không được bỏ trống!");
-            }else{
-                if(Integer.parseInt(txbSoTang.getText())<1){
-                    JOptionPane.showMessageDialog(null,"Vui lòng nhập số tầng là số dương!");
-                }else{
-                    soTang = Integer.parseInt(txbSoTang.getText());
-                }
-            }
-       
-        // check số căn
-            if(txbSoCanTT.getText().equals("")){
-                JOptionPane.showMessageDialog(null,"Số căn không được bỏ trống!");
-            }else{
-                 if(Integer.parseInt(txbSoCanTT.getText())<1){
-                    JOptionPane.showMessageDialog(null,"Vui lòng nhập số căn là số dương!");
-                }else{
-                    soCanTT = Integer.parseInt(txbSoCanTT.getText());
-                }
-            }
-        
-        // check diện tích
-            if(txbDienTich.getText().equals("")){
+            }else if(Integer.parseInt(txbSoTang.getText())<1){
+                JOptionPane.showMessageDialog(null,"Vui lòng nhập số tầng là số dương!");
+            }else if(txbSoCanTT.getText().equals("")){
+                 JOptionPane.showMessageDialog(null,"Số căn không được bỏ trống!");
+            }else if(Integer.parseInt(txbSoCanTT.getText())<1){
+                JOptionPane.showMessageDialog(null,"Vui lòng số căn là số dương!");
+            }else if(txbDiaChi.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Địa chỉ không được bỏ trống!");
+            }else if(txbDienTich.getText().equals("")){
                 JOptionPane.showMessageDialog(null,"Diện tích không được bỏ trống!");
+            }else if(Float.parseFloat(txbDienTich.getText())<1){
+                JOptionPane.showMessageDialog(null,"Vui lòng nhập diện tích là số dương!");
+            }else if(txbGia.getText().equals("")){
+                 JOptionPane.showMessageDialog(null,"Giá không được bỏ trống!");
+            }else if(Long.parseLong(txbGia.getText())<1){
+                JOptionPane.showMessageDialog(null,"Vui lòng giá là số dương!");
+            }else if(txbSoPhong.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Số phòng không được bỏ trống");
+            }else if(Integer.parseInt(txbSoPhong.getText())<1){
+                JOptionPane.showMessageDialog(null,"Vui lòng số phòng là số dương!");
             }else{
-                 if(Float.parseFloat(txbDienTich.getText())<1){
-                    JOptionPane.showMessageDialog(null,"Vui lòng nhập diện tích là số dương!");
-                }else{
-                    dienTich = Float.parseFloat(txbDienTich.getText());
+                //String maKhu, String tenKhu,int soTang,int soCanTT, String diaChi, float dienTich, long gia,int soPhong
+                boolean check = KhuCanHoBLL.insert(txbMaKhu.getText().toUpperCase(), txbTenKhu.getText(), Integer.parseInt(txbSoTang.getText()), Integer.parseInt(txbSoCanTT.getText()), 
+                        txbDiaChi.getText(), Float.parseFloat(txbDienTich.getText()), Long.parseLong(txbGia.getText()), Integer.parseInt(txbSoPhong.getText()));
+                QuanLyGUI.it.show_KhuCanHo();
+                QuanLyGUI.it.show_CanHo();
+                if(check){
+                    JOptionPane.showMessageDialog(null,"Thêm thành công khu " +"'"+txbTenKhu.getText()+"'"+ " và " +(Integer.parseInt(txbSoTang.getText())*Integer.parseInt(txbSoCanTT.getText()))+" căn hộ");
+                 }else{
+                    JOptionPane.showMessageDialog(null,"Vui lòng xem lại thông tin!");
                 }
             }
 
-        //check giá
-            if(txbGia.getText().equals("")){
-                JOptionPane.showMessageDialog(null,"Giá không được bỏ trống!");
-            }else{
-                 if(Long.parseLong(txbGia.getText())<1){
-                    JOptionPane.showMessageDialog(null,"Vui lòng giá là số dương!");
-                }else{
-                    gia =  Long.parseLong(txbGia.getText());
-                }
-            }
-        
-        // check số phòng
-            if(txbSoPhong.getText().equals("")){
-                JOptionPane.showMessageDialog(null,"Số phòng không được bỏ trống!");
-            }else{
-                 if( Integer.parseInt(txbSoPhong.getText())<1){
-                    JOptionPane.showMessageDialog(null,"Vui lòng số phòng là số dương!");
-                }else{
-                    soPhong =  Integer.parseInt(txbSoPhong.getText());
-                }
-            }
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Vui lòng nhập đúng định dạng số!");
-        }
+        }   
         
-         //insert here
          
-       boolean check = KhuCanHoBLL.insert(maKhu, tenKhu, soTang, soCanTT, diaChi, dienTich, gia, soPhong);
-        
-       QuanLyGUI.it.show_KhuCanHo();
-       QuanLyGUI.it.show_CanHo();
-        if(check){
-            JOptionPane.showMessageDialog(null,"Thêm thành công khu " +"'"+tenKhu+"'"+ " và " +(soTang*soCanTT)+" căn hộ");
-        }else{
-            JOptionPane.showMessageDialog(null,"Vui lòng xem lại thông tin!");
-        }
+      
         
     }//GEN-LAST:event_btLuuActionPerformed
 

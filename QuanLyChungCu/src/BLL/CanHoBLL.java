@@ -47,4 +47,23 @@ public class CanHoBLL {
     public static boolean update(String maCanHo,long gia,int soPhong){
         return CanHoDAL.update(maCanHo, gia, soPhong);
     }
+    
+    public static TableModel search(String text){
+         ArrayList<CanHo> list = CanHoDAL.search(text);
+        String[] columnNames = {"Mã Căn Hộ","Diện Tích","Giá","Trạng Thái","Số Phòng","Mã Cư Dân","Mã Khu"};
+        Object[][] data = new Object[list.size()][columnNames.length];
+        int row = 0;
+        for(CanHo c : list){
+            data[row][0] = c.getMaCanHo();
+            data[row][1] = c.getDienTich();
+            data[row][2] = c.getGia();
+            data[row][3] = c.isTrangThai();
+            data[row][4] = c.getSoPhong();
+            data[row][5] = c.getMaCuDan();
+            data[row][6] = c.getMaKhu();
+            row++;
+        }
+        
+        return new DefaultTableModel(data, columnNames);
+    }
 }

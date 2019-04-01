@@ -6,6 +6,7 @@
 package BLL;
 import DAL.*;
 import Entities.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -88,7 +89,29 @@ public class KhuCanHoBLL {
             }		
 	}
         
-        return CanHoDAL.inserts(list)>0;
+        return CanHoDAL.inserts(list);
+    }
+    
+    public static TableModel search(String text) throws SQLException{
+        
+        ArrayList<KhuCanHo> list = KhuCanHoDAL.search(text);
+        
+        String[] columnNames = {"Mã Khu","Tên Khu","Số Tầng","Số căn/tầng","Địa chỉ"};
+        
+        Object[][] data = new Object[list.size()][columnNames.length];
+        
+        int i =0;
+        
+        for(KhuCanHo khu : list){
+            data[i][0] = khu.getMaKhu();
+            data[i][1] = khu.getTenKhu();
+            data[i][2] = khu.getSoTang();
+            data[i][3] = khu.getSoCanTT();
+            data[i][4] = khu.getDiaChi();
+            i++;
+        }
+       // TableModel
+        return new DefaultTableModel(data, columnNames);
     }
     
     public static boolean update(String maKhu,String tenKhu,String diaChi){

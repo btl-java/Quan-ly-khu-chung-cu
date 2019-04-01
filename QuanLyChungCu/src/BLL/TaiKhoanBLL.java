@@ -4,11 +4,46 @@
  * and open the template in the editor.
  */
 package BLL;
+import DAL.*;
+import Entities.*;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author PhamDai
  */
 public class TaiKhoanBLL {
+    private TaiKhoanBLL(){
+        
+    }
     
+    public static TableModel show(){
+        ArrayList<TaiKhoan> list = TaiKhoanDAL.show();
+        String[] colunmNames = {"Username","Password","Role"};
+        Object[][] data = new Object[list.size()][colunmNames.length];
+        for(int i =0;i<list.size();i++){
+            data[i][0] = list.get(i).getTenTaiKhoan();
+            data[i][1] = list.get(i).getMatKhau();
+            data[i][2] = list.get(i).isVaiTro();
+        }
+        
+        return new DefaultTableModel(data,colunmNames);
+    }
+    
+    public static boolean insert(String tenTaiKhoan,String matKhau){
+        return TaiKhoanDAL.insert(tenTaiKhoan,matKhau);
+        
+    }
+    
+    public static boolean update(String tenTaiKhoan,String matKhau){
+        return TaiKhoanDAL.update(tenTaiKhoan,matKhau);
+        
+    }
+    
+    public static boolean delete(String tenTaiKhoan){
+        return TaiKhoanDAL.delete(tenTaiKhoan);
+    }
 }

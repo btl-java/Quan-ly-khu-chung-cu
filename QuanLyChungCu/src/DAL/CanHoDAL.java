@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,8 +37,8 @@ public class CanHoDAL {
         return list;
     }
     
-    public static int inserts(ArrayList<CanHo> list){
-        int count=0;
+    public static boolean inserts(ArrayList<CanHo> list){
+        
         try {
             PreparedStatement pre ;
             for(CanHo c : list){
@@ -54,13 +55,13 @@ public class CanHoDAL {
                pre.setString(7, c.getMaKhu());
                
                pre.executeUpdate();
-               count++;  
+ 
             }
+            return true;
               
         } catch (SQLException e) {
-            e.printStackTrace();
+            return false;
         }
-        return count;
     }
     
     public static boolean update(String maCanHo,long gia,int soPhong){
@@ -94,5 +95,22 @@ public class CanHoDAL {
  
     }
             
-    
+     public static ArrayList<CanHo> search(String text){
+        ArrayList<CanHo> list = new ArrayList<>();
+        try {
+            Statement s = ConnectSQL.connect().createStatement();
+            ResultSet r =  s.executeQuery("  SELECT * FROM dbo.CANHO WHERE MaCanHo LIKE '%"+text+"%' OR DienTich LIKE '%"+text+"%' OR Gia LIKE '%"+text+"%' \n" +
+            "  OR TrangThai LIKE '%"+text+"%' OR SoPhong LIKE '%"+text+"%' OR MaCuDan LIKE '%"+text+"%' OR MaKhu LIKE '%"+text+"%'");
+       
+            while (r.next()){
+                list.add(new CanHo(r.getString("MaCanHo"),r.getFloat("DienTich"),r.getLong("Gia"),
+                        r.getBoolean("TrangThai"),r.getInt("SoPhong"),r.getString("MaCuDan"),r.getString("MaKhu")));
+            }   
+            
+        } catch (SQLException ex) {
+            return null;
+        }
+        
+        return list;
+    }
 }
