@@ -25,7 +25,7 @@ public class CanHoDAL {
             ResultSet r =  s.executeQuery("SELECT * FROM CANHO");
        
             while (r.next()){
-                list.add(new CanHo(r.getString("MaCanHo"),r.getFloat("DienTich"),r.getInt("Gia"),
+                list.add(new CanHo(r.getString("MaCanHo"),r.getFloat("DienTich"),r.getLong("Gia"),
                         r.getBoolean("TrangThai"),r.getInt("SoPhong"),r.getString("MaCuDan"),r.getString("MaKhu")));
             }   
             
@@ -37,43 +37,81 @@ public class CanHoDAL {
     }
     
     public static boolean inserts(ArrayList<CanHo> list){
+        
         try {
-            PreparedStatement pre= null;
-            for(CanHo c: list){
-                pre = ConnectSQL.connect().prepareStatement
-                    ("INSERT [dbo].[CANHO] VALUES (?, ?, ?, ?, ?, ?, ?)");
-                pre.setString(1, c.getMaCanHo());
-                pre.setFloat(2, c.getDienTich());
-                pre.setLong(3, c.getGia());
-                pre.setBoolean(4, c.isTrangThai());
-                pre.setInt(5, c.getSoPhong());
-                pre.setNull(6,java.sql.Types.VARCHAR);
-                pre.setString(7, c.getMaKhu()); 
-                pre.executeUpdate();
+            PreparedStatement pre ;
+            for(CanHo c : list){
+
+               pre = ConnectSQL.connect().prepareStatement
+                ("INSERT [dbo].[CANHO] ([MaCanHo], [DienTich], [Gia], [TrangThai], [SoPhong], [MaCuDan], [MaKhu])"
+                       + "VALUES (?, ?, ?, ?, ?, ?, ?)");
+               pre.setString(1, c.getMaCanHo());
+               pre.setFloat(2, c.getDienTich());
+               pre.setLong(3,c.getGia());
+               pre.setBoolean(4, c.isTrangThai());
+               pre.setInt(5, c.getSoPhong());
+               pre.setString(6, c.getMaCuDan());
+               pre.setString(7, c.getMaKhu());
+               
+               pre.executeUpdate();
+ 
             }
             return true;
-            
+              
         } catch (SQLException e) {
             return false;
         }
     }
     
-    public static ArrayList<CanHo> test(ArrayList<CanHo> lists){
-        return lists;
-    }
-    public static boolean update(){
-        return false;
+    public static boolean update(String maCanHo,long gia,int soPhong){
+         try {
+               
+               PreparedStatement pre = ConnectSQL.connect().prepareStatement
+                    ("UPDATE dbo.CANHO SET Gia = ?,SoPhong = ? WHERE MaCanHo = ?");
+                pre.setLong(1, gia);
+                pre.setInt(2, soPhong);
+                pre.setString(3, maCanHo);
+            return pre.executeUpdate() > 0;
+            
+        } catch(SQLException e){
+            return false;
+        }
     }
     
-    public static boolean delete(){
-        return false;
+    public static boolean update(String maCanHo,String maCuDan){
+         try {
+               
+               PreparedStatement pre = ConnectSQL.connect().prepareStatement
+                    ("UPDATE dbo.CANHO SET TrangThai = ?, MaCuDan = ? WHERE MaCanHo = ?");
+                pre.setBoolean(1, true);
+                pre.setString(2, maCuDan);
+                pre.setString(3, maCanHo);
+            return pre.executeUpdate() > 0;
+            
+        } catch(SQLException e){
+            return false;
+        }
+ 
     }
-    
-    public static void main(String[] args) {
-        for(CanHo c: test()){
-            System.out.println(c);
+            
+     public static ArrayList<CanHo> search(String cbbValue,boolean check){
+        ArrayList<CanHo> list = new ArrayList<>();
+        try {
+            PreparedStatement pre  = ConnectSQL.connect().prepareStatement
+                ("SELECT * FROM dbo.CANHO WHERE MaKhu = ? AND TrangThai = ?");
+                pre.setString(1, cbbValue);
+                pre.setBoolean(2, check);
+                ResultSet r = pre.executeQuery();
+            while (r.next()){
+                list.add(new CanHo(r.getString("MaCanHo"),r.getFloat("DienTich"),r.getLong("Gia"),
+                        r.getBoolean("TrangThai"),r.getInt("SoPhong"),r.getString("MaCuDan"),r.getString("MaKhu")));
+            }   
+            
+        } catch (SQLException ex) {
+            return null;
         }
         
-        
+        return list;
     }
+     
 }

@@ -34,4 +34,36 @@ public class ThongTinMuaBanDAL {
         }
         return dsHopDong;
     }
+    
+    public static List<HopDong> dsHopDong1() throws SQLException {
+        String query = "select * from HOPDONG";
+        ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(query);
+        List<HopDong> dsHopDong = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                HopDong hd = new HopDong();
+                hd.setMaHopDong(rs.getString(1));
+                hd.setMaCanHo(rs.getString(5));
+                hd.setMaCuDan(rs.getString(4));
+                hd.setDiaChiKhachHang(rs.getString(3));
+                hd.setNgayGiaoDich(rs.getString(2));
+
+                dsHopDong.add(hd);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error in ThongTinMuaBanDAL1: " + e.getMessage());
+        }
+        return dsHopDong;
+    }
+    
+    public static void insertHD_DAL(HopDong hd){
+        try {
+            String query="insert HOPDONG values ('"+hd.getMaHopDong()+"','"
+                    +hd.getNgayGiaoDich()+"','"+hd.getDiaChiKhachHang()+"',"
+                    + "'"+hd.getMaCuDan()+"','"+hd.getMaCanHo()+"')";
+            ConnectSQL.connect().createStatement().executeUpdate(query);
+        } catch (SQLException e) {
+            System.out.println("Error in insertHD_DAL: " + e.getMessage());
+        }
+    }
 }

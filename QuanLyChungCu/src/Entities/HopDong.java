@@ -5,7 +5,6 @@
  */
 package Entities;
 
-import java.util.Date;
 
 /**
  *
@@ -64,6 +63,17 @@ public class HopDong {
     }
 
     public void setMaCanHo(String maCanHo) {
+        this.maCanHo = maCanHo;
+    }
+
+    public HopDong() {
+    }
+
+    public HopDong(String maHopDong, String ngayGiaoDich, String diaChiKhachHang, String maCuDan, String maCanHo) {
+        this.maHopDong = maHopDong;
+        this.ngayGiaoDich = ngayGiaoDich;
+        this.diaChiKhachHang = diaChiKhachHang;
+        this.maCuDan = maCuDan;
         this.maCanHo = maCanHo;
     }
     

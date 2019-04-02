@@ -7,10 +7,9 @@ package Entities;
 
 /**
  *
- * @author PhamDai
+ * @author quocc
  */
-public class CanHo{
-    
+public class CanHo1 {
     private float dienTich;
     private long gia;
     private boolean trangThai;
@@ -19,7 +18,7 @@ public class CanHo{
     private String maCuDan;
     private String maKhu;
 
-    public CanHo() {
+    public CanHo1() {
     }
 
     public String getMaKhu() {
@@ -62,7 +61,7 @@ public class CanHo{
         this.soPhong = soPhong;
     }
 
-    public CanHo(String maCanHo, float dienTich,long gia,boolean trangThai,int soPhong,String maCuDan,String maKhu) {
+    public CanHo1(String maCanHo, float dienTich,long gia,boolean trangThai,int soPhong,String maCuDan,String maKhu) {
         this.dienTich = dienTich;
         this.gia = gia;
         this.trangThai = trangThai;
@@ -92,7 +91,7 @@ public class CanHo{
         this.maCuDan = maCuDan;
     }
     
-    public CanHo(String maCanHo,float dienTich,long gia,int soPhong,String maKhu){
+    public CanHo1(String maCanHo,float dienTich,long gia,int soPhong,String maKhu){
         this.maCanHo=maCanHo;
         this.dienTich=dienTich;
         this.gia=gia;

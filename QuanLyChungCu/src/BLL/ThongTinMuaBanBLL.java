@@ -35,4 +35,8 @@ public class ThongTinMuaBanBLL {
         TableModel tableModel = new DefaultTableModel(data, colName);
         tbl.setModel(tableModel);
     }
+    
+    public static void insertHD_BLL(){
+        
+    }
 }
