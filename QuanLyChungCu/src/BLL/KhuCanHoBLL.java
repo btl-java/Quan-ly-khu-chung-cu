@@ -25,22 +25,25 @@ public class KhuCanHoBLL {
     public static TableModel show(){
         ArrayList<KhuCanHo> list = KhuCanHoDAL.show();
         
-        String[] columnNames = {"Mã Khu","Tên Khu","Số Tầng","Số căn/tầng","Địa chỉ"};
+        String[] columnNames = {"STT","Mã Khu","Tên Khu","Số Tầng","Số căn/tầng","Địa chỉ"};
         
         Object[][] data = new Object[list.size()][columnNames.length];
         
         int i =0;
         
         for(KhuCanHo khu : list){
-            data[i][0] = khu.getMaKhu();
-            data[i][1] = khu.getTenKhu();
-            data[i][2] = khu.getSoTang();
-            data[i][3] = khu.getSoCanTT();
-            data[i][4] = khu.getDiaChi();
+            data[i][0] = i + 1;
+            data[i][1] = khu.getMaKhu();
+            data[i][2] = khu.getTenKhu();
+            data[i][3] = khu.getSoTang();
+            data[i][4] = khu.getSoCanTT();
+            data[i][5] = khu.getDiaChi();
             i++;
         }
+        
        // TableModel
         return new DefaultTableModel(data, columnNames);
+        
     }
     
     public static ComboBoxModel cbb_show(){
@@ -95,18 +98,19 @@ public class KhuCanHoBLL {
         
         ArrayList<KhuCanHo> list = KhuCanHoDAL.search(text);
         
-        String[] columnNames = {"Mã Khu","Tên Khu","Số Tầng","Số căn/tầng","Địa chỉ"};
+        String[] columnNames = {"STT","Mã Khu","Tên Khu","Số Tầng","Số căn/tầng","Địa chỉ"};
         
         Object[][] data = new Object[list.size()][columnNames.length];
         
         int i =0;
         
         for(KhuCanHo khu : list){
-            data[i][0] = khu.getMaKhu();
-            data[i][1] = khu.getTenKhu();
-            data[i][2] = khu.getSoTang();
-            data[i][3] = khu.getSoCanTT();
-            data[i][4] = khu.getDiaChi();
+            data[i][0] = i + 1;
+            data[i][1] = khu.getMaKhu();
+            data[i][2] = khu.getTenKhu();
+            data[i][3] = khu.getSoTang();
+            data[i][4] = khu.getSoCanTT();
+            data[i][5] = khu.getDiaChi();
             i++;
         }
        // TableModel
