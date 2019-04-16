@@ -85,7 +85,7 @@ public class CanHoBLL {
             row++;
         }
         
-             DefaultTableModel table = new DefaultTableModel(data,columnNames){
+        DefaultTableModel table = new DefaultTableModel(data,columnNames){
             @Override
             public Class<?> getColumnClass(int column){
                 switch(column){

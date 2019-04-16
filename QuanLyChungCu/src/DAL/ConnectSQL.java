@@ -29,8 +29,21 @@ public class ConnectSQL {
         return conn;
     }
     
+    public static void close(){
+        if(conn!=null) try {
+            conn.close();
+            conn = null;
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
     public static void main(String[] args) {
         if(connect()!= null) System.out.println("Success!");
-        else System.out.println("Fail!");
+        else System.out.println("Fail!");       
+        close();
     }
+    
 }
