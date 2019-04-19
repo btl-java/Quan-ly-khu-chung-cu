@@ -59,7 +59,7 @@ public class TaiKhoanDAL {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return tk;
 	}
     
     public static boolean insert(String tenTaiKhoan,String matKhau) {
