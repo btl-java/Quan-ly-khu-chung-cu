@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
+import BLL.KhuCanHoBLL;
 import BLL.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
