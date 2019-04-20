@@ -633,7 +633,8 @@ public class NhanVienGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        System.exit(0);
+      DangNhapUI dn= new DangNhapUI("Đăng nhập hệ thống");
+      dn.showWindow();
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void tblQuanlycudanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQuanlycudanMouseClicked
@@ -742,13 +743,14 @@ public class NhanVienGUI extends javax.swing.JFrame {
             @Override
             public void run() {
                 try {
-                    new NhanVienGUI().setVisible(true);
+                    new NhanVienGUI().setVisible(false);
                 } catch (ParseException ex) {
                     Logger.getLogger(NhanVienGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;

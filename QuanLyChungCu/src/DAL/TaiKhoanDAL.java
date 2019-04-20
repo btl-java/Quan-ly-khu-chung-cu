@@ -6,6 +6,7 @@
 package DAL;
 
 import Entities.*;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +22,7 @@ public class TaiKhoanDAL {
     private TaiKhoanDAL(){
         
     }
-    
+    public static Connection connection=ConnectSQL.connect();
     public static ArrayList<TaiKhoan> show(){
         ArrayList<TaiKhoan> list = new ArrayList<>();
         try {
@@ -38,6 +39,28 @@ public class TaiKhoanDAL {
         
         return list;
     }
+    public static TaiKhoan dangNhap(String userName,String passWord) {
+		
+		TaiKhoan tk=null;
+		try {
+                    String sql="select * from TAIKHOAN where TenTaiKhoan=? and MatKhau=?";			
+                    PreparedStatement pre=connection.prepareStatement(sql);
+                    pre.setString(1, userName);
+                    pre.setString(2, passWord);
+                    ResultSet result=pre.executeQuery();
+                    if (result.next()) {
+                            tk=new TaiKhoan();
+                            tk.setTenTaiKhoan(result.getString("TenTaiKhoan"));
+                            tk.setMatKhau(result.getString("MatKhau"));
+                            tk.setVaiTro(result.getBoolean("VaiTro"));
+
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tk;
+	}
     
     public static boolean insert(String tenTaiKhoan,String matKhau) {
         
