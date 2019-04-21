@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
  */
 public class ThemKhu_PhongGUI extends javax.swing.JFrame {
 
-     * Creates new form ThemKhu_Phong
     public ThemKhu_PhongGUI() {
         initComponents();
     }
