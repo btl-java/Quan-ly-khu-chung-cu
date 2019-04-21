@@ -34,11 +34,11 @@ public class DangNhapUI extends JFrame{
 	public DangNhapUI(String title) {
 		super(title);
 		addControl();
-		addEvents();
-		
+		addEvents();	
 	}
 
 	private void addControl() {
+            
 		Container conn= getContentPane();
 		JPanel pnMain=new JPanel();
 		pnMain.setLayout(new BoxLayout(pnMain, BoxLayout.Y_AXIS));

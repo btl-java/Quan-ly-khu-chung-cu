@@ -36,8 +36,8 @@ public class ConnectSQL {
         } catch (SQLException ex) {
             Logger.getLogger(ConnectSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
+    } 
+
     
     
    /* public static void main(String[] args) {
