@@ -133,8 +133,4 @@ public class DangNhapUI extends JFrame{
 		this.setVisible(true);
 	}
         
-        public static void test(){
-            //local change
-        }
-
 }
