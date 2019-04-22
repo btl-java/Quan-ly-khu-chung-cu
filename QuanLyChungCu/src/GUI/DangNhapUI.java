@@ -136,5 +136,11 @@ public class DangNhapUI extends JFrame{
         public void test(){
             //local change
         }
+	
+	public void test(int i){
+            //server change
+        }
+	
+	
         
 }
