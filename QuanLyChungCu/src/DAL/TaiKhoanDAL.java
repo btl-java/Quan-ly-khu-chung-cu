@@ -40,7 +40,7 @@ public class TaiKhoanDAL {
         return list;
     }
     public static TaiKhoan dangNhap(String userName,String passWord) {
-		
+		boolean vaiTro;
 		TaiKhoan tk=null;
 		try {
                     String sql="select * from TAIKHOAN where TenTaiKhoan=? and MatKhau=?";			
@@ -53,7 +53,7 @@ public class TaiKhoanDAL {
                             tk.setTenTaiKhoan(result.getString("TenTaiKhoan"));
                             tk.setMatKhau(result.getString("MatKhau"));
                             tk.setVaiTro(result.getBoolean("VaiTro"));
-
+                            vaiTro=result.getBoolean("VaiTro");
 			}
 			
 		} catch (Exception e) {

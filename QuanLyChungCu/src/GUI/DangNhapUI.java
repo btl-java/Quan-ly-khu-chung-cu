@@ -110,10 +110,16 @@ public class DangNhapUI extends JFrame{
 			JOptionPane.showMessageDialog(null, "Đăng nhập thất bại ");
 		}else {
                     try {
-                        this.dispose();
-                        NhanVienGUI nv= new NhanVienGUI();
-                        nv.setVisible(true);
-                        JOptionPane.showMessageDialog(null, "Đăng nhập thành công !");
+                        this.dispose();             
+                        if (tk.isVaiTro()==true) {
+                              QuanLyGUI ql=new QuanLyGUI();
+                               ql.setVisible(true);   
+                               
+                        }else{
+                          NhanVienGUI nv= new NhanVienGUI();
+                          nv.setVisible(true); 
+                          
+                        }
                     } catch (ParseException ex) {
                         Logger.getLogger(DangNhapUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
