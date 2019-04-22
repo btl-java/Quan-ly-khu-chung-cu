@@ -137,4 +137,7 @@ public class DangNhapUI extends JFrame{
             //local change
         }
         
+        public void conflict(){
+            
+        }
 }
