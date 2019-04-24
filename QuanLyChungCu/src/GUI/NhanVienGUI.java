@@ -633,6 +633,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+      this.dispose();
       DangNhapUI dn= new DangNhapUI("Đăng nhập hệ thống");
       dn.showWindow();
     }//GEN-LAST:event_btnExitActionPerformed

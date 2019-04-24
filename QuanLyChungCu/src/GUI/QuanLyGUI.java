@@ -858,6 +858,8 @@ public final class QuanLyGUI extends javax.swing.JFrame {
 
     private void btDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDangXuatActionPerformed
         this.dispose();
+        DangNhapUI dn= new DangNhapUI("Quản lý chung cư");
+        dn.showWindow();
     }//GEN-LAST:event_btDangXuatActionPerformed
 
     private void btThem_KhuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThem_KhuActionPerformed
@@ -1088,10 +1090,8 @@ public final class QuanLyGUI extends javax.swing.JFrame {
         
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new QuanLyGUI().setVisible(true);
-        });
+      
+      
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
