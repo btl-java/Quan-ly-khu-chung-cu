@@ -138,3 +138,8 @@ INSERT [dbo].[HOPDONG] ([MaHopDong], [NgayGiaoDich], [DiaChiKH], [MaCuDan], [MaC
 ---------- Funtions ----------
 
 ---------- Write Select, Insert, Update, Delete Alter below!  -----------
+USE QuanLyChungCu
+GO
+DELETE dbo.HOPDONG
+GO
+ALTER TABLE dbo.HOPDONG ADD TenKH NVARCHAR(30) NOT NULL
