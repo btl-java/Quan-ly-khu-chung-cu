@@ -208,7 +208,7 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHuyActionPerformed
-               QuanLyGUI.it.enabledFrame(); // gọi hàm hiện MainFrame
+               QuanLyGUI.it.enabledFrame(); // gọi hàm cho phép thao tác trên MainFrame
                this.dispose(); 
     }//GEN-LAST:event_btHuyActionPerformed
 
@@ -216,7 +216,7 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
 
         try{
             if(txbMaKhu.getText().length()!=2){
-                JOptionPane.showMessageDialog(null,"Mã khu 2 kí tự!");
+                JOptionPane.showMessageDialog(null,"Mã khu phải 2 kí tự!");
             }else if(txbTenKhu.getText().equals("")){
                 JOptionPane.showMessageDialog(null,"Tên khu không được bỏ trống!");
             }else if(txbSoTang.getText().equals("")){
@@ -242,13 +242,14 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
             }else if(Integer.parseInt(txbSoPhong.getText())<1){
                 JOptionPane.showMessageDialog(null,"Vui lòng số phòng là số dương!");
             }else{
-                //String maKhu, String tenKhu,int soTang,int soCanTT, String diaChi, float dienTich, long gia,int soPhong
+                
                 boolean check = KhuCanHoBLL.insert(txbMaKhu.getText().toUpperCase(), txbTenKhu.getText(), Integer.parseInt(txbSoTang.getText()), Integer.parseInt(txbSoCanTT.getText()), 
                         txbDiaChi.getText(), Float.parseFloat(txbDienTich.getText()), Long.parseLong(txbGia.getText()), Integer.parseInt(txbSoPhong.getText()));
                 QuanLyGUI.it.show_KhuCanHo();
                 QuanLyGUI.it.show_CanHo();
                 if(check){
-                    JOptionPane.showMessageDialog(null,"Thêm thành công khu " +"'"+txbTenKhu.getText()+"'"+ " và " +(Integer.parseInt(txbSoTang.getText())*Integer.parseInt(txbSoCanTT.getText()))+" căn hộ");
+                    JOptionPane.showMessageDialog(null,"Thêm thành công khu " +"'"+txbTenKhu.getText()+"'"+ " và " +
+                            (Integer.parseInt(txbSoTang.getText())*Integer.parseInt(txbSoCanTT.getText()))+" căn hộ");
                  }else{
                     JOptionPane.showMessageDialog(null,"Vui lòng xem lại thông tin!");
                 }
@@ -258,8 +259,6 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Vui lòng nhập đúng định dạng số!");
         }   
         
-         
-      
         
     }//GEN-LAST:event_btLuuActionPerformed
 

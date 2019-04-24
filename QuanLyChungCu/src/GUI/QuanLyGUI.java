@@ -41,22 +41,18 @@ public final class QuanLyGUI extends javax.swing.JFrame {
     
     public void show_KhuCanHo(){
         tbKhu.setModel(KhuCanHoBLL.show()); // load data for table
-        
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();//
         renderer.setHorizontalAlignment( JLabel.LEFT );// Căn trái dữ liệu bảng
         tbKhu.setDefaultRenderer(Object.class, renderer);//
-        
         cbbMaKhu.setModel(KhuCanHoBLL.cbb_show()); //load data for combobox
     }
     
     public void show_CanHo(){
         
-        tbCanHo.setModel(CanHoBLL.show());
-        
+        tbCanHo.setModel(CanHoBLL.show());   
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();//
         renderer.setHorizontalAlignment( JLabel.LEFT );// Căn trái dữ liệu bảng
         tbCanHo.setDefaultRenderer(Object.class, renderer);//
-        
         cbbMaCanHo.setModel(CanHoBLL.cbb_show());
         cbbHienKhu.setModel(KhuCanHoBLL.cbb_show());
     }
