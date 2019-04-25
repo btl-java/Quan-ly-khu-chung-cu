@@ -67,4 +67,26 @@ public class ThongTinMuaBanDAL {
             System.out.println("Error in insertHD_DAL: " + e.getMessage());
         }
     }
+    
+    public static List<HopDong> TimKiem_DAL(String info) throws SQLException {
+        String query = "select * from HOPDONG where MaHopDong like '%"+info+"%' or NgayGiaodich like '%"+info+"%'"
+                + "or DiaChiKH like '%"+info+"%' or MaCuDan like '%"+info+"%' or MaCanHo like '%"+info+"%' or TenCuDan like '%"+info+"%'";
+        ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(query);
+        List<HopDong> dsHopDong = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                HopDong hd = new HopDong();
+                hd.setMaHopDong(rs.getString(1));
+                hd.setNgayGiaoDich(rs.getString(2));
+                hd.setDiaChiKhachHang(rs.getString(3));
+                hd.setMaCuDan(rs.getString(4));
+                hd.setMaCanHo(rs.getString(5));
+                
+                dsHopDong.add(hd);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error in ThongTinMuaBanDAL_1: " + e.getMessage());
+        }
+        return dsHopDong;
+    }
 }
