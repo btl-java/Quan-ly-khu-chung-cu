@@ -126,9 +126,9 @@ INSERT [dbo].[CANHO] ([MaCanHo], [DienTich], [Gia], [TrangThai], [SoPhong], [MaC
 GO
 
 ---------- HopDong ----------
-INSERT [dbo].[HOPDONG] ([MaHopDong], [NgayGiaoDich], [DiaChiKH], [MaCuDan], [MaCanHo]) VALUES (N'HD0000000001', CAST(N'2019-03-30' AS Date), N'Số 20, Phạm Văn Đồng, Bắc Từ Liêm', N'111111', N'TS0103')
-INSERT [dbo].[HOPDONG] ([MaHopDong], [NgayGiaoDich], [DiaChiKH], [MaCuDan], [MaCanHo]) VALUES (N'HD0000000002', CAST(N'2019-03-30' AS Date), N'Số 50, Trần Duy Hưng, Cầu Giấy', N'111112', N'TS2502')
-INSERT [dbo].[HOPDONG] ([MaHopDong], [NgayGiaoDich], [DiaChiKH], [MaCuDan], [MaCanHo]) VALUES (N'HD0000000003', CAST(N'2019-03-30' AS Date), N'Văn Trì, Từ Liêm, Hà Nội', N'111113', N'TS2301')
+INSERT [dbo].[HOPDONG]  VALUES (N'HD0000000001', CAST(N'2019-03-30' AS Date), N'Số 20, Phạm Văn Đồng, Bắc Từ Liêm', N'111111', N'TS0103',N'Trần Văn Nam')
+INSERT [dbo].[HOPDONG]  VALUES (N'HD0000000002', CAST(N'2019-03-30' AS Date), N'Số 50, Trần Duy Hưng, Cầu Giấy', N'111112', N'TS2502',N'Nguyễn Văn An')
+INSERT [dbo].[HOPDONG]  VALUES (N'HD0000000003', CAST(N'2019-03-30' AS Date), N'Văn Trì, Từ Liêm, Hà Nội', N'111113', N'TS2301',N'Phạm Thị Nguyên Hồng')
 
 
 ---------- Views ----------
@@ -142,4 +142,4 @@ USE QuanLyChungCu
 GO
 DELETE dbo.HOPDONG
 GO
-ALTER TABLE dbo.HOPDONG ADD TenKH NVARCHAR(50) NOT NULL
+ALTER TABLE dbo.HOPDONG ADD TenCuDan NVARCHAR(50) NOT NULL

@@ -13,8 +13,8 @@ public class ThongTinMuaBanDAL {
 
     public static List<HopDong> dsHopDong() throws SQLException {
         String query = "select hd.MaHopDong,cd.TenCuDan,hd.MaCanHo,hd.MaCuDan,hd.DiaChiKH,ch.Gia,hd.NgayGiaoDich \n"
-                + "from HOPDONG hd inner join CANHO ch on hd.MaCuDan=ch.MaCuDan"
-                + "join CUDAN cd on hd.MaCuDan=cd.MaCuDan";
+                + "from HOPDONG hd inner join CANHO ch on hd.MaCuDan=ch.MaCuDan \n"
+                + "inner join CUDAN cd on hd.MaCuDan=cd.MaCuDan";
         ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(query);
         List<HopDong> dsHopDong = new ArrayList<>();
         try {
