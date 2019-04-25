@@ -5,6 +5,7 @@
  */
 package BLL;
 
+import static DAL.ThongTinMuaBanDAL.insertHD_DAL;
 import Entities.HopDong;
 import java.util.List;
 import javax.swing.JTable;
@@ -34,5 +35,9 @@ public class ThongTinMuaBanBLL {
         }
         TableModel tableModel = new DefaultTableModel(data, colName);
         tbl.setModel(tableModel);
+    }
+    
+    public static void insertHD_BLL(String mahd,String ngaygd,String diachikh,String macd,String mach){
+        insertHD_DAL(mahd,ngaygd,diachikh,macd,mach);
     }
 }

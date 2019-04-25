@@ -5,24 +5,33 @@
  */
 package Entities;
 
+
 /**
  *
  * @author PhamDai
  */
 public class HopDong {
-    
     private String maHopDong;
+    private String tenKH;
     private String ngayGiaoDich;
     private String diaChiKhachHang;
     private String maCuDan;
     private String maCanHo;
-    private long gia;
+    private int gia;
 
-    public long getGia() {
+    public String getTenKH() {
+        return tenKH;
+    }
+
+    public void setTenKH(String tenKH) {
+        this.tenKH = tenKH;
+    }
+
+    public int getGia() {
         return gia;
     }
 
-    public void setGia(long gia) {
+    public void setGia(int gia) {
         this.gia = gia;
     }
     
@@ -63,6 +72,18 @@ public class HopDong {
     }
 
     public void setMaCanHo(String maCanHo) {
+        this.maCanHo = maCanHo;
+    }
+
+    public HopDong() {
+    }
+
+    public HopDong(String maHopDong, String tenKH, String ngayGiaoDich, String diaChiKhachHang, String maCuDan, String maCanHo) {
+        this.maHopDong = maHopDong;
+        this.tenKH=tenKH;
+        this.ngayGiaoDich = ngayGiaoDich;
+        this.diaChiKhachHang = diaChiKhachHang;
+        this.maCuDan = maCuDan;
         this.maCanHo = maCanHo;
     }
     

@@ -97,4 +97,9 @@ public class CuDan {
         this.soCMT = soCMT;
         this.queQuan = queQuan;
     }
+    
+     public CuDan(String maCanHo,String maCuDan){
+        this.maCanHo=maCanHo;
+        this.maCuDan=maCuDan;
+    }
 }
