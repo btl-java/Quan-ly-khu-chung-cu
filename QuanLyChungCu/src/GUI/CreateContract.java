@@ -8,6 +8,7 @@ package GUI;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -76,7 +77,7 @@ public class CreateContract {
             document.write(out);
             out.close();
             document.close();
-            System.out.println("Tạo thành công.");
+            JOptionPane.showMessageDialog(null, "Tạo hợp đồng thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
             System.out.println(e);
         }
