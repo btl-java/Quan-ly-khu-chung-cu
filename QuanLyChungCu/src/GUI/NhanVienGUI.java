@@ -149,6 +149,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
         jComboBox4 = new javax.swing.JComboBox<>();
         jComboBox5 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý chung cư");
@@ -734,6 +735,13 @@ public class NhanVienGUI extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tabThongtincanhoLayout = new javax.swing.GroupLayout(tabThongtincanho);
         tabThongtincanho.setLayout(tabThongtincanhoLayout);
         tabThongtincanhoLayout.setHorizontalGroup(
@@ -742,6 +750,8 @@ public class NhanVienGUI extends javax.swing.JFrame {
                 .addGroup(tabThongtincanhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tabThongtincanhoLayout.createSequentialGroup()
                         .addComponent(jButton1)
+                        .addGap(23, 23, 23)
+                        .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(tabThongtincanhoLayout.createSequentialGroup()
@@ -771,7 +781,8 @@ public class NhanVienGUI extends javax.swing.JFrame {
             .addGroup(tabThongtincanhoLayout.createSequentialGroup()
                 .addGroup(tabThongtincanhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(18, 18, 18)
                 .addGroup(tabThongtincanhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1057,6 +1068,15 @@ public class NhanVienGUI extends javax.swing.JFrame {
         dialog.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            CreateContract contract=new CreateContract();
+            contract.CreateContract();
+        } catch (Exception ex) {
+            Logger.getLogger(NhanVienGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1098,6 +1118,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbGioitinh1;
     private javax.swing.JComboBox<String> cmbMacudan;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
