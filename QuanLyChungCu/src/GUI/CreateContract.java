@@ -10,13 +10,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-//import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-//import org.apache.poi.xwpf.usermodel.XWPFDocument;
-//import org.apache.poi.xwpf.usermodel.XWPFRun;
-//import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
-//import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
-//import org.apache.poi.xwpf.usermodel.XWPFTable;
-//import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 import org.apache.poi.xwpf.usermodel.*;
 
 /**
@@ -96,11 +89,11 @@ public class CreateContract {
         String chucvu="Chức vụ: Trưởng phòng nhân sự";
         String text7="(Theo Giấy ủy quyền ngày.....tháng.....năm..... của...............................)";
         runBenBan1.setText(truSo);runBenBan1.addBreak();
-        runBenBan1.setText(sdt);runBenBan1.addTab();
+        runBenBan1.setText(sdt);runBenBan1.addTab();runBenBan1.addTab();
         runBenBan1.setText(fax);runBenBan1.addBreak();
         runBenBan1.setText(taikhoan);runBenBan1.addBreak();
         runBenBan1.setText(masothue);runBenBan1.addBreak();
-        runBenBan1.setText(nguoidaidien);runBenBan1.addTab();
+        runBenBan1.setText(nguoidaidien);runBenBan1.addTab();runBenBan1.addTab();
         runBenBan1.setText(chucvu);runBenBan1.addBreak();
         runBenBan1.setText(text7);
         //Para4 Bên mua
@@ -126,25 +119,24 @@ public class CreateContract {
         
         //Ký tên
         XWPFTable KyTen=document.createTable();
-        KyTen.setWidth("8000");
+        KyTen.setWidth("8500");
         KyTen.setTableAlignment(TableRowAlign.CENTER);
-//        KyTen.setRightBorder(XWPFTable.XWPFBorderType.NONE, 0, 0, "");
-//        KyTen.setTopBorder(XWPFTable.XWPFBorderType.NONE, 0, 0, "");
-//        KyTen.setBottomBorder(XWPFTable.XWPFBorderType.NONE, 0, 0, "");
-//        KyTen.setLeftBorder(XWPFTable.XWPFBorderType.NONE, 0, 0, "");
+        KyTen.removeBorders();
         
-        XWPFTableRow rowOne=KyTen.createRow();
-//        rowOne.getCell(0).addParagraph().setAlignment(ParagraphAlignment.CENTER);
-//        XWPFRun runKyTen=rowOne.getCell(0).addParagraph().createRun();
-//        runKyTen.setBold(true);runKyTen.setText("BÊN BÁN");runKyTen.addBreak();
-//        String text10="(ký ghi rõ họ tên, nếu là tổ chức mua nhà thì đóng dấu của tổ chức.)";
-//        runKyTen.setText(text10);
-        rowOne.addNewTableCell().setText("BÊN MUA");
-        rowOne.addNewTableCell().setText("BÊN BÁN");
+        XWPFParagraph para3=document.createParagraph();
+        para3.setAlignment(ParagraphAlignment.CENTER);
+        
+        XWPFTableRow rowOne=KyTen.getRow(0);
+        rowOne.getCell(0).setParagraph(para3);
+        rowOne.getCell(0).setText("BÊN MUA");
+        rowOne.addNewTableCell().setParagraph(para3);
+        rowOne.getCell(1).setText("BÊN BÁN");
         
         XWPFTableRow rowTwo=KyTen.createRow();
-        rowTwo.addNewTableCell().setText("(ký ghi rõ họ tên, nếu là tổ chức mua nhà thì đóng dấu của tổ chức)");
-        rowTwo.addNewTableCell().setText("(ký ghi rõ họ tên, chức vụ và đóng dấu của doanh nghiệp)");
+        rowTwo.getCell(0).setParagraph(para3);
+        rowTwo.getCell(0).setText("(ký ghi rõ họ tên, nếu là tổ chức mua nhà thì đóng   dấu của tổ chức)");
+        rowTwo.getCell(1).setParagraph(para3);
+        rowTwo.getCell(1).setText("(ký ghi rõ họ tên, chức vụ và đóng dấu của doanh nghiệp)");
         
         //ghi file
         try {

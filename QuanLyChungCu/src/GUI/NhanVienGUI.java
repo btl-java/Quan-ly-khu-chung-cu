@@ -965,6 +965,8 @@ public class NhanVienGUI extends javax.swing.JFrame {
             System.out.println("Error in btnInhopdong: " + e.getMessage());
         } catch (HeadlessException e) {
             System.out.println("Many errors: " + e.getMessage());
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Khách hàng này chưa là cư dân.", "Thông báo", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnInhopdongActionPerformed
 

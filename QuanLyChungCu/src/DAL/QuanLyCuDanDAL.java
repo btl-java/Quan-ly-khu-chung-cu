@@ -83,8 +83,8 @@ public class QuanLyCuDanDAL {
     
     public static void insertCD_DAL(CuDan cd) throws SQLException {
         try {
-            String query = "insert CUDAN values ('" + cd.getMaCuDan() + "','" + cd.getTenCuDan() + "',"
-                    + "'" + cd.getNgaySinh() + "','" + cd.isGioiTinh() + "','" + cd.getSoDT() + "','" + cd.getSoCMT() + "','" + cd.getQueQuan() + "')";
+            String query = "insert CUDAN values ('" + cd.getMaCuDan() + "',N'" + cd.getTenCuDan() + "',"
+                    + "'" + cd.getNgaySinh() + "',N'" + cd.isGioiTinh() + "','" + cd.getSoDT() + "','" + cd.getSoCMT() + "',N'" + cd.getQueQuan() + "')";
             ConnectSQL.connect().createStatement().executeUpdate(query);
         } catch (SQLException e) {
             System.out.println("Error in insertCD_DAL: " + e.getMessage()+cd.getMaCuDan());
