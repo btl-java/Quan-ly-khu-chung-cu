@@ -149,7 +149,6 @@ public class NhanVienGUI extends javax.swing.JFrame {
         jComboBox4 = new javax.swing.JComboBox<>();
         jComboBox5 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý chung cư");
@@ -729,16 +728,9 @@ public class NhanVienGUI extends javax.swing.JFrame {
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("jButton1");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -749,10 +741,9 @@ public class NhanVienGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabThongtincanhoLayout.createSequentialGroup()
                 .addGroup(tabThongtincanhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tabThongtincanhoLayout.createSequentialGroup()
+                        .addGap(89, 89, 89)
                         .addComponent(jButton1)
-                        .addGap(23, 23, 23)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(tabThongtincanhoLayout.createSequentialGroup()
                         .addGroup(tabThongtincanhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -781,8 +772,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
             .addGroup(tabThongtincanhoLayout.createSequentialGroup()
                 .addGroup(tabThongtincanhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addGroup(tabThongtincanhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -966,6 +956,9 @@ public class NhanVienGUI extends javax.swing.JFrame {
                 BLL.ThongTinMuaBanBLL.insertHD_BLL(maHopDong, txtNgaygiaodich.getText(), txtDiachi.getText(), mcd, txtMacanho1.getText(),txtTenkh.getText());
                 BLL.ThongTinCanHoBLL.HienThongTinCanho(tblThongTinCanHo);
                 JOptionPane.showMessageDialog(null, "Thêm hợp đồng thành công.", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                
+                AutomaticallyClosedMsgBox();
+                CreateWordFile();
             }
             
         } catch (SQLException e) {
@@ -1047,36 +1040,42 @@ public class NhanVienGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtTimKiemKeyReleased
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        JOptionPane jop = new JOptionPane();
-        jop.setMessageType(JOptionPane.PLAIN_MESSAGE);
-        jop.setMessage("Hello World");
-        JDialog dialog = jop.createDialog(null, "Message");
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        AutomaticallyClosedMsgBox();
+        CreateWordFile();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-        // Set a 2 second timer
+    public void CreateWordFile(){
+        try {
+            CreateContract contract=new CreateContract();
+            contract.CreateContract(txtTenkh.getText(),txtNgsinh.getText(),txtScmt.getText(),txtDiachi.getText(),txtSDT.getText());
+        } catch (Exception ex) {
+            Logger.getLogger(NhanVienGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void AutomaticallyClosedMsgBox(){
+        JOptionPane jop = new JOptionPane();
+        jop.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        jop.setMessage("Đang tạo hợp đồng.\nXin hãy đợi.");
+        JDialog dialog = jop.createDialog(null, "Thông báo");
+
+        // Set a 1.5 second timer
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2000);
-                } catch (Exception e) {
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
+                    System.out.println(e);
                 }
                 dialog.dispose();
             }
         }).start();
 
         dialog.setVisible(true);
-    }//GEN-LAST:event_jButton1MouseClicked
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            CreateContract contract=new CreateContract();
-            contract.CreateContract();
-        } catch (Exception ex) {
-            Logger.getLogger(NhanVienGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1118,7 +1117,6 @@ public class NhanVienGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbGioitinh1;
     private javax.swing.JComboBox<String> cmbMacudan;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
