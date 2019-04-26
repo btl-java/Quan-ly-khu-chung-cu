@@ -38,8 +38,8 @@ public class ThongTinMuaBanBLL {
         tbl.setModel(tableModel);
     }
     
-    public static void insertHD_BLL(String mahd,String ngaygd,String diachikh,String macd,String mach){
-        ThongTinMuaBanDAL.insertHD_DAL(mahd,ngaygd,diachikh,macd,mach);
+    public static void insertHD_BLL(String mahd,String ngaygd,String diachikh,String macd,String mach,String tenkh){
+        ThongTinMuaBanDAL.insertHD_DAL(mahd,ngaygd,diachikh,macd,mach,tenkh);
     }
     
     public static  void TimKiem_BLL(JTable tbl,String info) throws SQLException{

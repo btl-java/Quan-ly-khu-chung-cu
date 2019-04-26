@@ -20,7 +20,7 @@ public class ThongTinCanHoDAL {
     public static List<CanHo> dsCanHo() throws SQLException {
         String query = "select MaCanHo,DienTich,Gia,SoPhong,MaKhu from CANHO where TrangThai=0";
         ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(query);
-        List<CanHo> dsCanHo = new ArrayList<>();
+        List<CanHo> dsCanHo = new ArrayList<CanHo>();
         try {
             while (rs.next()) {
                 CanHo ch = new CanHo();

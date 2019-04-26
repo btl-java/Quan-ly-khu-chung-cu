@@ -57,11 +57,11 @@ public class ThongTinMuaBanDAL {
         return dsHopDong;
     }
     
-    public static void insertHD_DAL(String mahd,String ngaygd,String diachikh,String macd,String mach){
+    public static void insertHD_DAL(String mahd,String ngaygd,String diachikh,String macd,String mach,String tenkh){
         try {
             String query="insert HOPDONG values ('"+mahd+"','"
                     +ngaygd+"',N'"+diachikh+"',"
-                    + "'"+macd+"','"+mach+"')";
+                    + "'"+macd+"','"+mach+"',N'"+tenkh+"')";
             ConnectSQL.connect().createStatement().executeUpdate(query);
         } catch (SQLException e) {
             System.out.println("Error in insertHD_DAL: " + e.getMessage());

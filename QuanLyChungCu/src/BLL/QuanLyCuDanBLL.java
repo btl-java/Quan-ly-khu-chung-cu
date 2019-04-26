@@ -76,12 +76,6 @@ public class QuanLyCuDanBLL {
     //Begin TabThongTinCanho
     public static void insertCD_BLL(String macd,JTextField tencd, JTextField ngsinh, JComboBox gioitinh, JTextField sdt, JTextField socmt, JTextField quequan) throws SQLException {
         try {
-//            for (CuDan cd : dsCuDan) {
-//                if (cd.getMaCuDan().equals(macd)) {
-//                    macd = String.valueOf(Integer.parseInt(macd) + 1);
-//                } 
-//            }
-
             boolean gt =false;
             gt=gioitinh.getSelectedItem().toString().equals("Nam");
             CuDan cd = new CuDan(macd, tencd.getText(), ngsinh.getText(), gt, sdt.getText(), socmt.getText(), quequan.getText());
