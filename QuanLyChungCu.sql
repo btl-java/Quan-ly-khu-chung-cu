@@ -178,6 +178,7 @@ GO
                         WHERE TrangThai = @trangthai AND Gia BETWEEN @tugia AND @dengia AND DienTich BETWEEN @tudt AND @dendt
   -----
     END
+
 GO
 SELECT * FROM  dbo.CANHO
 EXEC dbo.searchApartmentWithCriterias 0,2000000000,0,40,50 -- 
@@ -232,8 +233,4 @@ USE QuanLyChungCu
 GO
 DELETE dbo.HOPDONG
 GO
-<<<<<<< HEAD
 ALTER TABLE dbo.HOPDONG ADD TenKH NVARCHAR(50) NOT NULL
-=======
-GO
->>>>>>> a3505d8c0b448993ce1e28d3356b574a0dda971e
