@@ -182,7 +182,6 @@ GO
 GO
 SELECT * FROM  dbo.CANHO
 EXEC dbo.searchApartmentWithCriterias 0,2000000000,0,40,50 -- 
-GO 
 CREATE PROC searchApartments
     @tugia BIGINT ,
     @dengia BIGINT ,
