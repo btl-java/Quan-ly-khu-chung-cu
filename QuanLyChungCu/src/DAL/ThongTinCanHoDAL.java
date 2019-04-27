@@ -50,7 +50,7 @@ public class ThongTinCanHoDAL {
     }
     
     public static List<CanHo> dsTTCanHo_DAL(float tudt,float dendt,long tugia,long dengia,int sophong) throws SQLException {
-        String query = "EXEC dbo.searchApartments "+tudt+","+dendt+","+tugia+","+dengia+","+sophong+"";
+        String query = "EXEC dbo.searchApartments "+tugia+","+dengia+","+tudt+","+dendt+","+sophong+"";
         ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(query);
         List<CanHo> dsTTCanHo = new ArrayList<>();
         try {
