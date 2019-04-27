@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import BLL.CanHoBLL;
+import GUI.RegexExpression;
 import BLL.CreateContract;
 import static BLL.QuanLyCuDanBLL.cmb_BLL;
 import BLL.ThongTinCanHoBLL;
@@ -1135,7 +1135,9 @@ public class NhanVienGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Nhập tên khách hàng.", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (txtNgsinh.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Nhập ngày sinh.", "Error", JOptionPane.ERROR_MESSAGE);
-            } else if (cmbGioitinh1.getSelectedItem().toString().equals("")) {
+            }else if (!RegexExpression.checkDateTime(txtNgsinh.getText())) {
+                JOptionPane.showMessageDialog(null, "Nhập ngày sinh.", "Error", JOptionPane.ERROR_MESSAGE);
+            }else if (cmbGioitinh1.getSelectedItem().toString().equals("")) {
                 JOptionPane.showMessageDialog(null, "Chọn giới tính.", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (txtSDT.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Nhập số điện thoại.", "Error", JOptionPane.ERROR_MESSAGE);
