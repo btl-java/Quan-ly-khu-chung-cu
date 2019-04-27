@@ -69,8 +69,14 @@ public class ThongTinMuaBanDAL {
     }
     
     public static List<HopDong> TimKiem_DAL(String info) throws SQLException {
-        String query = "select * from HOPDONG where MaHopDong like '%"+info+"%' or NgayGiaodich like '%"+info+"%'"
-                + "or DiaChiKH like '%"+info+"%' or MaCuDan like '%"+info+"%' or MaCanHo like '%"+info+"%' or TenCuDan like '%"+info+"%'";
+        String price = null;
+        for(Character c: info.toCharArray()){
+            if(c>='0' || c<='9'){
+                price+=c;
+            }
+        }
+        String query = "select * from HOPDONG hd join CANHO ch on hd.MaCanHo=ch.MaCanHo where hd.MaHopDong like '%"+info+"%' or hd.NgayGiaodich like '%"+info+"%'"
+                + "or hd.DiaChiKH like '%"+info+"%' or hd.MaCuDan like '%"+info+"%' or hd.MaCanHo like '%"+info+"%' or hd.TenCuDan like N'%"+info+"%' or ch.Gia like '%"+price+"%'";
         ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(query);
         List<HopDong> dsHopDong = new ArrayList<>();
         try {
@@ -81,6 +87,8 @@ public class ThongTinMuaBanDAL {
                 hd.setDiaChiKhachHang(rs.getString(3));
                 hd.setMaCuDan(rs.getString(4));
                 hd.setMaCanHo(rs.getString(5));
+                hd.setTenKH(rs.getString(6));
+                hd.setGia(rs.getInt(7));
                 
                 dsHopDong.add(hd);
             }
