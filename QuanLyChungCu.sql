@@ -221,7 +221,6 @@ CREATE PROC searchApartments
     END
 GO
 EXEC dbo.searchApartments 1000000000,2000000000,50,0,6 
-
 GO 
 ---------- Funtions ----------
 
