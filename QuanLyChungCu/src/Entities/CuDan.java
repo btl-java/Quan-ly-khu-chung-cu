@@ -87,7 +87,6 @@ public class CuDan {
     public CuDan() {
     }
     
-
     public CuDan(String maCuDan, String tenCuDan, String ngaySinh, boolean gioiTinh, String soDT, String soCMT, String queQuan) {
         this.maCuDan = maCuDan;
         this.tenCuDan = tenCuDan;
@@ -96,5 +95,10 @@ public class CuDan {
         this.soDT = soDT;
         this.soCMT = soCMT;
         this.queQuan = queQuan;
+    }
+    
+     public CuDan(String maCanHo,String maCuDan){
+        this.maCanHo=maCanHo;
+        this.maCuDan=maCuDan;
     }
 }

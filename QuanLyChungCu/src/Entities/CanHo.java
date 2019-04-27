@@ -104,4 +104,17 @@ public class CanHo{
     public void setMaCuDan(String maCuDan) {
         this.maCuDan = maCuDan;
     }
+    
+    public CanHo(String maCanHo,float dienTich,long gia,int soPhong,String maKhu){
+        this.maCanHo=maCanHo;
+        this.dienTich=dienTich;
+        this.gia=gia;
+        this.soPhong=soPhong;
+        this.maKhu=maKhu;
+    }
+    
+    public CanHo(String maCanHo,String maCuDan){
+        this.maCanHo=maCanHo;
+        this.maCuDan=maCuDan;
+    }
 }

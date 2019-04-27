@@ -23,6 +23,7 @@ import javax.swing.border.TitledBorder;
 import DAL.ConnectSQL;
 import DAL.TaiKhoanDAL;
 import Entities.TaiKhoan;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,7 +93,11 @@ public class DangNhapUI extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-                            xuLyDangNhap();
+                            try {
+                                xuLyDangNhap();
+                            } catch (SQLException ex) {
+                                Logger.getLogger(DangNhapUI.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 				
 			}
 		});
@@ -105,25 +110,21 @@ public class DangNhapUI extends JFrame{
                 });
 		
 	}
-	protected void xuLyDangNhap()  {
+	protected void xuLyDangNhap() throws SQLException  {
 		
 		TaiKhoan tk=TaiKhoanDAL.dangNhap(txtTaiKhoan.getText(), txtMatKhau.getText());
 		if (tk==null) {
 			JOptionPane.showMessageDialog(null, "Đăng nhập thất bại ");
 		}else {
-                    try {
-                        this.dispose();             
-                        if (tk.isVaiTro()==true) {
-                              QuanLyGUI ql=new QuanLyGUI();
-                               ql.setVisible(true);   
-                               
-                        }else{
-                          NhanVienGUI nv= new NhanVienGUI();
-                          nv.setVisible(true); 
-                          
-                        }
-                    } catch (ParseException ex) {
-                        Logger.getLogger(DangNhapUI.class.getName()).log(Level.SEVERE, null, ex);
+                    this.dispose();
+                    if (tk.isVaiTro()==true) {
+                        QuanLyGUI ql=new QuanLyGUI();
+                        ql.setVisible(true);
+                        
+                    }else{
+                        NhanVienGUI nv= new NhanVienGUI();
+                        nv.setVisible(true);
+                        
                     }
 		}
 	}
