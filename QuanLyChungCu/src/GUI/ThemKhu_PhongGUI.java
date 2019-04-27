@@ -27,8 +27,6 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txbMaKhu = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txbTenKhu = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -47,12 +45,10 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
         txbDienTich = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Thêm Khu");
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel1.setText("Mã Khu");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel2.setText("Tên Khu");
@@ -135,6 +131,9 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setText("Thông tin khu căn hộ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,24 +148,25 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(26, 26, 26))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3))
-                                    .addGap(19, 19, 19))))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txbSoCanTT)
-                            .addComponent(txbTenKhu)
-                            .addComponent(txbMaKhu)
-                            .addComponent(txbSoTang)
-                            .addComponent(txbDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel2)
+                                                .addComponent(jLabel3))
+                                            .addGap(19, 19, 19)))
+                                    .addComponent(jLabel5))
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txbSoCanTT)
+                                    .addComponent(txbTenKhu)
+                                    .addComponent(txbSoTang)
+                                    .addComponent(txbDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(36, 36, 36))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(68, 68, 68)))
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 77, Short.MAX_VALUE))
         );
@@ -175,32 +175,32 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txbMaKhu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel10)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(txbTenKhu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(txbSoTang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
+                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txbSoCanTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
+                            .addComponent(txbSoTang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txbSoCanTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txbDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btLuu)
-                    .addComponent(btHuy))
-                .addGap(49, 49, 49))
+                            .addComponent(jLabel5)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btHuy)
+                            .addComponent(btLuu))
+                        .addGap(33, 33, 33))))
         );
 
         pack();
@@ -215,9 +215,7 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
     private void btLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLuuActionPerformed
 
         try{
-            if(txbMaKhu.getText().length()!=2){
-                JOptionPane.showMessageDialog(null,"Mã khu phải 2 kí tự!");
-            }else if(txbTenKhu.getText().equals("")){
+            if(txbTenKhu.getText().equals("")){
                 JOptionPane.showMessageDialog(null,"Tên khu không được bỏ trống!");
             }else if(txbSoTang.getText().equals("")){
                 JOptionPane.showMessageDialog(null,"Số tầng không được bỏ trống!");
@@ -231,8 +229,8 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Địa chỉ không được bỏ trống!");
             }else if(txbDienTich.getText().equals("")){
                 JOptionPane.showMessageDialog(null,"Diện tích không được bỏ trống!");
-            }else if(Float.parseFloat(txbDienTich.getText())<1){
-                JOptionPane.showMessageDialog(null,"Vui lòng nhập diện tích là số dương!");
+            }else if(Float.parseFloat(txbDienTich.getText())<30){
+                JOptionPane.showMessageDialog(null,"Vui lòng nhập diện tích lớn hơn 30m²!");
             }else if(txbGia.getText().equals("")){
                  JOptionPane.showMessageDialog(null,"Giá không được bỏ trống!");
             }else if(Long.parseLong(txbGia.getText())<1){
@@ -243,7 +241,7 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Vui lòng số phòng là số dương!");
             }else{
                 
-                boolean check = KhuCanHoBLL.insert(txbMaKhu.getText().toUpperCase(), txbTenKhu.getText(), Integer.parseInt(txbSoTang.getText()), Integer.parseInt(txbSoCanTT.getText()), 
+                boolean check = KhuCanHoBLL.insert(txbTenKhu.getText(), Integer.parseInt(txbSoTang.getText()), Integer.parseInt(txbSoCanTT.getText()), 
                         txbDiaChi.getText(), Float.parseFloat(txbDienTich.getText()), Long.parseLong(txbGia.getText()), Integer.parseInt(txbSoPhong.getText()));
                 QuanLyGUI.it.show_KhuCanHo();
                 QuanLyGUI.it.show_CanHo();
@@ -298,7 +296,7 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btHuy;
     private javax.swing.JButton btLuu;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -311,7 +309,6 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
     private javax.swing.JTextField txbDiaChi;
     private javax.swing.JTextField txbDienTich;
     private javax.swing.JTextField txbGia;
-    private javax.swing.JTextField txbMaKhu;
     private javax.swing.JTextField txbSoCanTT;
     private javax.swing.JTextField txbSoPhong;
     private javax.swing.JTextField txbSoTang;

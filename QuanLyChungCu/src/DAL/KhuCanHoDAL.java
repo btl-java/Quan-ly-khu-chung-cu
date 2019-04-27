@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -36,6 +37,10 @@ public class KhuCanHoDAL {
         } catch (SQLException ex) {
             return null;
         }
+        
+        Collections.sort(list,(x,y)->{
+            return x.getMaKhu().compareTo(y.getMaKhu());
+        });
         
         return list;
     }

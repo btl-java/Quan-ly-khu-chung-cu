@@ -18,6 +18,16 @@ public class CanHo{
     private  int soPhong;
     private String maCuDan;
     private String maKhu;
+    private String tenKhu;
+
+    public String getMaKhu() {
+        return maKhu;
+    }
+
+    public void setMaKhu(String maKhu) {
+        this.maKhu = maKhu;
+    }
+
 
     public CanHo() {
     }
@@ -31,6 +41,8 @@ public class CanHo{
         this.maCuDan = maCuDan;
         this.maKhu = maKhu;
     }
+    
+    
 
     public float getDienTich() {
         return dienTich;
@@ -64,12 +76,12 @@ public class CanHo{
         this.soPhong = soPhong;
     }
 
-    public String getMaKhu() {
-        return maKhu;
+    public String getTenKhu() {
+        return tenKhu;
     }
 
-    public void setMaKhu(String maKhu) {
-        this.maKhu = maKhu;
+    public void setTenKhu(String maKhu) {
+        this.tenKhu = maKhu;
     }
     
     public String getMaCanHo() {
@@ -86,7 +98,7 @@ public class CanHo{
 
     @Override
     public String toString() {
-        return "CanHo{" + "maCanHo=" + maCanHo + ", dienTich=" + dienTich + ", gia=" + gia + ", trangThai=" + trangThai + ", soPhong=" + soPhong + ", maCuDan=" + maCuDan + ", maKhu=" + maKhu + '}';
+        return "CanHo{" + "maCanHo=" + maCanHo + ", dienTich=" + dienTich + ", gia=" + gia + ", trangThai=" + trangThai + ", soPhong=" + soPhong + ", maCuDan=" + maCuDan + ", maKhu=" + maKhu + ", tenKhu=" + tenKhu + '}';
     }
 
     public void setMaCuDan(String maCuDan) {

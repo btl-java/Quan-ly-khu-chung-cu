@@ -22,12 +22,14 @@ public class TaiKhoanDAL {
     private TaiKhoanDAL(){
         
     }
+    
     public static Connection connection=ConnectSQL.connect();
-    public static ArrayList<TaiKhoan> show(){
+    
+    public static ArrayList<TaiKhoan> show(boolean vaiTro){
         ArrayList<TaiKhoan> list = new ArrayList<>();
         try {
             Statement s = ConnectSQL.connect().createStatement();
-            ResultSet r =  s.executeQuery("SELECT TenTaiKhoan,MatKhau FROM TAIKHOAN WHERE VaiTro='0'");
+            ResultSet r =  s.executeQuery("SELECT TenTaiKhoan,MatKhau FROM TAIKHOAN WHERE VaiTro='"+vaiTro+"'");
        
             while (r.next()){
                 list.add(new TaiKhoan(r.getString("TenTaiKhoan"), r.getString("MatKhau")));
@@ -39,6 +41,7 @@ public class TaiKhoanDAL {
         
         return list;
     }
+    
     public static TaiKhoan dangNhap(String userName,String passWord) {
 		boolean vaiTro;
 		TaiKhoan tk=null;
@@ -78,11 +81,25 @@ public class TaiKhoanDAL {
  
     }
     
+    public static boolean update(String tenTaiKhoan,String matKhau,boolean vaiTro){
+        try {
+            PreparedStatement pre = ConnectSQL.connect().prepareStatement("UPDATE [QuanLyChungCu].[dbo].[TAIKHOAN] "
+                    + "SET TenTaiKhoan = ?,MatKhau =? WHERE VaiTro =?");
+            pre.setString(1,tenTaiKhoan);
+            pre.setString(2,matKhau);
+            pre.setBoolean(3,vaiTro);
+            return  pre.executeUpdate()>0;
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
+    
     public static boolean update(String tenTaiKhoan,String matKhau){
         try {
-            PreparedStatement pre = ConnectSQL.connect().prepareStatement("UPDATE TAIKHOAN SET MatKhau = ? WHERE TenTaiKhoan =?");
-            pre.setString(1,matKhau);
+            PreparedStatement pre = ConnectSQL.connect().prepareStatement("UPDATE [QuanLyChungCu].[dbo].[TAIKHOAN] "
+                    + "SET MatKhau =? WHERE TenTaiKhoan =?");
             pre.setString(2,tenTaiKhoan);
+            pre.setString(1,matKhau);
             return  pre.executeUpdate()>0;
         } catch (SQLException ex) {
             return false;
@@ -98,11 +115,5 @@ public class TaiKhoanDAL {
             return false;
         }
     }
-    
-//    public static void main(String[] args) {
-//        for(TaiKhoan tk : show()){
-//            System.out.println(tk);
-//        }
-//    }
     
 }

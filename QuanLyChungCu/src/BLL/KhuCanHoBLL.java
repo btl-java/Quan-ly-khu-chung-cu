@@ -4,8 +4,10 @@ import DAL.*;
 import Entities.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -21,7 +23,7 @@ public class KhuCanHoBLL {
     public static TableModel show(){
         ArrayList<KhuCanHo> list = KhuCanHoDAL.show();
         
-        String[] columnNames = {"STT","Mã Khu","Tên Khu","Số Tầng","Số căn/tầng","Địa chỉ"};
+        String[] columnNames = {"STT","Mã Khu","Khu","Số Tầng","Số căn/tầng","Địa chỉ"};
         
         Object[][] data = new Object[list.size()][columnNames.length];
         
@@ -42,6 +44,20 @@ public class KhuCanHoBLL {
         
     }
     
+    public static Object[] showControlWithCombobox(String cbbValue){
+        ArrayList<KhuCanHo> list = KhuCanHoDAL.show();
+        Object[] obj = new Object[4];
+        for(KhuCanHo k :list){
+            if(cbbValue.equals(k.getMaKhu())){
+                  obj[0]  = k.getDiaChi();
+                  obj[1]  = k.getSoCanTT();
+                  obj[2]  = k.getSoTang();
+                  obj[3]  = k.getTenKhu();
+            }
+        }
+        return obj;
+    }
+    
     public static ComboBoxModel cbb_show(){
         
         StringBuilder items = new StringBuilder();
@@ -57,14 +73,33 @@ public class KhuCanHoBLL {
         return new DefaultComboBoxModel(items.toString().split("#"));
     }
     
-    public static boolean insert( String maKhu, String tenKhu,int soTang,int soCanTT, String diaChi, float dienTich, long gia,int soPhong){
+    public static boolean insert(String tenKhu,int soTang,int soCanTT, String diaChi, float dienTich, long gia,int soPhong){
+
+        String lastID;
+        char first_lastID;
+        char second_lastID;
+        String maKhu = null;
         
-        if(KhuCanHoDAL.insert(new KhuCanHo(maKhu, tenKhu, soTang, soCanTT, diaChi))){
-            System.out.println("Thêm khu thành công");
-        }// thêm và check thêm khu
-         
-        ArrayList<CanHo> list = new ArrayList<>();
+        if(KhuCanHoDAL.show().isEmpty()){
+             maKhu = "CT";// chưa có khu nào lấy giá trị mặc định mã khu là CT
+        }else{
+            lastID = KhuCanHoDAL.show().get(KhuCanHoDAL.show().size()-1).getMaKhu();
+            first_lastID =  lastID.charAt(0);
+            second_lastID = lastID.charAt(1);
+            
+            if(first_lastID == 'Z' && second_lastID == 'Z'){
+                JOptionPane.showMessageDialog(null,"System Error!");
+            }else if(second_lastID == 'Z'){
+                first_lastID = (char)((int)first_lastID+1);
+                second_lastID = 'A';
+                maKhu = String.valueOf(first_lastID) + String.valueOf(second_lastID);
+            }else{
+                second_lastID = (char)((int)second_lastID+1);
+                maKhu = String.valueOf(first_lastID) + String.valueOf(second_lastID);
+            }
+        }
         
+        ArrayList<CanHo> list = new ArrayList<>();// tạo danh sách là những căn hộ trong khu
         for(int i = 1;i<=soTang;i++) {
             for(int j=1;j<=soCanTT;j++) {		
 		if(i<10 && j<10) {
@@ -87,14 +122,15 @@ public class KhuCanHoBLL {
             }		
 	}
         
-        return CanHoDAL.inserts(list);
+        return KhuCanHoDAL.insert(new KhuCanHo(maKhu, tenKhu, soTang, soCanTT, diaChi)) && CanHoDAL.inserts(list);
+        // trả về bool nếu thêm thành công cả khu và căn hộ trong khu
     }
     
     public static TableModel search(String text) throws SQLException{
         
         ArrayList<KhuCanHo> list = KhuCanHoDAL.search(text);
         
-        String[] columnNames = {"STT","Mã Khu","Tên Khu","Số Tầng","Số căn/tầng","Địa chỉ"};
+        String[] columnNames = {"STT","Mã Khu","Khu","Số Tầng","Số căn/tầng","Địa chỉ"};
         
         Object[][] data = new Object[list.size()][columnNames.length];
         
