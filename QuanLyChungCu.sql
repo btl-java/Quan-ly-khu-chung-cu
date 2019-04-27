@@ -235,7 +235,5 @@ GO
 <<<<<<< HEAD
 ALTER TABLE dbo.HOPDONG ADD TenKH NVARCHAR(50) NOT NULL
 =======
-ALTER TABLE dbo.HOPDONG add TenCuDan nvarchar(50) not null
-ALTER TABLE dbo.HOPDONG drop column TenKH
 GO
 >>>>>>> a3505d8c0b448993ce1e28d3356b574a0dda971e
