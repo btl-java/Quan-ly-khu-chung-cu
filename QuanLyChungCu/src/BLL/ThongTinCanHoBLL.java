@@ -5,10 +5,16 @@
  */
 package BLL;
 
+import DAL.ThongTinCanHoDAL;
 import static DAL.ThongTinCanHoDAL.updateCH_DAL;
 import Entities.CanHo;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -19,9 +25,9 @@ import javax.swing.table.TableModel;
  */
 public class ThongTinCanHoBLL {
 
-    public static void HienThongTinCanho(JTable tbl) throws SQLException {
-        List<CanHo> dsCanHo = DAL.ThongTinCanHoDAL.dsCanHo();
-        Object[] colName = new Object[]{"Mã căn hộ", "Diện tích", "Giá", "Số phòng", "Mã khu"};
+    public static void Table(JTable tbl,List<CanHo> list) throws SQLException{
+        List<CanHo> dsCanHo = list;
+        Object[] colName = new Object[]{"Mã căn hộ", "Diện tích", "Giá", "Số phòng", "Tên khu"};
         Object[][] data = new Object[dsCanHo.size()][5];
         int i = 0;
         for (CanHo ch : dsCanHo) {
@@ -29,12 +35,20 @@ public class ThongTinCanHoBLL {
             data[i][1] = ch.getDienTich();
             data[i][2] = ch.getGia();
             data[i][3] = ch.getSoPhong();
-            data[i][4] = ch.getMaKhu();
+            data[i][4] = ch.getTenKhu();
             i++;
         }
 
         TableModel tableModel = new DefaultTableModel(data, colName);
         tbl.setModel(tableModel);
+    }
+    
+    public static void HienThongTinCanho(JTable tbl) throws SQLException {
+        Table(tbl, ThongTinCanHoDAL.dsCanHo());
+    }
+    
+    public static void TKThongTinCanho(JTable tbl,float tudt,float dendt,long tugia,long dengia,int sophong) throws SQLException {
+        Table(tbl, ThongTinCanHoDAL.dsTTCanHo_DAL(tudt, dendt, tugia, dengia, sophong));
     }
 
     public static void updateCH_BLL(String mach, String macd) throws SQLException {
@@ -44,4 +58,24 @@ public class ThongTinCanHoBLL {
             System.out.println("Errors in updateCH_BLL: " + e.getMessage());
         }
     }
+    
+    public static ComboBoxModel SoPhong_BLL() throws SQLException{
+        Set<Integer> set=new TreeSet<>();
+        for(CanHo ch: ThongTinCanHoDAL.dsCanHo()){
+            set.add(ch.getSoPhong());
+        }
+        return new DefaultComboBoxModel(set.toArray());
+    }
+    
+//    public static void dsCanHo_BLL(JTable tbl) throws SQLException{
+//        Set<Object> set=new TreeSet<>();
+//        for(CanHo ch: ThongTinCanHoDAL.dsCanHo()){
+//            set.add(ch.getMaCanHo());
+//            set.add(ch.getDienTich());
+//            set.add(ch.getSoPhong());
+//            set.add(ch.getTenKhu());
+//        }
+//        
+//        TableModel tableModel=new DefaultTableModel();
+//    }
 }

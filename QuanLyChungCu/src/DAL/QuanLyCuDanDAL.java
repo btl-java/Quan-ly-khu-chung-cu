@@ -20,8 +20,7 @@ public class QuanLyCuDanDAL {
 
     //Begin TabQuanLyCuDan
     public static List<CuDan> dsCuDan() throws SQLException {
-        String query = "select cd.MaCuDan,cd.TenCuDan,cd.NgaySinh,cd.GioiTinh,cd.SoDT,cd.SoCMT,cd.QueQuan,ch.MaCanHo \n"
-                + "from CUDAN cd inner join CANHO ch on cd.MaCuDan=ch.MaCuDan";
+        String query = "select * from CUDAN";
         ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(query);
         List<CuDan> dsCuDan = new ArrayList<>();
         try {
@@ -34,7 +33,6 @@ public class QuanLyCuDanDAL {
                 cd.setSoDT(rs.getString(5));
                 cd.setSoCMT(rs.getString(6));
                 cd.setQueQuan(rs.getString(7));
-                cd.setMaCanHo(rs.getString(8));
 
                 dsCuDan.add(cd);
             }

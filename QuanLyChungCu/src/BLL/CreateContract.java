@@ -5,7 +5,6 @@
  */
 package BLL;
 
-import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -134,7 +133,7 @@ public class CreateContract {
         
         XWPFTableRow rowTwo=KyTen.createRow();
         rowTwo.getCell(0).setParagraph(para3);
-        rowTwo.getCell(0).setText("(ký ghi rõ họ tên, nếu là tổ chức mua nhà thì đóng   dấu của tổ chức)");
+        rowTwo.getCell(0).setText("(ký ghi rõ họ tên, nếu là tổ chức mua nhà thì đóng dấu của tổ chức)");
         rowTwo.getCell(1).setParagraph(para3);
         rowTwo.getCell(1).setText("(ký ghi rõ họ tên, chức vụ và đóng dấu của doanh nghiệp)");
         
@@ -146,8 +145,6 @@ public class CreateContract {
             document.close();
             JOptionPane.showMessageDialog(null, "Tạo hợp đồng thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             
-            //open file
-            Desktop.getDesktop().open(new File("E:\\Git\\Quan-ly-khu-chung-cu\\Hợp đồng mua chung cư Anland Complex.docx.docx"));
         } catch (IOException e) {
             System.out.println(e);
         }
