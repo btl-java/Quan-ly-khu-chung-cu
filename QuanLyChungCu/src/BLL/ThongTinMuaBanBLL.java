@@ -42,6 +42,10 @@ public class ThongTinMuaBanBLL {
         ThongTinMuaBanDAL.insertHD_DAL(mahd,ngaygd,diachikh,macd,mach,tenkh);
     }
     
+    public static void UpdateHD_BLL(String diachikh,String macd,String tenkh){
+        ThongTinMuaBanDAL.UpdateHD_DAL(diachikh, macd, tenkh);
+    }
+    
     public static  void TimKiem_BLL(JTable tbl,String info) throws SQLException{
         List<HopDong> dsHopDong= ThongTinMuaBanDAL.TimKiem_DAL(info);
         Object[] colName = new Object[]{"Mã hợp đồng", "Tên khách hàng", "Mã căn hộ", "Mã cư dân", "Địa chỉ KH", "Giá", "Ngày giao dịch"};
