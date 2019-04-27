@@ -920,7 +920,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
             } else if (txtNgaysinh.getText().trim().length() == 0) {
                 JOptionPane.showMessageDialog(null, "Ngày sinh trống.", "Error", JOptionPane.ERROR_MESSAGE);
             }else if (!RegexExpression.checkDateTime(txtNgaysinh.getText())) {
-                JOptionPane.showMessageDialog(null, "Ngày sinh sai định dạng (yyyy-MM-dd).", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Nhập sai ngày sinh.", "Error", JOptionPane.ERROR_MESSAGE);
             }else if (txtSdt.getText().trim().length() == 0) {
                 JOptionPane.showMessageDialog(null, "Số điện thoại trống.", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (txtQuequan.getText().trim().length() == 0) {
@@ -1138,7 +1138,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
             } else if (txtNgsinh.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Nhập ngày sinh.", "Error", JOptionPane.ERROR_MESSAGE);
             }else if (!RegexExpression.checkDateTime(txtNgsinh.getText())) {
-                JOptionPane.showMessageDialog(null, "Ngày sinh sai định dạng (yyyy-MM-dd).", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Nhập sai ngày sinh.", "Error", JOptionPane.ERROR_MESSAGE);
             }else if (cmbGioitinh1.getSelectedItem().toString().equals("")) {
                 JOptionPane.showMessageDialog(null, "Chọn giới tính.", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (txtSDT.getText().equals("")) {
