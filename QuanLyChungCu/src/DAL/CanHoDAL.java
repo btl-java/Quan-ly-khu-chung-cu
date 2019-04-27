@@ -113,17 +113,17 @@ public class CanHoDAL {
         }
     }
             
-     public static ArrayList<CanHo> search(String cbbValue,boolean check,long tuGia,long denGia,float tuDienTich,float denDienTich){
+     public static ArrayList<CanHo> search(boolean check,long tuGia,long denGia,float tuDienTich,float denDienTich){
+         //System.out.println(check+" "+tuGia+" "+ denGia + " " +tuDienTich +" "+ denDienTich);
         ArrayList<CanHo> list = new ArrayList<>();
         try {
             PreparedStatement pre  = ConnectSQL.connect().prepareStatement
-                ("EXEC dbo.searchApartmentWithCriterias ?,?,?,?,?,?");
-                pre.setString(1, cbbValue);
-                pre.setBoolean(2, check);
-                pre.setLong(3, tuGia);
-                pre.setLong(4, denGia);
-                pre.setFloat(5, tuDienTich);
-                pre.setFloat(6, denDienTich);
+                ("EXEC dbo.searchApartmentWithCriterias ?,?,?,?,?");
+                pre.setBoolean(1, check);
+                pre.setLong(2, tuGia);
+                pre.setLong(3, denGia);
+                pre.setFloat(4, tuDienTich);
+                pre.setFloat(5, denDienTich);
 
                 ResultSet r = pre.executeQuery();
             while (r.next()){

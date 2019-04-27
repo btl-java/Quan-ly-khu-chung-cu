@@ -137,8 +137,7 @@ INSERT [dbo].[HOPDONG] ([MaHopDong], [NgayGiaoDich], [DiaChiKH], [MaCuDan], [MaC
 GO
   USE QuanLyChungCu
   GO
-  CREATE PROC searchApartmentWithCriterias
-    @tenkhu NVARCHAR(50),
+  ALTER PROC searchApartmentWithCriterias
     @trangthai BIT ,
     @tugia BIGINT ,
     @dengia BIGINT ,
@@ -153,7 +152,7 @@ GO
                 FROM [QuanLyChungCu].[dbo].[CANHO] c
                     JOIN [QuanLyChungCu].[dbo].KHUCANHO k
                     ON k.MaKhu = c.MaKhu
-                WHERE k.TenKhu = @tenkhu AND TrangThai = @trangthai AND Gia > @tugia AND DienTich > @tudt
+                WHERE TrangThai = @trangthai AND Gia > @tugia AND DienTich > @tudt
         ELSE -- dt > 50, 0 <gia <= 2000000000
             IF ( @dendt = 0 AND ( ( @tugia = 0 AND @dengia = 1000000000 ) OR ( @tugia = 1000000000 AND @dengia = 2000000000 ) ) )
                 SELECT c.MaCanHo, c.DienTich, c.Gia, c.TrangThai, c.SoPhong,
@@ -161,7 +160,7 @@ GO
                     FROM [QuanLyChungCu].[dbo].[CANHO] c
                         JOIN [QuanLyChungCu].[dbo].KHUCANHO k
                         ON k.MaKhu = c.MaKhu
-                    WHERE k.TenKhu = @tenkhu  AND TrangThai = @trangthai AND Gia BETWEEN @tugia AND @dengia AND DienTich > @tudt
+                    WHERE TrangThai = @trangthai AND Gia BETWEEN @tugia AND @dengia AND DienTich > @tudt
             ELSE -- 30 <= dt <= 50, gia > 2000000000
                 IF ( @dengia = 0 AND ( ( @tudt = 30 AND @dendt = 40 ) OR ( @tudt = 40 AND @dendt = 50 ) ) )
                     SELECT c.MaCanHo, c.DienTich, c.Gia, c.TrangThai,
@@ -169,18 +168,19 @@ GO
                         FROM [QuanLyChungCu].[dbo].[CANHO] c
                             JOIN [QuanLyChungCu].[dbo].KHUCANHO k
                             ON k.MaKhu = c.MaKhu
-                        WHERE k.TenKhu = @tenkhu  AND TrangThai = @trangthai AND Gia > @tugia AND DienTich BETWEEN @tudt AND @dendt
+                        WHERE TrangThai = @trangthai AND Gia > @tugia AND DienTich BETWEEN @tudt AND @dendt
                 ELSE --  30 <= dt <= 50 , 0 < gia <= 2000000000
                     SELECT c.MaCanHo, c.DienTich, c.Gia, c.TrangThai,
                             c.SoPhong, c.MaCuDan, k.TenKhu
                         FROM [QuanLyChungCu].[dbo].[CANHO] c
                             JOIN [QuanLyChungCu].[dbo].KHUCANHO k
                             ON k.MaKhu = c.MaKhu
-                        WHERE k.TenKhu = @tenkhu  AND TrangThai = @trangthai AND Gia BETWEEN @tugia AND @dengia AND DienTich BETWEEN @tudt AND @dendt
+                        WHERE TrangThai = @trangthai AND Gia BETWEEN @tugia AND @dengia AND DienTich BETWEEN @tudt AND @dendt
   -----
     END
 GO
-EXEC dbo.searchApartmentWithCriterias 'Haha',0,2000000000,0,30,40 -- 
+SELECT * FROM  dbo.CANHO
+EXEC dbo.searchApartmentWithCriterias 0,2000000000,0,40,50 -- 
 GO 
 CREATE PROC searchApartments
     @tugia BIGINT ,
@@ -232,6 +232,10 @@ USE QuanLyChungCu
 GO
 DELETE dbo.HOPDONG
 GO
+<<<<<<< HEAD
+ALTER TABLE dbo.HOPDONG ADD TenKH NVARCHAR(50) NOT NULL
+=======
 ALTER TABLE dbo.HOPDONG add TenCuDan nvarchar(50) not null
 ALTER TABLE dbo.HOPDONG drop column TenKH
 GO
+>>>>>>> a3505d8c0b448993ce1e28d3356b574a0dda971e

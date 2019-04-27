@@ -3,8 +3,7 @@ package BLL;
 import DAL.CanHoDAL;
 import DAL.KhuCanHoDAL;
 import Entities.*;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
@@ -18,7 +17,7 @@ public class CanHoBLL {
 
     public static TableModel show(){
         
-        ArrayList<CanHo> list = CanHoDAL.show();
+        List<CanHo> list = CanHoDAL.show();
         String[] columnNames = {"STT","Mã Căn Hộ","Diện Tích","Giá","Trạng Thái","Số Phòng","Mã Cư Dân","Khu"};
         Object[][] data = new Object[list.size()][columnNames.length];
         int row = 0;
@@ -52,7 +51,6 @@ public class CanHoBLL {
         
        return table;
         
-       // return new DefaultTableModel(data, columnNames);
     }
     
     public static ComboBoxModel cbb_show(){
@@ -84,8 +82,8 @@ public class CanHoBLL {
         return CanHoDAL.update(maCanHo, gia, soPhong);
     }
     
-    public static TableModel search(String cbbValue,boolean check,long tuGia,long denGia,float tuDienTich,float denDienTich){
-        ArrayList<CanHo> list = CanHoDAL.search(cbbValue,check,tuGia,denGia,tuDienTich,denDienTich);
+    public static TableModel search(boolean check,long tuGia,long denGia,float tuDienTich,float denDienTich){
+        List<CanHo> list = CanHoDAL.search(check,tuGia,denGia,tuDienTich,denDienTich);
         String[] columnNames = {"STT","Mã Căn Hộ","Diện Tích","Giá","Trạng Thái","Số Phòng","Mã Cư Dân","Khu"};
         Object[][] data = new Object[list.size()][columnNames.length];
         int row = 0;
