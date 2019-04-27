@@ -68,6 +68,15 @@ public class ThongTinMuaBanDAL {
         }
     }
     
+    public static void UpdateHD_DAL(String diachikh,String macd,String tenkh){
+        try {
+            String query="update HOPDONG set DiaChiKH=N'"+diachikh+"',TenCuDan=N'"+tenkh+"' where MaCuDan='"+macd+"'";
+            ConnectSQL.connect().createStatement().executeUpdate(query);
+        } catch (SQLException e) {
+            System.out.println("Error in insertHD_DAL: " + e.getMessage());
+        }
+    }
+    
     public static List<HopDong> TimKiem_DAL(String info) throws SQLException {
         String query = "select * from HOPDONG hd join CANHO ch on hd.MaCanHo=ch.MaCanHo where hd.MaHopDong like '%"+info+"%' or hd.NgayGiaodich like '%"+info+"%'"
                 + "or hd.DiaChiKH like '%"+info+"%' or hd.MaCuDan like '%"+info+"%' or hd.MaCanHo like '%"+info+"%' or hd.TenCuDan like N'%"+info+"%' or ch.Gia like '%"+info+"%'";
