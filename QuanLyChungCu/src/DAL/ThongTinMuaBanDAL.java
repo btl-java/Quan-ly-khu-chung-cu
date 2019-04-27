@@ -12,8 +12,8 @@ import java.util.List;
 public class ThongTinMuaBanDAL {
 
     public static List<HopDong> dsHopDong() throws SQLException {
-        String query = "select hd.MaHopDong,cd.TenCuDan,hd.MaCanHo,hd.MaCuDan,hd.DiaChiKH,ch.Gia,hd.NgayGiaoDich \n"
-                + "from HOPDONG hd inner join CANHO ch on hd.MaCuDan=ch.MaCuDan \n"
+        String query = "select distinct hd.MaHopDong,cd.TenCuDan,hd.MaCanHo,hd.MaCuDan,hd.DiaChiKH,ch.Gia,hd.NgayGiaoDich \n"
+                + "from HOPDONG hd inner join CANHO ch on hd.MaCanHo=ch.MaCanHo \n"
                 + "inner join CUDAN cd on hd.MaCuDan=cd.MaCuDan";
         ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(query);
         List<HopDong> dsHopDong = new ArrayList<>();
@@ -69,14 +69,8 @@ public class ThongTinMuaBanDAL {
     }
     
     public static List<HopDong> TimKiem_DAL(String info) throws SQLException {
-        String price = null;
-        for(Character c: info.toCharArray()){
-            if(c>='0' || c<='9'){
-                price+=c;
-            }
-        }
         String query = "select * from HOPDONG hd join CANHO ch on hd.MaCanHo=ch.MaCanHo where hd.MaHopDong like '%"+info+"%' or hd.NgayGiaodich like '%"+info+"%'"
-                + "or hd.DiaChiKH like '%"+info+"%' or hd.MaCuDan like '%"+info+"%' or hd.MaCanHo like '%"+info+"%' or hd.TenCuDan like N'%"+info+"%' or ch.Gia like '%"+price+"%'";
+                + "or hd.DiaChiKH like '%"+info+"%' or hd.MaCuDan like '%"+info+"%' or hd.MaCanHo like '%"+info+"%' or hd.TenCuDan like N'%"+info+"%' or ch.Gia like '%"+info+"%'";
         ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(query);
         List<HopDong> dsHopDong = new ArrayList<>();
         try {
@@ -88,7 +82,7 @@ public class ThongTinMuaBanDAL {
                 hd.setMaCuDan(rs.getString(4));
                 hd.setMaCanHo(rs.getString(5));
                 hd.setTenKH(rs.getString(6));
-                hd.setGia(rs.getInt(7));
+                hd.setGia(rs.getInt(9));
                 
                 dsHopDong.add(hd);
             }

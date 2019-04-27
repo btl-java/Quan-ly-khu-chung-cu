@@ -28,7 +28,7 @@ public class QuanLyCuDanBLL {
 
     public static void HienThongTinCuDan(JTable tbl) throws SQLException {
         List<CuDan> dsCuDan = DAL.QuanLyCuDanDAL.dsCuDan();
-        Object[] colName = new Object[]{"Mã cư dân", "Tên cư dân", "Ngày sinh", "Giới tính", "SĐT", "Số CMT", "Quê quán", "Mã căn hộ"};
+        Object[] colName = new Object[]{"Mã cư dân", "Tên cư dân", "Ngày sinh", "Giới tính", "SĐT", "Số CMT", "Quê quán"};
         Object[][] data = new Object[dsCuDan.size()][8];
         int i = 0;
         for (CuDan cd : dsCuDan) {
@@ -43,7 +43,6 @@ public class QuanLyCuDanBLL {
             data[i][4] = cd.getSoDT();
             data[i][5] = cd.getSoCMT();
             data[i][6] = cd.getQueQuan();
-            data[i][7] = cd.getMaCanHo();
             i++;
         }
         TableModel tableModel = new DefaultTableModel(data, colName);

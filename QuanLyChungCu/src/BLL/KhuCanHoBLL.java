@@ -4,7 +4,6 @@ import DAL.*;
 import Entities.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;

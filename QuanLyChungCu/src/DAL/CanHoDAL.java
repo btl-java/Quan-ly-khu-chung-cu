@@ -112,22 +112,6 @@ public class CanHoDAL {
             return false;
         }
     }
-    
-    public static boolean update(String maCanHo,String maCuDan){
-         try {
-               
-               PreparedStatement pre = ConnectSQL.connect().prepareStatement
-                    ("UPDATE dbo.CANHO SET TrangThai = ?, MaCuDan = ? WHERE MaCanHo = ?");
-                pre.setBoolean(1, true);
-                pre.setString(2, maCuDan);
-                pre.setString(3, maCanHo);
-            return pre.executeUpdate() > 0;
-            
-        } catch(SQLException e){
-            return false;
-        }
- 
-    }
             
      public static ArrayList<CanHo> search(String cbbValue,boolean check,long tuGia,long denGia,float tuDienTich,float denDienTich){
         ArrayList<CanHo> list = new ArrayList<>();
