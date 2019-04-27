@@ -997,7 +997,6 @@ public class NhanVienGUI extends javax.swing.JFrame {
 
     private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
         try {
-            
             BLL.ThongTinMuaBanBLL.TimKiem_BLL(tblThongTinMuaBan, txtTimKiem.getText());
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienGUI.class.getName()).log(Level.SEVERE, null, ex);

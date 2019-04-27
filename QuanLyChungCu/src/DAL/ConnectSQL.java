@@ -16,12 +16,8 @@ public class ConnectSQL {
     }
     
     private final static String URL = "jdbc:sqlserver://;databaseName=QuanLyChungCu";
-//    private final static String USERNAME = "sa";
-//    private final static String PASSWORD = "123!@#";
-    
-    private final static String USERNAME = "admin";
-    private final static String PASSWORD = "123456";
-    
+    private final static String USERNAME = "sa";
+    private final static String PASSWORD = "123!@#";
     private static Connection conn = null;
     
     public static Connection connect(){

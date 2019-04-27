@@ -4,7 +4,6 @@ import DAL.*;
 import Entities.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -39,7 +38,6 @@ public class KhuCanHoBLL {
             i++;
         }
         
-       // TableModel
         return new DefaultTableModel(data, columnNames);
         
     }
@@ -66,9 +64,6 @@ public class KhuCanHoBLL {
             items.append(KhuCanHoDAL.show().get(i).getMaKhu());
             items.append("#");
         }
-        
-        //String[] cbbitem = items.toString().split("#");
-        //DefaultComboBoxModel model = new DefaultComboBoxModel(items.toString().split("#"));
         
         return new DefaultComboBoxModel(items.toString().split("#"));
     }
@@ -101,9 +96,9 @@ public class KhuCanHoBLL {
         
         ArrayList<CanHo> list = new ArrayList<>();// tạo danh sách là những căn hộ trong khu
         for(int i = 1;i<=soTang;i++) {
-            for(int j=1;j<=soCanTT;j++) {		
+            for(int j=1;j<=soCanTT;j++) {
 		if(i<10 && j<10) {
-        
+
                     list.add(new CanHo(maKhu+"0"+i+"0"+j, dienTich, gia, false, soPhong,null, maKhu));
                     
 		} else if (i <10) {
@@ -123,7 +118,7 @@ public class KhuCanHoBLL {
 	}
         
         return KhuCanHoDAL.insert(new KhuCanHo(maKhu, tenKhu, soTang, soCanTT, diaChi)) && CanHoDAL.inserts(list);
-        // trả về bool nếu thêm thành công cả khu và căn hộ trong khu
+        // trả về true nếu thêm thành công cả khu và căn hộ trong khu
     }
     
     public static TableModel search(String text) throws SQLException{
@@ -149,12 +144,23 @@ public class KhuCanHoBLL {
         return new DefaultTableModel(data, columnNames);
     }
     
+    public static boolean checkNotDuplicateAreaName(String tenKhu){
+        ArrayList<KhuCanHo> list = KhuCanHoDAL.show();
+        
+        if(list.isEmpty()) return false;
+        for(KhuCanHo khu :list){
+            if(tenKhu.equalsIgnoreCase(khu.getTenKhu()))
+                return true;
+        }
+        return false;  
+    }
+    
     public static boolean update(String maKhu,String tenKhu,String diaChi){
         return KhuCanHoDAL.update(maKhu, tenKhu, diaChi);
     }
     
     public static boolean delete(String maKhu){
         return KhuCanHoDAL.delete(maKhu);
-    } 
+    }   
     
 }
