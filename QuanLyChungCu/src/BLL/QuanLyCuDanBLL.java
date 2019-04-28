@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import GUI.RegexExpression;
 
 /**
  *
@@ -67,7 +68,7 @@ public class QuanLyCuDanBLL {
             boolean gt = false;
             gt = gioitinh.getSelectedItem().toString().equals("Nam");
 
-            CuDan cd = new CuDan(macd.getText(), tencd.getText(), ngsinh.getText(), gt, sdt.getText(), socmt.getText(), quequan.getText());
+            CuDan cd = new CuDan(macd.getText(), RegexExpression.toUpperCaseFirstCharacter(tencd.getText()), ngsinh.getText(), gt, sdt.getText(), socmt.getText().trim(), quequan.getText());
             DAL.QuanLyCuDanDAL.updateCD_DAL(cd);
         }
     }
@@ -77,7 +78,7 @@ public class QuanLyCuDanBLL {
         try {
             boolean gt =false;
             gt=gioitinh.getSelectedItem().toString().equals("Nam");
-            CuDan cd = new CuDan(macd, tencd.getText(), ngsinh.getText(), gt, sdt.getText(), socmt.getText(), quequan.getText());
+            CuDan cd = new CuDan(macd, RegexExpression.toUpperCaseFirstCharacter(tencd.getText()), ngsinh.getText(), gt, sdt.getText(), socmt.getText(), quequan.getText());
             
             DAL.QuanLyCuDanDAL.insertCD_DAL(cd);
         } catch (HeadlessException | SQLException e) {

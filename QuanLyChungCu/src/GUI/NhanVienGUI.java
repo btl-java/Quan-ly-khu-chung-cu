@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import GUI.RegexExpression;
 import BLL.CreateContract;
 import static BLL.QuanLyCuDanBLL.cmb_BLL;
 import BLL.ThongTinCanHoBLL;
@@ -245,9 +244,16 @@ public class NhanVienGUI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tblThongTinMuaBan.setToolTipText("Bảng Thông tin mua bán");
@@ -289,13 +295,13 @@ public class NhanVienGUI extends javax.swing.JFrame {
         tabThongtinmuabanLayout.setHorizontalGroup(
             tabThongtinmuabanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabThongtinmuabanLayout.createSequentialGroup()
-                .addContainerGap(423, Short.MAX_VALUE)
+                .addContainerGap(417, Short.MAX_VALUE)
                 .addComponent(jLabel26)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(340, 340, 340)
+                .addGap(18, 18, 18)
+                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(288, 288, 288)
                 .addComponent(btnRefreshTTMB, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91))
+                .addGap(112, 112, 112))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabThongtinmuabanLayout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -311,7 +317,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(tabThongtinmuabanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(tabThongtinmuabanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel26))
                     .addComponent(btnRefreshTTMB, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, Short.MAX_VALUE)
@@ -371,7 +377,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setText("Số CMT:");
+        jLabel9.setText("Số CMND:");
 
         btnSua.setBackground(new java.awt.Color(240, 255, 182));
         btnSua.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -387,6 +393,11 @@ public class NhanVienGUI extends javax.swing.JFrame {
 
         cmbGioitinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
         cmbGioitinh.setEditor(null);
+        cmbGioitinh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmbGioitinhMouseClicked(evt);
+            }
+        });
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(83, 58, 255));
@@ -594,9 +605,15 @@ public class NhanVienGUI extends javax.swing.JFrame {
 
         jLabel14.setText("Mã căn hộ:");
 
+        txtMacanho1.setForeground(new java.awt.Color(255, 0, 0));
+
         jLabel15.setText("Giá căn hộ:");
 
+        txtGiacanho.setForeground(new java.awt.Color(255, 0, 0));
+
         jLabel16.setText("Ngày giao dịch:");
+
+        txtNgaygiaodich.setForeground(new java.awt.Color(255, 0, 0));
 
         jLabel17.setText("Mã cư dân:");
 
@@ -616,7 +633,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
 
         jLabel22.setText("Địa chỉ:");
 
-        jLabel23.setText("Số CMT:");
+        jLabel23.setText("Số CMND:");
 
         cmbGioitinh1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
         cmbGioitinh1.setEditor(null);
@@ -624,6 +641,8 @@ public class NhanVienGUI extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(221, 255, 236));
 
         chkLacudan.setBackground(new java.awt.Color(221, 255, 236));
+        chkLacudan.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        chkLacudan.setForeground(new java.awt.Color(255, 0, 51));
         chkLacudan.setText("Là cư dân");
         chkLacudan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -744,15 +763,16 @@ public class NhanVienGUI extends javax.swing.JFrame {
         btTim_CanHo.setToolTipText("Tìm");
         btTim_CanHo.setBorder(null);
         btTim_CanHo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btTim_CanHo.setPreferredSize(new java.awt.Dimension(25, 25));
         btTim_CanHo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btTim_CanHoActionPerformed(evt);
             }
         });
 
+        cbbDienTich.setForeground(new java.awt.Color(0, 0, 204));
         cbbDienTich.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Từ 30m² - 40m²", "Từ 40m² - 50mm²", "Trên 50m²" }));
 
+        cbbGia.setForeground(new java.awt.Color(0, 0, 204));
         cbbGia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dưới 1 tỷ", "Từ 1 tỷ - 2 tỷ", "Trên 2 tỷ", " " }));
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -763,6 +783,8 @@ public class NhanVienGUI extends javax.swing.JFrame {
 
         jLabel30.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel30.setText("Số phòng");
+
+        cmbSophong.setForeground(new java.awt.Color(0, 0, 204));
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -890,8 +912,17 @@ public class NhanVienGUI extends javax.swing.JFrame {
         setBounds(0, 0, 1203, 741);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblQuanLyCuDanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQuanLyCuDanMouseClicked
+    public void setTextFieldQLCD() {
+        txtTencudan.setEditable(false);
+        txtNgaysinh.setEditable(false);
+        txtSdt.setEditable(false);
+        txtQuequan.setEditable(false);
+        txtSocmt.setEditable(false);
+        cmbGioitinh.setEnabled(false);
+    }
 
+    private void tblQuanLyCuDanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQuanLyCuDanMouseClicked
+        setTextFieldQLCD();
         int row = tblQuanLyCuDan.getSelectedRow();
         txtMacudan.setText(tblQuanLyCuDan.getValueAt(row, 0).toString());
         txtTencudan.setText(tblQuanLyCuDan.getValueAt(row, 1).toString());
@@ -902,44 +933,31 @@ public class NhanVienGUI extends javax.swing.JFrame {
         txtQuequan.setText(tblQuanLyCuDan.getValueAt(row, 6).toString());
     }//GEN-LAST:event_tblQuanLyCuDanMouseClicked
 
-    public boolean isNumber(String text) {
-        for (char c : text.toCharArray()) {
-            if (c < '0' || c > '9') {
-                return false;
-            }
-        }
-        return true;
-    }
-
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         try {
-            if (txtMacudan.getText().trim().length() == 0) {
+            if (txtMacudan.getText().length() == 0) {
                 JOptionPane.showMessageDialog(null, "Chọn mã cư dân.", "Error", JOptionPane.ERROR_MESSAGE);
-            } else if (txtTencudan.getText().trim().length() == 0) {
+            } else if (txtTencudan.getText().length() == 0) {
                 JOptionPane.showMessageDialog(null, "Tên cư dân trống.", "Error", JOptionPane.ERROR_MESSAGE);
-            } else if (txtNgaysinh.getText().trim().length() == 0) {
+            } else if (txtNgaysinh.getText().length() == 0) {
                 JOptionPane.showMessageDialog(null, "Ngày sinh trống.", "Error", JOptionPane.ERROR_MESSAGE);
-            }else if (!RegexExpression.checkDateTime(txtNgaysinh.getText())) {
+            } else if (!RegexExpression.checkDateTime(txtNgaysinh.getText())) {
                 JOptionPane.showMessageDialog(null, "Nhập sai ngày sinh.", "Error", JOptionPane.ERROR_MESSAGE);
-            }else if (txtSdt.getText().trim().length() == 0) {
+            } else if (txtSdt.getText().trim().length() == 0) {
                 JOptionPane.showMessageDialog(null, "Số điện thoại trống.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (txtSocmt.getText().trim().length() == 0) {
+                JOptionPane.showMessageDialog(null, "Số CMND trống.", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (txtQuequan.getText().trim().length() == 0) {
                 JOptionPane.showMessageDialog(null, "Quê quán trống.", "Error", JOptionPane.ERROR_MESSAGE);
-            } else if (txtSdt.getText().length() != 10) {
+            } else if (!RegexExpression.checkPhoneNumber(txtSdt.getText())) {
                 JOptionPane.showMessageDialog(null, "SĐT phải gồm 10 số.", "Error", JOptionPane.ERROR_MESSAGE);
-            } else if (!isNumber(txtSdt.getText())) {
-                JOptionPane.showMessageDialog(null, "SĐT phải là số.", "Error", JOptionPane.ERROR_MESSAGE);
-            } else if (txtSocmt.getText().trim().length() == 9 || txtSocmt.getText().trim().length() == 12) {
-                if (!isNumber(txtSocmt.getText())) {
-                    JOptionPane.showMessageDialog(null, "Số chứng minh phải là số.", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    BLL.QuanLyCuDanBLL.updateCD_BLL(txtMacudan, txtTencudan, txtNgaysinh, cmbGioitinh, txtSdt, txtSocmt, txtQuequan);
-                    BLL.ThongTinMuaBanBLL.UpdateHD_BLL(txtQuequan.getText(), txtMacudan.getText(), txtTencudan.getText());
-                    BLL.QuanLyCuDanBLL.HienThongTinCuDan(tblQuanLyCuDan);
-                    JOptionPane.showMessageDialog(null, "Sửa thành công.", "Information", JOptionPane.INFORMATION_MESSAGE);
-                }
+            } else if (!RegexExpression.checkID(txtSocmt.getText().trim())) {
+                JOptionPane.showMessageDialog(null, "Số CMND gồm 9 hoặc 12 số.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "Số CMT gồm 9 hoặc 12 số.", "Error", JOptionPane.ERROR_MESSAGE);
+                BLL.QuanLyCuDanBLL.updateCD_BLL(txtMacudan, txtTencudan, txtNgaysinh, cmbGioitinh, txtSdt, txtSocmt, txtQuequan);
+                BLL.ThongTinMuaBanBLL.UpdateHD_BLL(txtQuequan.getText(), txtMacudan.getText(), txtTencudan.getText());
+                BLL.QuanLyCuDanBLL.HienThongTinCuDan(tblQuanLyCuDan);
+                JOptionPane.showMessageDialog(null, "Sửa thành công.", "Information", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -951,6 +969,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void txtTencudanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTencudanMouseClicked
+        txtTencudan.setEditable(true);
         txtTencudan.setText(null);
     }//GEN-LAST:event_txtTencudanMouseClicked
 
@@ -964,6 +983,21 @@ public class NhanVienGUI extends javax.swing.JFrame {
         txtNgaygiaodich.setText(dtf.format(ld));
     }//GEN-LAST:event_tblThongTinCanHoMouseClicked
 
+    public void ClearTextTTCH() {
+        txtMacanho1.setText(null);
+        txtGiacanho.setText(null);
+        txtNgaygiaodich.setText(null);
+        cmbMacudan.setSelectedItem(null);
+        cmbMacudan.setEnabled(false);
+        txtTenkh.setText(null);
+        txtTenkh.requestFocus();
+        txtNgsinh.setText(null);
+        cmbGioitinh1.setSelectedItem(null);
+        txtSDT.setText(null);
+        txtScmt.setText(null);
+        txtDiachi.setText(null);
+    }
+
     private void chkLacudanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkLacudanMouseClicked
         if (chkLacudan.isSelected()) {
             cmbMacudan.setEnabled(true);
@@ -974,18 +1008,8 @@ public class NhanVienGUI extends javax.swing.JFrame {
             txtScmt.setEditable(false);
             txtDiachi.setEditable(false);
         } else {
-            cmbMacudan.setEnabled(false);
-            txtTenkh.setText(null);
-            txtTenkh.requestFocus();
-            txtNgsinh.setText(null);
-            cmbGioitinh1.setSelectedItem(null);
-            txtSDT.setText(null);
-            txtScmt.setText(null);
-            txtDiachi.setText(null);
-            txtMacanho1.setText(null);
-            txtGiacanho.setText(null);
-            txtNgaygiaodich.setText(null);
-            cmbMacudan.setSelectedItem(null);
+            ClearTextTTCH();
+
             cmbMacudan.setEnabled(false);
             txtTenkh.setEditable(true);
             txtNgsinh.setEditable(true);
@@ -996,18 +1020,6 @@ public class NhanVienGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_chkLacudanMouseClicked
 
-    public void ClearText() {
-        txtMacanho1.setText(null);
-        txtGiacanho.setText(null);
-        txtNgaygiaodich.setText(null);
-        cmbMacudan.setSelectedItem(null);
-        txtTenkh.setText(null);
-        txtNgsinh.setText(null);
-        cmbGioitinh1.setSelectedItem(null);
-        txtSDT.setText(null);
-        txtScmt.setText(null);
-        txtDiachi.setText(null);
-    }
 
     private void cmbMacudanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbMacudanItemStateChanged
         try {
@@ -1037,6 +1049,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
 
     private void btnRefreshTTMBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshTTMBActionPerformed
         try {
+            txtTimKiem.setText(null);
             BLL.ThongTinMuaBanBLL.HienThongTinMuaBan(tblThongTinMuaBan);
         } catch (Exception ex) {
             Logger.getLogger(NhanVienGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -1053,22 +1066,26 @@ public class NhanVienGUI extends javax.swing.JFrame {
 
     private void txtNgaysinhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNgaysinhMouseClicked
         txtNgaysinh.setText(null);
+        txtNgaysinh.setEditable(true);
     }//GEN-LAST:event_txtNgaysinhMouseClicked
 
     private void txtSdtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSdtMouseClicked
         txtSdt.setText(null);
+        txtSdt.setEditable(true);
     }//GEN-LAST:event_txtSdtMouseClicked
 
     private void txtQuequanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtQuequanMouseClicked
         txtQuequan.setText(null);
+        txtQuequan.setEditable(true);
     }//GEN-LAST:event_txtQuequanMouseClicked
 
     private void txtSocmtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSocmtMouseClicked
         txtSocmt.setText(null);
+        txtSocmt.setEditable(true);
     }//GEN-LAST:event_txtSocmtMouseClicked
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        AutomaticallyClosedMsgBox(2000, "Đang đăng xuất.\nXin hãy đợi");
+        AutomaticallyClosedMsgBox(2000, "Đang đăng xuất.\nXin hãy đợi...");
         this.dispose();
         DangNhapUI dn = new DangNhapUI("Quản lý chung cư");
         dn.showWindow();
@@ -1137,14 +1154,18 @@ public class NhanVienGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Nhập tên khách hàng.", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (txtNgsinh.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Nhập ngày sinh.", "Error", JOptionPane.ERROR_MESSAGE);
-            }else if (!RegexExpression.checkDateTime(txtNgsinh.getText())) {
+            } else if (!RegexExpression.checkDateTime(txtNgsinh.getText())) {
                 JOptionPane.showMessageDialog(null, "Nhập sai ngày sinh.", "Error", JOptionPane.ERROR_MESSAGE);
-            }else if (cmbGioitinh1.getSelectedItem().toString().equals("")) {
+            } else if (cmbGioitinh1.getSelectedItem().toString().equals("")) {
                 JOptionPane.showMessageDialog(null, "Chọn giới tính.", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (txtSDT.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Nhập số điện thoại.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (!RegexExpression.checkPhoneNumber(txtSDT.getText())) {
+                JOptionPane.showMessageDialog(null, "Số điện thoại gồm 10 s.", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (txtScmt.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Nhập chứng minh thư.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Nhập số chứng minh nhân dân.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (!RegexExpression.checkID(txtScmt.getText().trim())) {
+                JOptionPane.showMessageDialog(null, "Số chứng minh nhân dân gồm 9 hoặc 12 số.", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (txtDiachi.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Nhập địa chỉ.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
@@ -1169,10 +1190,10 @@ public class NhanVienGUI extends javax.swing.JFrame {
                 BLL.ThongTinCanHoBLL.HienThongTinCanho(tblThongTinCanHo);
                 JOptionPane.showMessageDialog(null, "Thêm hợp đồng thành công.", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
 
-                AutomaticallyClosedMsgBox(1500,"Đang tạo hợp đồng.\nXin hãy đợi.");
+                AutomaticallyClosedMsgBox(1500, "Đang tạo hợp đồng.\nXin hãy đợi....");
                 CreateWordFile();
-                AutomaticallyClosedMsgBox(2000,"Mở hợp đồng.");
-                Desktop.getDesktop().open(new File("E:\\Git\\Quan-ly-khu-chung-cu\\Hợp đồng mua chung cư Anland Complex.docx.docx"));
+                AutomaticallyClosedMsgBox(2000, "Thực hiện mở hợp đồng.\n.....");
+                Desktop.getDesktop().open(new File("Hợp đồng mua chung cư Anland Complex.docx.docx"));
             }
         } catch (SQLException e) {
             System.out.println("Error in btnInhopdong: " + e.getMessage());
@@ -1180,10 +1201,16 @@ public class NhanVienGUI extends javax.swing.JFrame {
             System.out.println("Many errors: " + e.getMessage());
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Khách hàng này chưa là cư dân.", "Thông báo", JOptionPane.ERROR_MESSAGE);
-        }catch (IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(NhanVienGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Hợp đồng không tồn tại.", "Thông báo", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnInhopdongActionPerformed
+
+    private void cmbGioitinhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbGioitinhMouseClicked
+        cmbGioitinh.setEnabled(true);
+    }//GEN-LAST:event_cmbGioitinhMouseClicked
 
     public void CreateWordFile() {
         try {

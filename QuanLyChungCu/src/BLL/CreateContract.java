@@ -139,7 +139,7 @@ public class CreateContract {
         
         //ghi file
         try {
-            FileOutputStream out = new FileOutputStream(new File("E:\\Git\\Quan-ly-khu-chung-cu\\Hợp đồng mua chung cư Anland Complex.docx.docx"));
+            FileOutputStream out = new FileOutputStream(new File("Hợp đồng mua chung cư Anland Complex.docx.docx"));
             document.write(out);
             out.close();
             document.close();
