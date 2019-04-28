@@ -204,20 +204,20 @@ CREATE PROC [dbo].[searchApartments]
                     FROM [QuanLyChungCu].[dbo].[CANHO] c
                         JOIN [QuanLyChungCu].[dbo].KHUCANHO k
                         ON k.MaKhu = c.MaKhu
-                    WHERE Gia BETWEEN @tugia AND @dengia AND DienTich > @tudt AND SoPhong=@sophong
+                    WHERE TrangThai = 0 AND Gia BETWEEN @tugia AND @dengia AND DienTich > @tudt AND SoPhong=@sophong
             ELSE -- 30 <= dt <= 50, gia > 2000000000
                 IF ( @dengia = 0 AND ( ( @tudt = 30 AND @dendt = 40 ) OR ( @tudt = 40 AND @dendt = 50 ) ) )
                     SELECT c.MaCanHo, c.DienTich, c.Gia, c.SoPhong, k.TenKhu
                         FROM [QuanLyChungCu].[dbo].[CANHO] c
                             JOIN [QuanLyChungCu].[dbo].KHUCANHO k
                             ON k.MaKhu = c.MaKhu
-                        WHERE Gia > @tugia AND DienTich BETWEEN @tudt AND @dendt AND SoPhong=@sophong
+                        WHERE TrangThai = 0 AND Gia > @tugia AND DienTich BETWEEN @tudt AND @dendt AND SoPhong=@sophong
                 ELSE --  30 <= dt <= 50 , 0 < gia <= 2000000000
                     SELECT c.MaCanHo, c.DienTich, c.Gia, c.SoPhong, k.TenKhu
                         FROM [QuanLyChungCu].[dbo].[CANHO] c
                             JOIN [QuanLyChungCu].[dbo].KHUCANHO k
                             ON k.MaKhu = c.MaKhu
-                        WHERE  Gia BETWEEN @tugia AND @dengia AND DienTich BETWEEN @tudt AND @dendt AND SoPhong=@sophong
+                        WHERE TrangThai = 0 AND  Gia BETWEEN @tugia AND @dengia AND DienTich BETWEEN @tudt AND @dendt AND SoPhong=@sophong
   -----
     END
 GO

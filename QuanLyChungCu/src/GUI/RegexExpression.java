@@ -16,6 +16,8 @@ public class RegexExpression {
     private static final String REGEX_USERNAME = "^[\\w_\\.]{6,25}$";
     private static final String REGEX_PASSWORD = "^([\\w_\\.!@#$%^&*()]+){6,25}$";
     private static final String REGEX_DATETIME = "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$";
+    private static final String REGEX_PHONENUMBER = "^\\d{10}$";
+    private static final String REGEX_ID ="^(\\d{9})|(\\d{12})$";
     
     public static boolean checkUserName(String userName){
         return Pattern.compile(REGEX_USERNAME).matcher(userName).matches();
@@ -40,7 +42,17 @@ public class RegexExpression {
         return Pattern.compile(REGEX_DATETIME).matcher(dateTime).matches();
     } 
     
+    public static boolean checkPhoneNumber(String phoneNumber){
+        return Pattern.compile(REGEX_PHONENUMBER).matcher(phoneNumber).matches();
+    }
+    
+    public static boolean checkID(String id){
+        return Pattern.compile(REGEX_ID).matcher(id).matches();
+    }
+    
 //    public static void main(String[] args) {
 //        System.out.println(checkDateTime("2020-02-30"));
+//        System.out.println(checkPhoneNumber("0123456789"));
+//        System.out.println(checkID("123456789999"));
 //    }
 }
