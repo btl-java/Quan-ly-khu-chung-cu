@@ -24,7 +24,6 @@ public class NotificationGUI extends javax.swing.JDialog {
     public void setNotif(String notif){
          this.txbNotif.setText(notif);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,7 +36,7 @@ public class NotificationGUI extends javax.swing.JDialog {
 
         txbNotif = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblIcon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -50,8 +49,8 @@ public class NotificationGUI extends javax.swing.JDialog {
         txbNotif.setForeground(new java.awt.Color(110, 23, 236));
         txbNotif.setText("Hệ thống đang làm việc. Vui lòng đợi trong giây lát!");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/loading_ql.png"))); // NOI18N
-        jLabel1.setToolTipText("Processing");
+        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/loading_ql.png"))); // NOI18N
+        lblIcon.setToolTipText("Processing");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -59,12 +58,12 @@ public class NotificationGUI extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(132, 132, 132)
-                .addComponent(jLabel1)
+                .addComponent(lblIcon)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(lblIcon, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,8 +138,8 @@ public class NotificationGUI extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblIcon;
     private javax.swing.JLabel txbNotif;
     // End of variables declaration//GEN-END:variables
 }
