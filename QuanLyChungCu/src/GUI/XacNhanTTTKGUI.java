@@ -23,8 +23,9 @@ public final class XacNhanTTTKGUI extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+    public boolean checkEvent = false; // bien kiem tra su kien cua frame
     
-    public boolean checkAccountManager(){
+    public  boolean checkAccountManager(){
         String passWord = new String(txbMK.getPassword());
         return TaiKhoanBLL.checkAccountManager(txbTenTK.getText(), passWord);
     }
@@ -56,11 +57,15 @@ public final class XacNhanTTTKGUI extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        txbTenTK.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        txbMK.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 255));
         jLabel2.setText("Mật khẩu");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
         jLabel1.setText("Tên tài khoản");
 
@@ -75,32 +80,34 @@ public final class XacNhanTTTKGUI extends javax.swing.JDialog {
                     .addComponent(jLabel2))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txbTenTK, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(txbTenTK, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                     .addComponent(txbMK))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txbTenTK, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txbMK, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
+                    .addComponent(txbMK, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
 
-        btThoat.setText("Thoát");
+        btThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancel_ql.png"))); // NOI18N
+        btThoat.setToolTipText("Hủy");
         btThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btThoatActionPerformed(evt);
             }
         });
 
-        btTiepTuc.setText("Tiếp tục");
+        btTiepTuc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/continue_ql.png"))); // NOI18N
+        btTiepTuc.setToolTipText("Tiếp tục");
         btTiepTuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btTiepTucActionPerformed(evt);
@@ -112,23 +119,23 @@ public final class XacNhanTTTKGUI extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btTiepTuc)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btThoat)
-                .addGap(26, 26, 26))
+                .addContainerGap(250, Short.MAX_VALUE)
+                .addComponent(btTiepTuc, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btTiepTuc)
                     .addComponent(btThoat))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("Vui lòng xác nhận thông tin tài khoản để tiếp tục");
 
@@ -156,9 +163,8 @@ public final class XacNhanTTTKGUI extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -180,6 +186,7 @@ public final class XacNhanTTTKGUI extends javax.swing.JDialog {
 
     private void btTiepTucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTiepTucActionPerformed
         if(checkAccountManager()){
+            checkEvent = true;
             QuanLyGUI.it.enabledFrame(); // gọi hàm cho phép thao tác trên MainFrame
             this.dispose(); 
         }else{
@@ -188,11 +195,13 @@ public final class XacNhanTTTKGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_btTiepTucActionPerformed
 
     private void btThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThoatActionPerformed
+        checkEvent = false;
         QuanLyGUI.it.enabledFrame(); // gọi hàm cho phép thao tác trên MainFrame
-        this.dispose(); 
+         this.dispose();
     }//GEN-LAST:event_btThoatActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        checkEvent = false;
         QuanLyGUI.it.enabledFrame(); // gọi hàm cho phép thao tác trên MainFrame
     }//GEN-LAST:event_formWindowClosing
 

@@ -19,6 +19,10 @@ public class KhuCanHoBLL {
     private KhuCanHoBLL() {
     }
     
+    public static boolean checkEmpty(){
+        return KhuCanHoDAL.show().isEmpty();
+    }
+    
     public static TableModel show(){
         ArrayList<KhuCanHo> list = KhuCanHoDAL.show();
         

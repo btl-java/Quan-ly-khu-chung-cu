@@ -20,6 +20,10 @@ public class TaiKhoanBLL {
         
     }
     
+    public static boolean checkEmpty(){
+        return TaiKhoanDAL.show(false).isEmpty();
+    }
+    
     public static TableModel show(){
         ArrayList<TaiKhoan> list = TaiKhoanDAL.show(false);
         String[] colunmNames = {"Username","Password"};
@@ -53,4 +57,5 @@ public class TaiKhoanBLL {
     public static boolean delete(String tenTaiKhoan){
         return TaiKhoanDAL.delete(tenTaiKhoan);
     }
+    
 }
