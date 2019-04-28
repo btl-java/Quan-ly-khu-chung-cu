@@ -76,7 +76,7 @@ public class KhuCanHoBLL {
         String maKhu = null;
         
         if(KhuCanHoDAL.show().isEmpty()){
-             maKhu = "CT";// chưa có khu nào lấy giá trị mặc định mã khu là CT
+             maKhu = "EA";// chưa có khu nào lấy giá trị mặc định mã khu là EA
         }else{
             lastID = KhuCanHoDAL.show().get(KhuCanHoDAL.show().size()-1).getMaKhu();
             first_lastID =  lastID.charAt(0);
@@ -97,7 +97,7 @@ public class KhuCanHoBLL {
         ArrayList<CanHo> list = new ArrayList<>();// tạo danh sách là những căn hộ trong khu
         for(int i = 1;i<=soTang;i++) {
             for(int j=1;j<=soCanTT;j++) {
-		if(i<10 && j<10) {
+		if(i<10 && j<10) { // chi hien dung khi so tang <100 va so can/tang <100
 
                     list.add(new CanHo(maKhu+"0"+i+"0"+j, dienTich, gia, false, soPhong,null, maKhu));
                     

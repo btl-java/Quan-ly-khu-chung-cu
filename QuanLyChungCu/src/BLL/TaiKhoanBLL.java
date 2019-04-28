@@ -32,12 +32,9 @@ public class TaiKhoanBLL {
         return new DefaultTableModel(data,colunmNames);
     }
     
-    public static boolean check(String tenTaiKhoan,String matKhau){
+    public static boolean checkAccountManager(String tenTaiKhoan,String matKhau){
          ArrayList<TaiKhoan> list = TaiKhoanDAL.show(true);
-         if(tenTaiKhoan.equalsIgnoreCase(list.get(0).getTenTaiKhoan()) && matKhau.equalsIgnoreCase(list.get(0).getMatKhau())){
-             return true;
-         }
-         return false;
+         return matKhau.equalsIgnoreCase(list.get(0).getMatKhau()) && tenTaiKhoan.equalsIgnoreCase(list.get(0).getTenTaiKhoan());
     }
     public static boolean insert(String tenTaiKhoan,String matKhau){
         return TaiKhoanDAL.insert(tenTaiKhoan,matKhau);  

@@ -6,18 +6,28 @@
 package GUI;
 
 import BLL.KhuCanHoBLL;
+import BLL.TaiKhoanBLL;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author PhamDai
  */
-public class ThemKhu_PhongGUI extends javax.swing.JFrame {
+public final class ThemKhu_PhongGUI extends javax.swing.JDialog {
 
-    public ThemKhu_PhongGUI() {
+    /**
+     * Creates new form XacNhanTTTK
+     * @param parent
+     * @param modal
+     */
+    public ThemKhu_PhongGUI(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
-
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,11 +59,15 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        btHuy = new javax.swing.JButton();
         btLuu = new javax.swing.JButton();
+        btThoat = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Thêm Khu");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -192,17 +206,9 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("Lưu ý: Vui lòng nhập đúng dữ liệu thực tất cả các ô. Một số thông tin sẽ không thể sửa sau này!");
-
-        btHuy.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btHuy.setText("Hủy");
-        btHuy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btHuyActionPerformed(evt);
-            }
-        });
 
         btLuu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btLuu.setText("Lưu");
@@ -212,24 +218,35 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
             }
         });
 
+        btThoat.setText("Hủy");
+        btThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btThoatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(524, Short.MAX_VALUE)
                 .addComponent(btLuu)
                 .addGap(18, 18, 18)
-                .addComponent(btHuy)
-                .addGap(36, 36, 36))
+                .addComponent(btThoat)
+                .addGap(20, 20, 20))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btHuy)
-                    .addComponent(btLuu))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(btThoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(1, 1, 1))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btLuu)))
                 .addGap(20, 20, 20))
         );
 
@@ -237,11 +254,13 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(25, Short.MAX_VALUE))
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,16 +302,90 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLuuActionPerformed
+
+        try{
+            if(KhuCanHoBLL.checkNotDuplicateAreaName(txbTenKhu.getText())){ // check trung ma
+                JOptionPane.showMessageDialog(null,"Tên khu đã tồn tại!");
+            }else if(txbTenKhu.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Tên khu trống!");
+            }else if(txbTenKhu.getText().length()>50){
+                JOptionPane.showMessageDialog(null,"Tên khu quá dài!");
+            }else if(txbSoTang.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Số tầng trống!");
+            }else if(Integer.parseInt(txbSoTang.getText())<1){
+                JOptionPane.showMessageDialog(null,"Vui lòng nhập số tầng là số dương!");
+            }else if(txbSoCanTT.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Số căn trống!");
+            }else if(Integer.parseInt(txbSoCanTT.getText())<1){
+                JOptionPane.showMessageDialog(null,"Vui lòng số căn là số dương!");
+            }else if(txbDiaChi.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Địa chỉ trống!");
+            }else if(txbDiaChi.getText().length()>100){
+                JOptionPane.showMessageDialog(null,"Địa chỉ quá dài!");
+            }else if(txbDienTich.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Diện tích trống!");
+            }else if(Float.parseFloat(txbDienTich.getText())<30){
+                JOptionPane.showMessageDialog(null,"Vui lòng nhập diện tích lớn hơn 30m²!");
+            }else if(txbGia.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Giá trống!");
+            }else if(Long.parseLong(txbGia.getText())<1){
+                JOptionPane.showMessageDialog(null,"Vui lòng giá là số dương!");
+            }else if(txbSoPhong.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Số phòng trống");
+            }else if(Integer.parseInt(txbSoPhong.getText())<1){
+                JOptionPane.showMessageDialog(null,"Vui lòng số phòng là số dương!");
+            }else{
+                
+                btLuu.setEnabled(false);
+                NotificationGUI dialog = new  NotificationGUI(null, true); // goi ham hien thong bao tren form kia
+                dialog.setNotif("Hệ thống đang làm việc.\nVui lòng đợi trong giây lát!");
+                ScheduledExecutorService s = Executors.newSingleThreadScheduledExecutor();
+                s.schedule(() -> {
+                    dialog.setVisible(false);
+                    dialog.dispose();
+                },3, TimeUnit.SECONDS); // slow motion 3s 
+                dialog.setVisible(true);
+                
+                boolean check = KhuCanHoBLL.insert(RegexExpression.toUpperCaseFirstCharacter(txbTenKhu.getText()), Integer.parseInt(txbSoTang.getText()), Integer.parseInt(txbSoCanTT.getText()),
+                    RegexExpression.toUpperCaseFirstCharacter(txbDiaChi.getText()), Float.parseFloat(txbDienTich.getText()), Long.parseLong(txbGia.getText()), Integer.parseInt(txbSoPhong.getText()));
+                QuanLyGUI.it.show_KhuCanHo(); //load lai khu
+                QuanLyGUI.it.show_CanHo(); // load lai can ho
+                if(check){
+                    JOptionPane.showMessageDialog(null,"Thêm thành công khu " +"'"+RegexExpression.toUpperCaseFirstCharacter(txbTenKhu.getText())+"'"+ " và " +
+                        (Integer.parseInt(txbSoTang.getText())*Integer.parseInt(txbSoCanTT.getText()))+" căn hộ","Notification",JOptionPane.INFORMATION_MESSAGE);
+                    clearAllControl();
+                }else{
+                    JOptionPane.showMessageDialog(null,"Vui lòng xem lại thông tin!");
+                }
+                btLuu.setEnabled(true);
+            }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null,"Vui lòng nhập đúng định dạng số!");
+        }
+    }//GEN-LAST:event_btLuuActionPerformed
+
+    private void btThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThoatActionPerformed
+        QuanLyGUI.it.enabledFrame();
+        this.dispose();
+    }//GEN-LAST:event_btThoatActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        QuanLyGUI.it.enabledFrame(); 
+    }//GEN-LAST:event_formWindowClosing
 
     public void clearAllControl(){
         txbDiaChi.setText("");
@@ -303,63 +396,9 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
         txbSoTang.setText("");
         txbTenKhu.setText("");
     }
-    
-    private void btHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHuyActionPerformed
-               QuanLyGUI.it.enabledFrame(); // gọi hàm cho phép thao tác trên MainFrame
-               this.dispose(); 
-    }//GEN-LAST:event_btHuyActionPerformed
-
-    private void btLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLuuActionPerformed
-
-        try{
-            if(KhuCanHoBLL.checkNotDuplicateAreaName(txbTenKhu.getText())){ // check trung ma
-                JOptionPane.showMessageDialog(null,"Tên khu đã tồn tại!");
-            }else if(txbTenKhu.getText().equals("")){
-                JOptionPane.showMessageDialog(null,"Tên khu không được bỏ trống!");
-            }else if(txbSoTang.getText().equals("")){
-                JOptionPane.showMessageDialog(null,"Số tầng không được bỏ trống!");
-            }else if(Integer.parseInt(txbSoTang.getText())<1){
-                JOptionPane.showMessageDialog(null,"Vui lòng nhập số tầng là số dương!");
-            }else if(txbSoCanTT.getText().equals("")){
-                 JOptionPane.showMessageDialog(null,"Số căn không được bỏ trống!");
-            }else if(Integer.parseInt(txbSoCanTT.getText())<1){
-                JOptionPane.showMessageDialog(null,"Vui lòng số căn là số dương!");
-            }else if(txbDiaChi.getText().equals("")){
-                JOptionPane.showMessageDialog(null,"Địa chỉ không được bỏ trống!");
-            }else if(txbDienTich.getText().equals("")){
-                JOptionPane.showMessageDialog(null,"Diện tích không được bỏ trống!");
-            }else if(Float.parseFloat(txbDienTich.getText())<30){
-                JOptionPane.showMessageDialog(null,"Vui lòng nhập diện tích lớn hơn 30m²!");
-            }else if(txbGia.getText().equals("")){
-                 JOptionPane.showMessageDialog(null,"Giá không được bỏ trống!");
-            }else if(Long.parseLong(txbGia.getText())<1){
-                JOptionPane.showMessageDialog(null,"Vui lòng giá là số dương!");
-            }else if(txbSoPhong.getText().equals("")){
-                JOptionPane.showMessageDialog(null,"Số phòng không được bỏ trống");
-            }else if(Integer.parseInt(txbSoPhong.getText())<1){
-                JOptionPane.showMessageDialog(null,"Vui lòng số phòng là số dương!");
-            }else{
-                
-                boolean check = KhuCanHoBLL.insert(RegexExpression.toUpperCaseFirstCharacter(txbTenKhu.getText()), Integer.parseInt(txbSoTang.getText()), Integer.parseInt(txbSoCanTT.getText()), 
-                    RegexExpression.toUpperCaseFirstCharacter(txbDiaChi.getText()), Float.parseFloat(txbDienTich.getText()), Long.parseLong(txbGia.getText()), Integer.parseInt(txbSoPhong.getText()));
-                    QuanLyGUI.it.show_KhuCanHo();
-                    QuanLyGUI.it.show_CanHo();
-                if(check){
-                    JOptionPane.showMessageDialog(null,"Thêm thành công khu " +"'"+RegexExpression.toUpperCaseFirstCharacter(txbTenKhu.getText())+"'"+ " và " +
-                            (Integer.parseInt(txbSoTang.getText())*Integer.parseInt(txbSoCanTT.getText()))+" căn hộ");
-                    clearAllControl();
-                 }else{
-                    JOptionPane.showMessageDialog(null,"Vui lòng xem lại thông tin!");
-                }
-            }
-
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Vui lòng nhập đúng định dạng số!");
-        }   
-        
-        
-    }//GEN-LAST:event_btLuuActionPerformed
-
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -384,18 +423,29 @@ public class ThemKhu_PhongGUI extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ThemKhu_PhongGUI().setVisible(true);
-            }
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(() -> {
+            ThemKhu_PhongGUI dialog = new ThemKhu_PhongGUI(new javax.swing.JFrame(), true);
+            dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent e) {
+                    System.exit(0);
+                }
+            });
+            dialog.setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btHuy;
     private javax.swing.JButton btLuu;
+    private javax.swing.JButton btThoat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

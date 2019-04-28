@@ -137,7 +137,7 @@ INSERT [dbo].[HOPDONG] ([MaHopDong], [NgayGiaoDich], [DiaChiKH], [MaCuDan], [MaC
 GO
   USE QuanLyChungCu
   GO
-  ALTER PROC searchApartmentWithCriterias
+  CREATE PROC [dbo].[searchApartmentWithCriterias]
     @trangthai BIT ,
     @tugia BIGINT ,
     @dengia BIGINT ,
