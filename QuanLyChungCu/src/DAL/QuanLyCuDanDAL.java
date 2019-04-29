@@ -111,7 +111,7 @@ public class QuanLyCuDanDAL {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return 1;
+        return -1;
     }
     public static void xuLyTimKiem(String tenCuDan, String maCuDan){
         ArrayList<CuDan> dsCuDan= new ArrayList<>();

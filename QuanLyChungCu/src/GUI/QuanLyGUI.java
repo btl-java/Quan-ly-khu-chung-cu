@@ -7,7 +7,9 @@ package GUI;
 import BLL.KhuCanHoBLL;
 import BLL.*;
 import DAL.QuanLyCuDanDAL;
+import DAL.QuanLyHopDongDAL;
 import Entities.CuDan;
+import Entities.HopDong;
 import java.awt.HeadlessException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -117,6 +119,7 @@ public final class QuanLyGUI extends javax.swing.JFrame {
           ThongTinMuaBanBLL thongTinMuaBan=new ThongTinMuaBanBLL();
           thongTinMuaBan.HienThongTinMuaBan(tblMuaBan);
           cbbMaCuDanMuaBan.setModel(QuanLyCuDanBLL.cbbMaCuDan());
+          cbbMaCanHoMuaBan.removeAllItems();
           cbbMaCanHoMuaBan.setModel(ThongTinCanHoBLL.cbbMaCanHo());
            
         } catch (Exception ex) {
@@ -1909,7 +1912,7 @@ public final class QuanLyGUI extends javax.swing.JFrame {
 
     private void btnXoaMuaBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaMuaBanActionPerformed
        ImageIcon icon=new ImageIcon("Images/loi.png");
-        if (DAL.QuanLyCuDanDAL.kiemTraTonTai(txtMaHopDong.getText())==false) {
+        if(DAL.QuanLyHopDongDAL.kiemTraTonTai(txtMaHopDong.getText())==false) {
             JOptionPane.showMessageDialog(null,"Không tồn tại","Thông báo",JOptionPane.OK_OPTION,icon);
             return;
         }else {
@@ -1919,24 +1922,25 @@ public final class QuanLyGUI extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,icon);
             if (ref==JOptionPane.YES_NO_OPTION) {
+                DAL.QuanLyHopDongDAL.xuLyXoaHopDong(txtMaHopDong.getText());
                 showThongTinMuaBan();
             }
         }
     }//GEN-LAST:event_btnXoaMuaBanActionPerformed
 
     private void btnLuuMuaBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuMuaBanActionPerformed
-       if(QuanLyCuDanDAL.kiemTraTonTai(txtMaHopDong.getText())){
+       if(DAL.QuanLyHopDongDAL.kiemTraTonTai(txtMaHopDong.getText())){
             int ref=JOptionPane.showConfirmDialog(null, "Mã ["+txtMaHopDong.getText()+"] đã tồn tại bạn có muốn cập nhập ?",
                 "Thông báo",
                 JOptionPane.YES_NO_OPTION);
             if (ref==JOptionPane.NO_OPTION)return;
             else{
-               
-                showCuDan();
+                xuLyUpdateCuDan();
+                showThongTinMuaBan();
             }
         }else{
-           
-            showCuDan();
+           xuLyLuuHopDong();
+           showThongTinMuaBan(); 
         }
     }//GEN-LAST:event_btnLuuMuaBanActionPerformed
     protected void xuLyLuuCuDan() {
@@ -1967,6 +1971,29 @@ public final class QuanLyGUI extends javax.swing.JFrame {
          cuDan.setQueQuan(txtQueQuan.getText());
          QuanLyCuDanDAL qlCuDan= new QuanLyCuDanDAL();
          qlCuDan.updateCuDan(cuDan);
+    }
+    protected  void xuLyUpdateHopDong(){
+        HopDong hopDong= new HopDong();
+        hopDong.setMaHopDong(txtMaHopDong.getText());
+        hopDong.setNgayGiaoDich(txtNgayGiaoDich.getText());
+        hopDong.setDiaChiKhachHang(txtDiaChiKhachHang.getText());
+        hopDong.setMaCuDan(cbbMaCuDanMuaBan.getSelectedItem()+"");
+        hopDong.setMaCanHo(cbbMaCanHoMuaBan.getSelectedItem()+"");
+        hopDong.setTenKH(txtTenKhachHang.getText());
+        QuanLyHopDongDAL qlHopDong = new QuanLyHopDongDAL();
+        qlHopDong.updateHopDong(hopDong);
+        
+    }
+    protected  void xuLyLuuHopDong(){
+        HopDong hopDong= new HopDong();
+        hopDong.setMaHopDong(txtMaHopDong.getText());
+        hopDong.setNgayGiaoDich(txtNgayGiaoDich.getText());
+        hopDong.setDiaChiKhachHang(txtDiaChiKhachHang.getText());
+        hopDong.setMaCuDan(cbbMaCuDanMuaBan.getSelectedItem()+"");
+        hopDong.setMaCanHo(cbbMaCanHoMuaBan.getSelectedItem()+"");
+        hopDong.setTenKH(txtTenKhachHang.getText());
+        QuanLyHopDongDAL qlHopDong = new QuanLyHopDongDAL();
+        qlHopDong.themHopDong(hopDong);
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
