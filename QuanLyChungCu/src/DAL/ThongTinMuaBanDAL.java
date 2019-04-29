@@ -12,7 +12,7 @@ import java.util.List;
 public class ThongTinMuaBanDAL {
 
     public static List<HopDong> dsHopDong() throws SQLException {
-        String query = "select distinct hd.MaHopDong,hd.TenKH,hd.MaCanHo,hd.MaCuDan,hd.DiaChiKH,ch.Gia,hd.NgayGiaoDich \n"
+        String query = "select distinct hd.MaHopDong,cd.TenCuDan,hd.MaCanHo,hd.MaCuDan,hd.DiaChiKH,ch.Gia,hd.NgayGiaoDich \n"
                 + "from HOPDONG hd inner join CANHO ch on hd.MaCanHo=ch.MaCanHo \n"
                 + "inner join CUDAN cd on hd.MaCuDan=cd.MaCuDan";
         ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(query);

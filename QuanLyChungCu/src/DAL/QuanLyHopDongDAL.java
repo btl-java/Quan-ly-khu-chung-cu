@@ -51,7 +51,7 @@ public class QuanLyHopDongDAL {
              return preStatement.executeUpdate();     
          }
          catch(SQLException e2) {
-              JOptionPane.showMessageDialog(null, "Dữ liệu không được để trống");
+              JOptionPane.showMessageDialog(null, "Dữ liệu trống hoặc đã tồn tại");
         }
         catch(NullPointerException e2) {
                 JOptionPane.showMessageDialog(null, "Dữ liệu không được để trống");
@@ -100,11 +100,9 @@ public class QuanLyHopDongDAL {
              
          }
         catch(SQLException e2) {
-              JOptionPane.showMessageDialog(null, "Dữ liệu không được để trống");
+              JOptionPane.showMessageDialog(null, "Lỗi cơ sở dữ liệu");
         }
-        catch(NullPointerException e2) {
-                JOptionPane.showMessageDialog(null, "Dữ liệu không được để trống");
-        }
+        
         catch(NumberFormatException e2) {
                 JOptionPane.showMessageDialog(null, "Dữ liệu không chính xác, mời nhập lại .");
         }
@@ -112,6 +110,20 @@ public class QuanLyHopDongDAL {
              e.printStackTrace();
          }
          return -1;
+     }
+     public static boolean kiemTraTonTaiMaCanHO(String maCanHo){
+         try {
+             String sql="select MaCanHo from HOPDONG where MaHopDong=?";
+             PreparedStatement preStatement=ConnectSQL.connect().prepareStatement(sql);
+             preStatement.setString(1, maCanHo);
+             ResultSet result=preStatement.executeQuery();
+             return result.next();  
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+            
+         return false;
+         
      }
   
 }

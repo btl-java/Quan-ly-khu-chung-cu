@@ -6,6 +6,7 @@
 package DAL;
 
 import Entities.CanHo;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -90,7 +91,7 @@ public class ThongTinCanHoDAL {
     public static List<CanHo> layMaCanHo(){
          List<CanHo> dsMaCanHo = new ArrayList<>();
         try {
-            String sql="select * from CANHO where TrangThai=0";
+            String sql="select * from CANHO";
             ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(sql);
             while (rs.next()) {
                 CanHo ch = new CanHo();
@@ -102,6 +103,18 @@ public class ThongTinCanHoDAL {
             e.printStackTrace();
         }
         return dsMaCanHo;
+    }
+    public static int thayDoiTrangThaiCanHo(String maCanHo){
+        try {
+            String sql="update CANHO set TrangThai from CANHO left join HopDong on CANHO.MaCanHo=HOPDONG.MaCanHo where MaCanHo=?";
+            PreparedStatement preStatement=ConnectSQL.connect().prepareStatement(sql);
+            preStatement.setString(1, maCanHo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return -1;
+    
     }
 //    public static void main(String[] args) throws SQLException {
 //        List<CanHo> list=dsCanHo();
