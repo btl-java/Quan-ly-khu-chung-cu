@@ -5,10 +5,15 @@
  */
 package BLL;
 
+import static DAL.ThongTinCanHoDAL.layMaCanHo;
 import DAL.ThongTinMuaBanDAL;
+import Entities.CanHo;
 import Entities.HopDong;
+import java.math.BigInteger;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -63,5 +68,21 @@ public class ThongTinMuaBanBLL {
         }
         TableModel tableModel = new DefaultTableModel(data, colName);
         tbl.setModel(tableModel);
+    }
+    
+    public static long doanhThu(){
+         long doanhThu=0;
+        try {
+            List<CanHo> dsCanHo=DAL.ThongTinCanHoDAL.dsCanHoDaBan();
+           
+            long gia=0;
+            for (CanHo dsCh : dsCanHo) {
+                gia= dsCh.getGia();
+                doanhThu +=gia;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ThongTinMuaBanBLL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return doanhThu;
     }
 }

@@ -9,8 +9,10 @@ import Entities.CuDan;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -202,4 +204,22 @@ public class QuanLyCuDanDAL {
        }
         return -1;
 }
+   public static List<CuDan> layMaCuDan(){
+       List<CuDan> listCuDan= new ArrayList<>();
+       try {
+           String sql="select MaCuDan from CUDAN ";
+           Statement statement=ConnectSQL.connect().createStatement();
+           ResultSet resultSet=statement.executeQuery(sql);
+           while(resultSet.next()){
+               CuDan cuDan= new CuDan();
+               cuDan.setMaCuDan(resultSet.getString(1));
+               listCuDan.add(cuDan);
+           }
+           
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+        return listCuDan;
+   
+   }
 }

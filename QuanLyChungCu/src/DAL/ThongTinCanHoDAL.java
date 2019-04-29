@@ -68,7 +68,41 @@ public class ThongTinCanHoDAL {
         }
         return dsTTCanHo;
     }
-    
+     public static List<CanHo> dsCanHoDaBan() throws SQLException {
+        String query = "select distinct MaCanHo,DienTich,Gia,SoPhong,TenKhu from CANHO ch join KHUCANHO kch on ch.Makhu=kch.MaKhu where TrangThai=1";
+        ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(query);
+        List<CanHo> dsCanHo = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                CanHo ch = new CanHo();
+                ch.setMaCanHo(rs.getString(1));
+                ch.setDienTich(rs.getFloat(2));
+                ch.setGia(rs.getLong(3));
+                ch.setSoPhong(rs.getInt(4));
+                ch.setTenKhu(rs.getString(5));
+                dsCanHo.add(ch);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error in ThongTinCanHoDAL: "+e.getMessage());
+        }
+        return dsCanHo;
+    }
+    public static List<CanHo> layMaCanHo(){
+         List<CanHo> dsMaCanHo = new ArrayList<>();
+        try {
+            String sql="select * from CANHO where TrangThai=0";
+            ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(sql);
+            while (rs.next()) {
+                CanHo ch = new CanHo();
+                ch.setMaCanHo(rs.getString(1));
+                ch.setGia(rs.getLong(3));
+                dsMaCanHo.add(ch);
+            }  
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dsMaCanHo;
+    }
 //    public static void main(String[] args) throws SQLException {
 //        List<CanHo> list=dsCanHo();
 //        Collections.sort(list, (t,y)->t.getMaCanHo().compareTo(y.getMaCanHo()));
