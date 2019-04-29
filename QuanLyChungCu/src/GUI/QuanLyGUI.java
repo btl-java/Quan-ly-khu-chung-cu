@@ -8,12 +8,15 @@ import BLL.KhuCanHoBLL;
 import BLL.*;
 import DAL.QuanLyCuDanDAL;
 import DAL.QuanLyHopDongDAL;
+import DAL.ThongTinCanHoDAL;
+import Entities.CanHo;
 import Entities.CuDan;
 import Entities.HopDong;
 import java.awt.HeadlessException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -121,6 +124,7 @@ public final class QuanLyGUI extends javax.swing.JFrame {
           cbbMaCuDanMuaBan.setModel(QuanLyCuDanBLL.cbbMaCuDan());
           cbbMaCanHoMuaBan.removeAllItems();
           cbbMaCanHoMuaBan.setModel(ThongTinCanHoBLL.cbbMaCanHo());
+          cbbMaKhuMb.setModel(KhuCanHoBLL.cbb_show());
            
         } catch (Exception ex) {
             Logger.getLogger(QuanLyGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -243,7 +247,7 @@ public final class QuanLyGUI extends javax.swing.JFrame {
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        cbbTrangThai = new javax.swing.JComboBox();
         cbbMaKhuMb = new javax.swing.JComboBox();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -1110,6 +1114,11 @@ public final class QuanLyGUI extends javax.swing.JFrame {
         jLabel30.setText("Tên khách hàng");
 
         cbbMaCanHoMuaBan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbbMaCanHoMuaBan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbbMaCanHoMuaBanMouseClicked(evt);
+            }
+        });
 
         jLabel38.setText("Mã cư dân");
 
@@ -1125,7 +1134,7 @@ public final class QuanLyGUI extends javax.swing.JFrame {
 
         jLabel44.setText("Mã Khu");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Đã bán", "Trống" }));
+        cbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Đã bán", "Trống" }));
 
         cbbMaKhuMb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -1178,7 +1187,7 @@ public final class QuanLyGUI extends javax.swing.JFrame {
                     .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(cbbMaCanHoMuaBan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cbbMaKhuMb, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cbbTrangThai, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(92, 92, 92))
         );
         jPanel15Layout.setVerticalGroup(
@@ -1222,7 +1231,7 @@ public final class QuanLyGUI extends javax.swing.JFrame {
                                     .addComponent(cbbMaCuDanMuaBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel42))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1980,6 +1989,24 @@ public final class QuanLyGUI extends javax.swing.JFrame {
            showThongTinMuaBan(); 
         }
     }//GEN-LAST:event_btnLuuMuaBanActionPerformed
+
+    private void cbbMaCanHoMuaBanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbMaCanHoMuaBanMouseClicked
+         List<CanHo> dsCanHoTheoMa= DAL.ThongTinCanHoDAL.truyVanCanHoTheoMa(cbbMaCanHo.getSelectedItem()+"");
+            for (CanHo ch : dsCanHoTheoMa) {
+                txtDienTich.setText(ch.getDienTich()+"");
+                txtGia.setText(ch.getGia()+"");
+                txtSoPhong.setText(ch.getSoPhong()+"");
+                if (ch.isTrangThai()==true) {
+                    cbbTrangThai.setSelectedItem("Đã bán");
+                }
+                else{
+                    cbbTrangThai.setSelectedItem("Trống");
+                }
+                cbbMaKhuMb.setSelectedItem(ch.getMaKhu());
+                cbbMaCanHoMuaBan.setSelectedItem(ch.getMaCanHo());
+                cbbMaCuDanMuaBan.setSelectedItem(ch.getMaCuDan());
+            }
+    }//GEN-LAST:event_cbbMaCanHoMuaBanMouseClicked
     protected void xuLyLuuCuDan() {
          CuDan cuDan= new CuDan();
          cuDan.setMaCuDan(txtMaCuDan.getText());
@@ -2084,7 +2111,7 @@ public final class QuanLyGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox cbbMaCuDanMuaBan;
     private javax.swing.JComboBox<String> cbbMaKhu;
     private javax.swing.JComboBox cbbMaKhuMb;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox cbbTrangThai;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -101,7 +101,7 @@ public class QuanLyCuDanDAL {
      * @author Do
      * @return 
      */
-    
+   
     public static int xuLyXoaCuDan(String maCuDan){
         try {
             String sql="delete from CUDAN where MaCuDan=?";
@@ -113,31 +113,7 @@ public class QuanLyCuDanDAL {
         }
         return -1;
     }
-    public static void xuLyTimKiem(String tenCuDan, String maCuDan){
-        ArrayList<CuDan> dsCuDan= new ArrayList<>();
-        try {
-              String sql="select * from CUDAN where TenCuDan=? or MaCuDan=? ";
-            PreparedStatement preStatement =DAL.ConnectSQL.connect().prepareStatement(sql);
-            preStatement.setString(1,tenCuDan);
-            preStatement.setString(2,maCuDan);
-            ResultSet result=preStatement.executeQuery();
-            while(result.next()){
-                 CuDan cd = new CuDan();
-                cd.setMaCuDan(result.getString(1));
-                cd.setTenCuDan(result.getString(2));
-                cd.setNgaySinh(result.getString(3));
-                cd.setGioiTinh(result.getBoolean(4));
-                cd.setSoDT(result.getString(5));
-                cd.setSoCMT(result.getString(6));
-                cd.setQueQuan(result.getString(7));
-                dsCuDan.add(cd);
-                }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-   
+ 
      public static boolean kiemTraTonTai(String maCuDan){
          try {
              String sql="select * from CUDAN where MaCuDan=?";

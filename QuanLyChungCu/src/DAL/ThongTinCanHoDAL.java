@@ -6,6 +6,7 @@
 package DAL;
 
 import Entities.CanHo;
+import Entities.CuDan;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -115,6 +116,28 @@ public class ThongTinCanHoDAL {
         
         return -1;
     
+    }
+     public static ArrayList<CanHo> truyVanCanHoTheoMa(String maCanHo){
+        ArrayList<CanHo> dsCanHoTheoMa= new ArrayList<>();
+            try {
+                String sql="select * from CUDAN where MaCanHo=?";
+                PreparedStatement preStatement=ConnectSQL.connect().prepareStatement(sql);
+                preStatement.setString(1,maCanHo);
+                ResultSet result=preStatement.executeQuery();
+                while(result.next()){
+                    CanHo canHo= new CanHo();
+                    canHo.setMaCanHo(result.getString(1));
+                    canHo.setDienTich(result.getFloat(2));
+                    canHo.setGia(result.getLong(3));
+                    canHo.setTrangThai(result.getBoolean(4));
+                    canHo.setSoPhong(result.getInt(5));
+                    canHo.setMaCuDan(result.getString(6));
+                    canHo.setMaKhu(result.getString(7));
+                    dsCanHoTheoMa.add(canHo);
+                }
+            } catch (Exception e) {
+            }
+        return dsCanHoTheoMa;
     }
 //    public static void main(String[] args) throws SQLException {
 //        List<CanHo> list=dsCanHo();
