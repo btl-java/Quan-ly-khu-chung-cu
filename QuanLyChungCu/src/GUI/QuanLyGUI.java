@@ -674,7 +674,8 @@ public final class QuanLyGUI extends javax.swing.JFrame {
         cbbDienTich.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Từ 30m² - 40m²", "Từ 40m² - 50mm²", "Trên 50m²" }));
 
         cbbGia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        cbbGia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dưới 1 tỷ", "Từ 1 tỷ - 2 tỷ", "Trên 2 tỷ", " " }));
+        cbbGia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dưới 1 tỷ", "Từ 1 tỷ - 2 tỷ", "Trên 2 tỷ" }));
+        cbbGia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dưới 1 tỷ", "Từ 1 tỷ - 2 tỷ", "Trên 2 tỷ"}));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 162));
