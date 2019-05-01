@@ -120,7 +120,7 @@ public class ThongTinCanHoDAL {
      public static ArrayList<CanHo> truyVanCanHoTheoMa(String maCanHo){
         ArrayList<CanHo> dsCanHoTheoMa= new ArrayList<>();
             try {
-                String sql="select * from CUDAN where MaCanHo=?";
+                String sql="select * from CANHO where MaCanHo=?";
                 PreparedStatement preStatement=ConnectSQL.connect().prepareStatement(sql);
                 preStatement.setString(1,maCanHo);
                 ResultSet result=preStatement.executeQuery();

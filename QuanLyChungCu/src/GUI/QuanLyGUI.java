@@ -13,6 +13,7 @@ import Entities.CanHo;
 import Entities.CuDan;
 import Entities.HopDong;
 import java.awt.HeadlessException;
+import java.awt.event.ItemEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -1115,6 +1116,11 @@ public final class QuanLyGUI extends javax.swing.JFrame {
         jLabel30.setText("Tên khách hàng");
 
         cbbMaCanHoMuaBan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbbMaCanHoMuaBan.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbMaCanHoMuaBanItemStateChanged(evt);
+            }
+        });
         cbbMaCanHoMuaBan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbbMaCanHoMuaBanMouseClicked(evt);
@@ -1992,22 +1998,28 @@ public final class QuanLyGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLuuMuaBanActionPerformed
 
     private void cbbMaCanHoMuaBanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbMaCanHoMuaBanMouseClicked
-         List<CanHo> dsCanHoTheoMa= DAL.ThongTinCanHoDAL.truyVanCanHoTheoMa(cbbMaCanHo.getSelectedItem()+"");
+        
+    }//GEN-LAST:event_cbbMaCanHoMuaBanMouseClicked
+
+    private void cbbMaCanHoMuaBanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbMaCanHoMuaBanItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            ArrayList<CanHo> dsCanHoTheoMa= DAL.ThongTinCanHoDAL.truyVanCanHoTheoMa(cbbMaCanHo.getSelectedItem()+"");
             for (CanHo ch : dsCanHoTheoMa) {
                 txtDienTich.setText(ch.getDienTich()+"");
                 txtGia.setText(ch.getGia()+"");
-                txtSoPhong.setText(ch.getSoPhong()+"");
-                if (ch.isTrangThai()==true) {
+                 if (ch.isTrangThai()==true) {
                     cbbTrangThai.setSelectedItem("Đã bán");
                 }
                 else{
                     cbbTrangThai.setSelectedItem("Trống");
                 }
-                cbbMaKhuMb.setSelectedItem(ch.getMaKhu());
-                cbbMaCanHoMuaBan.setSelectedItem(ch.getMaCanHo());
+                txtSoPhong.setText(ch.getSoPhong()+"");
                 cbbMaCuDanMuaBan.setSelectedItem(ch.getMaCuDan());
+                cbbMaKhuMb.setSelectedItem(ch.getMaKhu());
             }
-    }//GEN-LAST:event_cbbMaCanHoMuaBanMouseClicked
+            
+        }
+    }//GEN-LAST:event_cbbMaCanHoMuaBanItemStateChanged
     protected void xuLyLuuCuDan() {
          CuDan cuDan= new CuDan();
          cuDan.setMaCuDan(txtMaCuDan.getText());
