@@ -1249,16 +1249,13 @@ public class NhanVienGUI extends javax.swing.JFrame {
         JDialog dialog = jop.createDialog(null, "Thông báo");
 
         // Set timer
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(time);
-                } catch (InterruptedException e) {
-                    System.out.println(e);
-                }
-                dialog.dispose();
+        new Thread(() -> {
+            try {
+                Thread.sleep(time);
+            } catch (InterruptedException e) {
+                System.out.println(e);
             }
+            dialog.dispose();
         }).start();
 
         dialog.setVisible(true);
