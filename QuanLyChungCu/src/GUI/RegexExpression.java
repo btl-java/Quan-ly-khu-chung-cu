@@ -50,9 +50,4 @@ public class RegexExpression {
         return Pattern.compile(REGEX_ID).matcher(id).matches();
     }
     
-//    public static void main(String[] args) {
-//        System.out.println(checkDateTime("2020-02-30"));
-//        System.out.println(checkPhoneNumber("0123456789"));
-//        System.out.println(checkID("123456789999"));
-//    }
 }

@@ -374,7 +374,7 @@ public final class ThemKhu_PhongGUI extends javax.swing.JDialog {
                 s.schedule(() -> {
                     dialog.setVisible(false);
                     dialog.dispose();
-                },4, TimeUnit.SECONDS); // slow motion 4s 
+                },3, TimeUnit.SECONDS); // slow motion 4s 
                 dialog.setVisible(true);
                 
                 boolean check = KhuCanHoBLL.insert(RegexExpression.toUpperCaseFirstCharacter(txbTenKhu.getText()), Integer.parseInt(txbSoTang.getText()), Integer.parseInt(txbSoCanTT.getText()),
