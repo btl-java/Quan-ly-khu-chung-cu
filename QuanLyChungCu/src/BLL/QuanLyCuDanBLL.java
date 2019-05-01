@@ -30,7 +30,7 @@ public class QuanLyCuDanBLL {
 
     public static void HienThongTinCuDan(JTable tbl) throws SQLException {
         List<CuDan> dsCuDan = DAL.QuanLyCuDanDAL.dsCuDan();
-        Object[] colName = new Object[]{"Mã cư dân", "Tên cư dân", "Ngày sinh", "Giới tính", "SĐT", "Số CMT", "Quê quán"};
+        Object[] colName = new Object[]{"Mã cư dân", "Tên cư dân", "Ngày sinh", "Giới tính", "SĐT", "Số CMND", "Quê quán"};
         Object[][] data = new Object[dsCuDan.size()][8];
         int i = 0;
         for (CuDan cd : dsCuDan) {
