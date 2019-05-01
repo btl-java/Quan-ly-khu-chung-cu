@@ -37,13 +37,5 @@ public class ConnectSQL {
             Logger.getLogger(ConnectSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
-
-    
-    
-   /* public static void main(String[] args) {
-        if(connect()!= null) System.out.println("Success!");
-        else System.out.println("Fail!");       
-        close();
-    }*/
     
 }
