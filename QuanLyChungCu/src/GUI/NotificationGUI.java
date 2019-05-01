@@ -47,7 +47,6 @@ public class NotificationGUI extends javax.swing.JDialog {
 
         txbNotif.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         txbNotif.setForeground(new java.awt.Color(110, 23, 236));
-        txbNotif.setText("Hệ thống đang làm việc. Vui lòng đợi trong giây lát!");
 
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/loading_ql.png"))); // NOI18N
         lblIcon.setToolTipText("Processing");
