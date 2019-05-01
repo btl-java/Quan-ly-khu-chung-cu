@@ -6,6 +6,7 @@
 package BLL;
 
 import static DAL.QuanLyCuDanDAL.dsCuDan1;
+import static DAL.QuanLyCuDanDAL.layMaCuDan;
 import Entities.CuDan;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
@@ -96,5 +97,18 @@ public class QuanLyCuDanBLL {
         return new DefaultComboBoxModel(items.toString().split(","));
     }
     
+    
     //End TabThongTinCanho
+    /*
+        
+    */
+    public static ComboBoxModel cbbMaCuDan(){
+        StringBuilder items= new StringBuilder();
+            for (CuDan maCuDan : layMaCuDan()) {
+                items.append(maCuDan.getMaCuDan());
+                items.append(",");
+            }
+       return new DefaultComboBoxModel(items.toString().split(","));
+    }
+    
 }

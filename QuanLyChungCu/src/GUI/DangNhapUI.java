@@ -131,7 +131,7 @@ public class DangNhapUI extends JFrame{
 
 	public void showWindow() {
 		this.setSize(350, 250);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
