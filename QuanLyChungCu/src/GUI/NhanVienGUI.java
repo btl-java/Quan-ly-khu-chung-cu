@@ -257,15 +257,15 @@ public class NhanVienGUI extends javax.swing.JFrame {
             }
         });
         tblThongTinMuaBan.setToolTipText("Bảng Thông tin mua bán");
-        tblThongTinMuaBan.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(tblThongTinMuaBan);
-        tblThongTinMuaBan.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tblThongTinMuaBan.getColumnModel().getColumnCount() > 0) {
             tblThongTinMuaBan.getColumnModel().getColumn(0).setResizable(false);
             tblThongTinMuaBan.getColumnModel().getColumn(1).setResizable(false);
             tblThongTinMuaBan.getColumnModel().getColumn(2).setResizable(false);
             tblThongTinMuaBan.getColumnModel().getColumn(3).setResizable(false);
             tblThongTinMuaBan.getColumnModel().getColumn(4).setResizable(false);
+            tblThongTinMuaBan.getColumnModel().getColumn(5).setResizable(false);
+            tblThongTinMuaBan.getColumnModel().getColumn(6).setResizable(false);
         }
 
         btnRefreshTTMB.setBackground(new java.awt.Color(255, 255, 226));
@@ -294,7 +294,11 @@ public class NhanVienGUI extends javax.swing.JFrame {
         tabThongtinmuaban.setLayout(tabThongtinmuabanLayout);
         tabThongtinmuabanLayout.setHorizontalGroup(
             tabThongtinmuabanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabThongtinmuabanLayout.createSequentialGroup()
+            .addGroup(tabThongtinmuabanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(tabThongtinmuabanLayout.createSequentialGroup()
                 .addContainerGap(417, Short.MAX_VALUE)
                 .addComponent(jLabel26)
                 .addGap(18, 18, 18)
@@ -302,13 +306,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
                 .addGap(288, 288, 288)
                 .addComponent(btnRefreshTTMB, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(112, 112, 112))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabThongtinmuabanLayout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(tabThongtinmuabanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         tabThongtinmuabanLayout.setVerticalGroup(
             tabThongtinmuabanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -513,9 +511,16 @@ public class NhanVienGUI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tblQuanLyCuDan.setToolTipText("Bảng Thông tin cư dân");
@@ -525,6 +530,15 @@ public class NhanVienGUI extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tblQuanLyCuDan);
+        if (tblQuanLyCuDan.getColumnModel().getColumnCount() > 0) {
+            tblQuanLyCuDan.getColumnModel().getColumn(0).setResizable(false);
+            tblQuanLyCuDan.getColumnModel().getColumn(1).setResizable(false);
+            tblQuanLyCuDan.getColumnModel().getColumn(2).setResizable(false);
+            tblQuanLyCuDan.getColumnModel().getColumn(3).setResizable(false);
+            tblQuanLyCuDan.getColumnModel().getColumn(4).setResizable(false);
+            tblQuanLyCuDan.getColumnModel().getColumn(5).setResizable(false);
+            tblQuanLyCuDan.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         javax.swing.GroupLayout tabQuanlycudanLayout = new javax.swing.GroupLayout(tabQuanlycudan);
         tabQuanlycudan.setLayout(tabQuanlycudanLayout);
@@ -594,6 +608,13 @@ public class NhanVienGUI extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(tblThongTinCanHo);
+        if (tblThongTinCanHo.getColumnModel().getColumnCount() > 0) {
+            tblThongTinCanHo.getColumnModel().getColumn(0).setResizable(false);
+            tblThongTinCanHo.getColumnModel().getColumn(1).setResizable(false);
+            tblThongTinCanHo.getColumnModel().getColumn(2).setResizable(false);
+            tblThongTinCanHo.getColumnModel().getColumn(3).setResizable(false);
+            tblThongTinCanHo.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         jPanel4.setBackground(new java.awt.Color(221, 255, 236));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 0), 2));
