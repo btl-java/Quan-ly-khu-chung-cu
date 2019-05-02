@@ -12,10 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
@@ -24,8 +21,7 @@ import javax.swing.table.TableModel;
 public class QuanLyCuDanDAL {
     
     //Begin TabQuanLyCuDan
-    public static List<CuDan> dsCuDan() throws SQLException {
-        String query = "select * from CUDAN";
+    public static List<CuDan> ListCuDan(String query) throws SQLException{
         ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(query);
         List<CuDan> dsCuDan = new ArrayList<>();
         try {
@@ -45,6 +41,11 @@ public class QuanLyCuDanDAL {
             System.out.println("Error in QuanLyCuDanDAL: " + e.getMessage());
         }
         return dsCuDan;
+    }
+    
+    public static List<CuDan> dsCuDan() throws SQLException {
+        String query = "select * from CUDAN";
+        return ListCuDan(query);
     }
 
     public static void updateCD_DAL(CuDan cd) {
@@ -62,27 +63,6 @@ public class QuanLyCuDanDAL {
     //End TabQuanLyCuDan
 
     //Begin TabThongTinCanho
-    public static List<CuDan> dsCuDan1() throws SQLException {
-        String query = "select * from CUDAN";
-        ResultSet rs = ConnectSQL.connect().createStatement().executeQuery(query);
-        List<CuDan> dsCuDan = new ArrayList<>();
-        try {
-            while (rs.next()) {
-                CuDan cd = new CuDan();
-                cd.setMaCuDan(rs.getString(1));
-                cd.setTenCuDan(rs.getString(2));
-                cd.setNgaySinh(rs.getString(3));
-                cd.setGioiTinh(rs.getBoolean(4));
-                cd.setSoDT(rs.getString(5));
-                cd.setSoCMT(rs.getString(6));
-                cd.setQueQuan(rs.getString(7));
-                dsCuDan.add(cd);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error in QuanLyCuDanDAL: " + e.getMessage());
-        }
-        return dsCuDan;
-    }
     
     public static void insertCD_DAL(CuDan cd) throws SQLException {
         try {
@@ -92,6 +72,11 @@ public class QuanLyCuDanDAL {
         } catch (SQLException e) {
             System.out.println("Error in insertCD_DAL: " + e.getMessage()+cd.getMaCuDan());
         }
+    }
+    
+    public static List<CuDan> TimKiemCD_DAL(String info) throws SQLException{
+        String query="select * from CUDAN where MaCuDan like '%"+info+"%' or TenCuDan like N'%"+info+"%' or NgaySinh like '%"+info+"%' or GioiTinh like N'%"+info+"%' or SoDT like '%"+info+"%' or SoCMT like '%"+info+"%' or QueQuan like N'%"+info+"%'";
+        return ListCuDan(query);
     }
     //End TabThongTinCanho
     

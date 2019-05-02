@@ -5,7 +5,7 @@
  */
 package BLL;
 
-import static DAL.QuanLyCuDanDAL.dsCuDan1;
+import static DAL.QuanLyCuDanDAL.dsCuDan;
 import static DAL.QuanLyCuDanDAL.layMaCuDan;
 import Entities.CuDan;
 import java.awt.HeadlessException;
@@ -27,9 +27,9 @@ import GUI.RegexExpression;
  * @author quocc
  */
 public class QuanLyCuDanBLL {
-
-    public static void HienThongTinCuDan(JTable tbl) throws SQLException {
-        List<CuDan> dsCuDan = DAL.QuanLyCuDanDAL.dsCuDan();
+    //Begin TabQuanLyCuDan
+    public static void LoadTable(JTable tbl, List list){
+        List<CuDan> dsCuDan = list;
         Object[] colName = new Object[]{"Mã cư dân", "Tên cư dân", "Ngày sinh", "Giới tính", "SĐT", "Số CMND", "Quê quán"};
         Object[][] data = new Object[dsCuDan.size()][8];
         int i = 0;
@@ -49,6 +49,11 @@ public class QuanLyCuDanBLL {
         }
         TableModel tableModel = new DefaultTableModel(data, colName);
         tbl.setModel(tableModel);
+    }
+    
+    public static void HienThongTinCuDan(JTable tbl) throws SQLException {
+        List<CuDan> dsCuDan = DAL.QuanLyCuDanDAL.dsCuDan();
+        LoadTable(tbl, dsCuDan);
     }
 
     public static void updateCD_BLL(JTextField macd, JTextField tencd, JTextField ngsinh, JComboBox gioitinh, JTextField sdt, JTextField socmt, JTextField quequan) throws SQLException, ParseException {
@@ -73,6 +78,12 @@ public class QuanLyCuDanBLL {
             DAL.QuanLyCuDanDAL.updateCD_DAL(cd);
         }
     }
+    
+    public static void TimKiemCD_BLL(JTable tbl, String info) throws SQLException{
+        List<CuDan> dsCuDanTK= DAL.QuanLyCuDanDAL.TimKiemCD_DAL(info);
+        LoadTable(tbl, dsCuDanTK);
+    }
+    //End TabQuanLyCuDan
 
     //Begin TabThongTinCanho
     public static void insertCD_BLL(String macd,JTextField tencd, JTextField ngsinh, JComboBox gioitinh, JTextField sdt, JTextField socmt, JTextField quequan) throws SQLException {
@@ -90,7 +101,7 @@ public class QuanLyCuDanBLL {
      
     public static ComboBoxModel cmb_BLL() throws SQLException{
         StringBuilder items=new StringBuilder();
-        for(CuDan cd: dsCuDan1()){
+        for(CuDan cd: dsCuDan()){
             items.append(cd.getMaCuDan());
             items.append(",");
         }

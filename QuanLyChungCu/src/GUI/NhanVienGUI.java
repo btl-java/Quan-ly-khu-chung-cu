@@ -8,7 +8,7 @@ package GUI;
 import BLL.CreateContract;
 import static BLL.QuanLyCuDanBLL.cmb_BLL;
 import BLL.ThongTinCanHoBLL;
-import static DAL.QuanLyCuDanDAL.dsCuDan1;
+import static DAL.QuanLyCuDanDAL.dsCuDan;
 import Entities.CuDan;
 import java.awt.Desktop;
 import java.awt.HeadlessException;
@@ -124,6 +124,8 @@ public class NhanVienGUI extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblQuanLyCuDan = new javax.swing.JTable();
+        jLabel27 = new javax.swing.JLabel();
+        txtTimKiem1 = new javax.swing.JTextField();
         tabThongtincanho = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -460,9 +462,13 @@ public class NhanVienGUI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                        .addComponent(btnSua)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRefreshQLCD, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -485,13 +491,8 @@ public class NhanVienGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbGioitinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSua)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRefreshQLCD, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                            .addComponent(jLabel7))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -540,6 +541,17 @@ public class NhanVienGUI extends javax.swing.JFrame {
             tblQuanLyCuDan.getColumnModel().getColumn(6).setResizable(false);
         }
 
+        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel27.setText("Tìm kiếm:");
+
+        txtTimKiem1.setForeground(new java.awt.Color(0, 0, 255));
+        txtTimKiem1.setToolTipText("Nhập thông tin cần tìm kiếm");
+        txtTimKiem1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTimKiem1KeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout tabQuanlycudanLayout = new javax.swing.GroupLayout(tabQuanlycudan);
         tabQuanlycudan.setLayout(tabQuanlycudanLayout);
         tabQuanlycudanLayout.setHorizontalGroup(
@@ -547,12 +559,21 @@ public class NhanVienGUI extends javax.swing.JFrame {
             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabQuanlycudanLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1152, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabQuanlycudanLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(207, 207, 207))
+                .addGroup(tabQuanlycudanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabQuanlycudanLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1152, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabQuanlycudanLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(tabQuanlycudanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabQuanlycudanLayout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(207, 207, 207))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabQuanlycudanLayout.createSequentialGroup()
+                                .addComponent(jLabel27)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtTimKiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(422, 422, 422))))))
         );
         tabQuanlycudanLayout.setVerticalGroup(
             tabQuanlycudanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -561,8 +582,12 @@ public class NhanVienGUI extends javax.swing.JFrame {
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(tabQuanlycudanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTimKiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -991,7 +1016,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
 
     private void txtTencudanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTencudanMouseClicked
         txtTencudan.setEditable(true);
-        txtTencudan.setText(null);
+        txtTencudan.requestFocus();
     }//GEN-LAST:event_txtTencudanMouseClicked
 
     private void tblThongTinCanHoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblThongTinCanHoMouseClicked
@@ -1005,9 +1030,6 @@ public class NhanVienGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tblThongTinCanHoMouseClicked
 
     public void ClearTextTTCH() {
-        txtMacanho1.setText(null);
-        txtGiacanho.setText(null);
-        txtNgaygiaodich.setText(null);
         cmbMacudan.setSelectedItem(null);
         cmbMacudan.setEnabled(false);
         txtTenkh.setText(null);
@@ -1044,7 +1066,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
 
     private void cmbMacudanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbMacudanItemStateChanged
         try {
-            List<CuDan> dsCuDan = dsCuDan1();
+            List<CuDan> dsCuDan = dsCuDan();
             String mcd;
             if (chkLacudan.isSelected()) {
                 mcd = cmbMacudan.getSelectedItem().toString();
@@ -1086,23 +1108,23 @@ public class NhanVienGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRefreshQLCDActionPerformed
 
     private void txtNgaysinhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNgaysinhMouseClicked
-        txtNgaysinh.setText(null);
         txtNgaysinh.setEditable(true);
+        txtNgaysinh.requestFocus();
     }//GEN-LAST:event_txtNgaysinhMouseClicked
 
     private void txtSdtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSdtMouseClicked
-        txtSdt.setText(null);
         txtSdt.setEditable(true);
+        txtSdt.requestFocus();
     }//GEN-LAST:event_txtSdtMouseClicked
 
     private void txtQuequanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtQuequanMouseClicked
-        txtQuequan.setText(null);
-        txtQuequan.setEditable(true);
+       txtQuequan.setEditable(true);
+       txtQuequan.requestFocus();
     }//GEN-LAST:event_txtQuequanMouseClicked
 
     private void txtSocmtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSocmtMouseClicked
-        txtSocmt.setText(null);
-        txtSocmt.setEditable(true);
+       txtSocmt.setEditable(true);
+       txtSocmt.requestFocus();
     }//GEN-LAST:event_txtSocmtMouseClicked
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -1190,7 +1212,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
             } else if (txtDiachi.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Nhập địa chỉ.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                List<CuDan> dsCuDan = dsCuDan1();
+                List<CuDan> dsCuDan = dsCuDan();
                 String mcd = "111111";
                 String maHopDong = "";
 
@@ -1231,6 +1253,14 @@ public class NhanVienGUI extends javax.swing.JFrame {
     private void cmbGioitinhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbGioitinhMouseClicked
         cmbGioitinh.setEnabled(true);
     }//GEN-LAST:event_cmbGioitinhMouseClicked
+
+    private void txtTimKiem1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiem1KeyReleased
+        try {
+            BLL.QuanLyCuDanBLL.TimKiemCD_BLL(tblQuanLyCuDan, txtTimKiem1.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtTimKiem1KeyReleased
 
     public void CreateWordFile() {
         try {
@@ -1323,6 +1353,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
@@ -1364,5 +1395,6 @@ public class NhanVienGUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtTencudan;
     private javax.swing.JTextField txtTenkh;
     private javax.swing.JTextField txtTimKiem;
+    private javax.swing.JTextField txtTimKiem1;
     // End of variables declaration//GEN-END:variables
 }
