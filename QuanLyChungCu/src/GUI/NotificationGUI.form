@@ -57,7 +57,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ec" green="17" red="6e" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="H&#x1ec7; th&#x1ed1;ng &#x111;ang l&#xe0;m vi&#x1ec7;c. Vui l&#xf2;ng &#x111;&#x1ee3;i trong gi&#xe2;y l&#xe1;t!"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">

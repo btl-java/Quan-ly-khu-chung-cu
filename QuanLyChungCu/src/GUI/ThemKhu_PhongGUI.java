@@ -345,10 +345,14 @@ public final class ThemKhu_PhongGUI extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null,"Số tầng trống!");
             }else if(Integer.parseInt(txbSoTang.getText())<1){
                 JOptionPane.showMessageDialog(null,"Vui lòng nhập số tầng là số dương!");
+            }else if(Integer.parseInt(txbSoTang.getText())>30){ // gioi han 30 tang
+                JOptionPane.showMessageDialog(null,"Số tầng không hợp lệ!");
             }else if(txbSoCanTT.getText().equals("")){
                 JOptionPane.showMessageDialog(null,"Số căn trống!");
             }else if(Integer.parseInt(txbSoCanTT.getText())<1){
                 JOptionPane.showMessageDialog(null,"Vui lòng số căn là số dương!");
+            }else if(Integer.parseInt(txbSoCanTT.getText())>20){
+                JOptionPane.showMessageDialog(null,"Số căn không hợp lệ!");
             }else if(txbDiaChi.getText().equals("")){
                 JOptionPane.showMessageDialog(null,"Địa chỉ trống!");
             }else if(txbDiaChi.getText().length()>100){
@@ -374,7 +378,7 @@ public final class ThemKhu_PhongGUI extends javax.swing.JDialog {
                 s.schedule(() -> {
                     dialog.setVisible(false);
                     dialog.dispose();
-                },3, TimeUnit.SECONDS); // slow motion 4s 
+                },3, TimeUnit.SECONDS); // slow motion 3s 
                 dialog.setVisible(true);
                 
                 boolean check = KhuCanHoBLL.insert(RegexExpression.toUpperCaseFirstCharacter(txbTenKhu.getText()), Integer.parseInt(txbSoTang.getText()), Integer.parseInt(txbSoCanTT.getText()),
