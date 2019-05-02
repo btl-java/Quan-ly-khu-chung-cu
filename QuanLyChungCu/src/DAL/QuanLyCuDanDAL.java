@@ -183,4 +183,27 @@ public class QuanLyCuDanDAL {
         return listCuDan;
    
    }
+   public ArrayList<CuDan> xuLyTimKiem(String tenCuDan){
+       ArrayList<CuDan> dsCuDanTimKiem= new ArrayList<>();
+       try {
+           String sql="select * from CUDAN where TenCuDan=?";
+           PreparedStatement preStatement = ConnectSQL.connect().prepareStatement(sql);
+           preStatement.setString(1, tenCuDan);
+           ResultSet result= preStatement.executeQuery();
+           while(result.next()){
+               CuDan cuDan= new CuDan();
+               cuDan.setMaCuDan(result.getString(1));
+               cuDan.setTenCuDan(result.getString(2));
+               cuDan.setNgaySinh(result.getString(3));
+               cuDan.setGioiTinh(result.getBoolean(4));
+               cuDan.setSoDT(result.getString(5));
+               cuDan.setSoCMT(result.getString(6));
+               cuDan.setQueQuan(result.getString(7));
+               dsCuDanTimKiem.add(cuDan);
+           }
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+        return dsCuDanTimKiem;
+   }
 }

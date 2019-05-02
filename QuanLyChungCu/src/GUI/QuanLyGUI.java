@@ -40,6 +40,8 @@ public final class QuanLyGUI extends javax.swing.JFrame {
      */
     DefaultTableModel dtmCuDan= new DefaultTableModel();
     public static QuanLyGUI it;
+    
+    ArrayList<CuDan> dsCuDan; // xử lý tìm kiếm
             
     public QuanLyGUI() {
         
@@ -262,6 +264,8 @@ public final class QuanLyGUI extends javax.swing.JFrame {
         cbbGioiTinh = new javax.swing.JComboBox();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblCuDan = new javax.swing.JTable();
+        txtTimKiem = new javax.swing.JTextField();
+        btnTimKiem = new javax.swing.JButton();
         tblCanHoDaBan = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         tblDsCanHoDaBan = new javax.swing.JTable();
@@ -1283,6 +1287,13 @@ public final class QuanLyGUI extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(tblCuDan);
 
+        btnTimKiem.setText("Tìm kiếm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnThongTinLayout = new javax.swing.GroupLayout(pnThongTin);
         pnThongTin.setLayout(pnThongTinLayout);
         pnThongTinLayout.setHorizontalGroup(
@@ -1296,22 +1307,28 @@ public final class QuanLyGUI extends javax.swing.JFrame {
                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(31, 31, 31)
                 .addGroup(pnThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnThongTinLayout.createSequentialGroup()
+                    .addComponent(cbbGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnThongTinLayout.createSequentialGroup()
                         .addGroup(pnThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtNgaySinh, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                             .addComponent(txtTenCuDan, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtMaCuDan, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addGroup(pnThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtCMT, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtQueQuan)
-                            .addComponent(txtSoDienThoai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(cbbGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pnThongTinLayout.createSequentialGroup()
+                                .addGroup(pnThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(31, 31, 31)
+                                .addGroup(pnThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtCMT, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtQueQuan)
+                                    .addComponent(txtSoDienThoai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnThongTinLayout.createSequentialGroup()
+                                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnTimKiem)))))
                 .addContainerGap())
             .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1037, Short.MAX_VALUE)
         );
@@ -1348,8 +1365,12 @@ public final class QuanLyGUI extends javax.swing.JFrame {
                 .addGroup(pnThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(cbbGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addGroup(pnThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTimKiem))
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1818,6 +1839,30 @@ public final class QuanLyGUI extends javax.swing.JFrame {
     private void txtGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtGiaActionPerformed
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+       QuanLyCuDanDAL tkCuDan= new QuanLyCuDanDAL();
+       dsCuDan=tkCuDan.xuLyTimKiem(txtTimKiem.getText());
+       Object[] colName = new Object[]{"Mã cư dân", "Tên cư dân", "Ngày sinh", "Giới tính", "SĐT", "Số CMND", "Quê quán"};
+       Object[][] data = new Object[dsCuDan.size()][8];
+       int i=0;
+        for (CuDan cd: dsCuDan) {
+            data[i][0] = cd.getMaCuDan();
+            data[i][1] = cd.getTenCuDan();
+            data[i][2] = cd.getNgaySinh();
+            if (cd.isGioiTinh() == true) {
+                data[i][3] = "Nam";
+            } else {
+                data[i][3] = "Nữ";
+            }
+            data[i][4] = cd.getSoDT();
+            data[i][5] = cd.getSoCMT();
+            data[i][6] = cd.getQueQuan();
+            i++;
+        }
+         TableModel tableModel = new DefaultTableModel(data, colName);
+        tblCuDan.setModel(tableModel);
+    }//GEN-LAST:event_btnTimKiemActionPerformed
     protected void xuLyLuuCuDan() {
          CuDan cuDan= new CuDan();
          cuDan.setMaCuDan(txtMaCuDan.getText());
@@ -1909,6 +1954,7 @@ public final class QuanLyGUI extends javax.swing.JFrame {
     private javax.swing.JButton btViewAllArea;
     private javax.swing.JButton btXoa_Khu;
     private javax.swing.JButton btXoa_NV;
+    private javax.swing.JButton btnTimKiem;
     private javax.swing.JCheckBox cbTrangThai;
     private javax.swing.JComboBox<String> cbbDienTich;
     private javax.swing.JComboBox<String> cbbGia;
@@ -2019,6 +2065,7 @@ public final class QuanLyGUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtSoDienThoai;
     private javax.swing.JTextField txtTenCuDan;
     private javax.swing.JTextField txtTenKhachHang;
+    private javax.swing.JTextField txtTimKiem;
     private javax.swing.JTextField txtTongDoanhThu;
     // End of variables declaration//GEN-END:variables
 
