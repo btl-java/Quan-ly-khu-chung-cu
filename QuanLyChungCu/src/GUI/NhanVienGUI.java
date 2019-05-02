@@ -1196,16 +1196,15 @@ public class NhanVienGUI extends javax.swing.JFrame {
 
                 if (chkLacudan.isSelected()) {
                     mcd = cmbMacudan.getSelectedItem().toString();
-                    maHopDong = txtMacanho1.getText() + cmbMacudan.getSelectedItem().toString();
                 } else {
                     for (CuDan cd : dsCuDan) {
                         if (cd.getMaCuDan().equals(mcd)) {
                             mcd = String.valueOf(Integer.parseInt(mcd) + 1);
                         }
                     }
-                    maHopDong = txtMacanho1.getText() + mcd;
                     BLL.QuanLyCuDanBLL.insertCD_BLL(mcd, txtTenkh, txtNgsinh, cmbGioitinh1, txtSDT, txtScmt, txtDiachi);
                 }
+                maHopDong = txtMacanho1.getText() + mcd;
                 BLL.ThongTinCanHoBLL.updateCH_BLL(txtMacanho1.getText(), mcd);
                 BLL.ThongTinMuaBanBLL.insertHD_BLL(maHopDong, txtNgaygiaodich.getText(), txtDiachi.getText(), mcd, txtMacanho1.getText(), txtTenkh.getText());
                 BLL.ThongTinCanHoBLL.HienThongTinCanho(tblThongTinCanHo);
@@ -1249,16 +1248,13 @@ public class NhanVienGUI extends javax.swing.JFrame {
         JDialog dialog = jop.createDialog(null, "Thông báo");
 
         // Set timer
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(time);
-                } catch (InterruptedException e) {
-                    System.out.println(e);
-                }
-                dialog.dispose();
+        new Thread(() -> {
+            try {
+                Thread.sleep(time);
+            } catch (InterruptedException e) {
+                System.out.println(e);
             }
+            dialog.dispose();
         }).start();
 
         dialog.setVisible(true);
