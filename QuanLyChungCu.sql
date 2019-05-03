@@ -228,8 +228,3 @@ GO
 ---------- Triggers ----------
 
 ---------- Write Select, Insert, Update, Delete Alter below!  -----------
-USE QuanLyChungCu
-GO
-DELETE dbo.HOPDONG
-GO
-ALTER TABLE dbo.HOPDONG ADD TenKH NVARCHAR(50) NOT NULL
