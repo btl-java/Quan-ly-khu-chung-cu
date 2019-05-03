@@ -1624,11 +1624,9 @@ public final class QuanLyGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btDangXuatActionPerformed
 
     private void btThem_KhuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThem_KhuActionPerformed
-//       ThemKhu_Phong test  = new ThemKhu_Phong(this, true);
-//       test.setVisible(true);
-       this.setEnabled(false);
-            ThemKhu_PhongGUI xn = new ThemKhu_PhongGUI(this, true);
-            xn.setVisible(true);
+        this.setEnabled(false);
+            ThemKhu_PhongGUI fr = new ThemKhu_PhongGUI(this, true);
+            fr.setVisible(true);
     }//GEN-LAST:event_btThem_KhuActionPerformed
 
     private void tbKhuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKhuMouseClicked

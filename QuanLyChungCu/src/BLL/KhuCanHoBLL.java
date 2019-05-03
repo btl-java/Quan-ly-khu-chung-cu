@@ -42,8 +42,7 @@ public class KhuCanHoBLL {
             i++;
         }
         
-        return new DefaultTableModel(data, columnNames);
-        
+        return  new DefaultTableModel(data,columnNames);
     }
     
     public static Object[] showControlWithCombobox(String cbbValue){
