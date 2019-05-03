@@ -171,7 +171,7 @@ public final class QuanLyGUI extends javax.swing.JFrame {
         btSua_Khu = new javax.swing.JButton();
         btXoa_Khu = new javax.swing.JButton();
         txbTimKiem1 = new javax.swing.JTextField();
-        cbbMaKhu = new javax.swing.JComboBox<String>();
+        cbbMaKhu = new javax.swing.JComboBox<>();
         btViewAllArea = new javax.swing.JButton();
         jLabel31 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -181,7 +181,7 @@ public final class QuanLyGUI extends javax.swing.JFrame {
         tbCanHo = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        cbbMaCanHo = new javax.swing.JComboBox<String>();
+        cbbMaCanHo = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         txbDienTich = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -198,8 +198,8 @@ public final class QuanLyGUI extends javax.swing.JFrame {
         btTim_CanHo = new javax.swing.JButton();
         cbTrangThai = new javax.swing.JCheckBox();
         jLabel13 = new javax.swing.JLabel();
-        cbbDienTich = new javax.swing.JComboBox<String>();
-        cbbGia = new javax.swing.JComboBox<String>();
+        cbbDienTich = new javax.swing.JComboBox<>();
+        cbbGia = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -659,11 +659,11 @@ public final class QuanLyGUI extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(0, 0, 162));
         jLabel13.setText("Diện tích");
 
-        cbbDienTich.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        cbbDienTich.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Từ 30m² - 40m²", "Từ 40m² - 50mm²", "Trên 50m²" }));
+        cbbDienTich.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbbDienTich.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Từ 30m² - 40m²", "Từ 40m² - 50mm²", "Trên 50m²" }));
 
-        cbbGia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        cbbGia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dưới 1 tỷ", "Từ 1 tỷ - 2 tỷ", "Trên 2 tỷ", " " }));
+        cbbGia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbbGia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dưới 1 tỷ", "Từ 1 tỷ - 2 tỷ", "Trên 2 tỷ" }));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 162));
