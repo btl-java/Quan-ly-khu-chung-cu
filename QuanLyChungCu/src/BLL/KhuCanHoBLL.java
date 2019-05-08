@@ -85,7 +85,7 @@ public class KhuCanHoBLL {
             first_lastID =  lastID.charAt(0);
             second_lastID = lastID.charAt(1);
             
-            if(first_lastID == 'Z' && second_lastID == 'Z'){
+            if(first_lastID == 'Z' && second_lastID == 'Z'){ //gioi han ten khu ZZ
                 JOptionPane.showMessageDialog(null,"System Error!");
             }else if(second_lastID == 'Z'){
                 first_lastID = (char)((int)first_lastID+1);
@@ -95,7 +95,7 @@ public class KhuCanHoBLL {
                 second_lastID = (char)((int)second_lastID+1);
                 maKhu = String.valueOf(first_lastID) + String.valueOf(second_lastID);
             }
-        }
+        } // tao ma khu chay tu dong
         
         ArrayList<CanHo> list = new ArrayList<>();// tạo danh sách là những căn hộ trong khu
         for(int i = 1;i<=soTang;i++) {
@@ -149,11 +149,12 @@ public class KhuCanHoBLL {
     
     public static boolean checkNotDuplicateAreaName(String tenKhu){
         ArrayList<KhuCanHo> list = KhuCanHoDAL.show();
-        
         if(list.isEmpty()) return false;
-        for(KhuCanHo khu :list){
-            if(tenKhu.equalsIgnoreCase(khu.getTenKhu()))
+        for(KhuCanHo khu : list){
+            if(tenKhu.trim().equalsIgnoreCase(khu.getTenKhu().trim()))
+            {
                 return true;
+            }
         }
         return false;  
     }
@@ -164,6 +165,6 @@ public class KhuCanHoBLL {
     
     public static boolean delete(String maKhu){
         return KhuCanHoDAL.delete(maKhu);
-    }   
+    }      
     
 }
