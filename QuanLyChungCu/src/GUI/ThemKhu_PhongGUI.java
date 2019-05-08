@@ -335,7 +335,7 @@ public final class ThemKhu_PhongGUI extends javax.swing.JDialog {
     private void btLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLuuActionPerformed
 
         try{
-            if(KhuCanHoBLL.checkNotDuplicateAreaName(txbTenKhu.getText())){ // check trung ma
+            if(KhuCanHoBLL.checkNotDuplicateAreaName(txbTenKhu.getText())){ // check trung ten khu
                 JOptionPane.showMessageDialog(null,"Tên khu đã tồn tại!");
             }else if(txbTenKhu.getText().equals("")){
                 JOptionPane.showMessageDialog(null,"Tên khu trống!");
@@ -373,7 +373,7 @@ public final class ThemKhu_PhongGUI extends javax.swing.JDialog {
                 
                 setEnabledControls(false);
                 NotificationGUI dialog = new  NotificationGUI(QuanLyGUI.it, true); // goi ham hien thong bao tren form kia
-                dialog.setNotif("Hệ thống đang làm việc.\nVui lòng đợi trong giây lát!");
+                dialog.setNotif("Hệ thống đang làm việc.\n Vui lòng đợi trong giây lát!");
                 ScheduledExecutorService s = Executors.newSingleThreadScheduledExecutor();
                 s.schedule(() -> {
                     dialog.setVisible(false);
@@ -388,9 +388,10 @@ public final class ThemKhu_PhongGUI extends javax.swing.JDialog {
                 if(check){
                     JOptionPane.showMessageDialog(null,"Thêm thành công khu " +"'"+RegexExpression.toUpperCaseFirstCharacter(txbTenKhu.getText())+"'"+ " và " +
                         (Integer.parseInt(txbSoTang.getText())*Integer.parseInt(txbSoCanTT.getText()))+" căn hộ","Notification",JOptionPane.INFORMATION_MESSAGE);
+                    
                     clearAllControl();
                 }else{
-                    JOptionPane.showMessageDialog(null,"Vui lòng xem lại thông tin!");
+                    JOptionPane.showMessageDialog(null,"Vui lòng xem lại thông tin!"); // check trung ma
                 }
                 setEnabledControls(true);
             }
